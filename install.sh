@@ -28,6 +28,9 @@ fi
 
 echo "${distroname}"
 
-if [ "$distroname" == "Arch Linux" ]; then
-	echo "arch"
-fi
+case "$distroname" in
+	"Arch Linux") 
+		echo "arch";;
+	"Ubuntu") 
+		echo "ubuntu";;
+esac
