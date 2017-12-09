@@ -1,16 +1,11 @@
 #!/bin/sh
 
-# ubuntu install script for vim c++ programming setup
-
-#sudo apt-get update
-#sudo apt-get upgrade
+# install script for vim c++ programming setup
 
 ##symlinking vimrc to home directory
-#ln -s .vimrc ~/.vimrc
-
-
-#if haveProg apt-get ; then echo "apt";
-#fi
+ln -sv ./.vimrc ~/.vimrc
+ln -sv ./.bashrc ~/.bashrc
+ln -sv ./.gitconfig ~/.gitconfig
 
 arch=$(uname -m)
 kernel=$(uname -r)
