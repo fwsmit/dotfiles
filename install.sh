@@ -2,16 +2,11 @@
 
 # ubuntu install script for vim c++ programming setup
 
-#sudo apt-get update
-#sudo apt-get upgrade
-
-##symlinking vimrc to home directory
-#ln -s .vimrc ~/.vimrc
+#symlinking vimrc to home directory
+ln -s .vimrc ~/.vimrc
 
 
-#if haveProg apt-get ; then echo "apt";
-#fi
-
+#distro detection
 arch=$(uname -m)
 kernel=$(uname -r)
 if [ -n "$(command -v lsb_release)" ]; then
@@ -30,7 +25,25 @@ echo "${distroname}"
 
 case "$distroname" in
 	"Arch Linux") 
-		echo "arch";;
-	"Ubuntu") 
-		echo "ubuntu";;
+		echo "installing for arch"
+		;;
+	"Ubuntu"*) 
+		echo "installing for ubuntu"
+		sudo add-apt-repository --assume-yes ppa:texus/tgui-0.7
+		sudo apt-get update --assume-yes
+		sudo apt-get upgrade --assume-yes
+		sudo apt-get install --assume-yes cmake git g++ libarmadillo-dev libsfml-dev libtgui-dev curl vim
+		;;
 esac
+
+git config --global user.email "fw.smit01@gmail.com"
+git config --global user.name "fwsmit"
+
+#install vundle (vim package manager)
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+#call vundle pluginInstall from the commandline
+vim +PluginInstall +qall
+
+#notes :
+#installed newer version of vim for color support on ubuntu
+#should do a compile of vim

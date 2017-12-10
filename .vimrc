@@ -80,6 +80,8 @@ nmap \a :AS<CR>
 set background=dark
 set termguicolors
 colorscheme material-monokai
-let g:materialmonokai_italic=1
 
+" make comments italic
+"let g:materialmonokai_italic=1 " this doesn't seem to work
+highlight Comment cterm=italic
 
