@@ -1,10 +1,11 @@
 #!/bin/sh
 
-# ubuntu install script for vim c++ programming setup
+# install script for vim c++ programming setup
 
-#symlinking vimrc to home directory
-ln -s .vimrc ~/.vimrc
-
+##symlinking vimrc to home directory
+ln -sv ./.vimrc ~/.vimrc
+ln -sv ./.bashrc ~/.bashrc
+ln -sv ./.gitconfig ~/.gitconfig
 
 #distro detection
 arch=$(uname -m)
