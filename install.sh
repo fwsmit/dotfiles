@@ -3,9 +3,9 @@
 # install script for vim c++ programming setup
 
 ##symlinking vimrc to home directory
-ln -sv ./.vimrc ~/.vimrc
-ln -sv ./.bashrc ~/.bashrc
-ln -sv ./.gitconfig ~/.gitconfig
+ln -sv ~/dotfiles/.vimrc ~/.vimrc
+#ln -sv ./.bashrc ~/.bashrc
+ln -sv ~/dotfiles/.gitconfig ~/.gitconfig
 
 #distro detection
 arch=$(uname -m)
