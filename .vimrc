@@ -2,6 +2,8 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+" turn off annoying beep
+set visualbell
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
