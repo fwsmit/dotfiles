@@ -61,6 +61,7 @@ set shiftwidth=4
 set smartindent
 "turn on line numbers
 set number
+set relativenumber
 
 "turn on syntax highlighting
 syntax on
@@ -73,7 +74,7 @@ map <F2> :NERDTreeToggle<CR>
 " open fuzzy file
 nmap \t :FufFile<CR>
 " open fuzzy buffer
-nmap \b :FufBuffer<CR>
+"nmap \b :FufBuffer<CR>
 " open fuzzy coverage file (search file recursively)
 nmap \f :FufCoverageFile<CR>
 
@@ -134,3 +135,11 @@ set encoding=utf-8
 set ignorecase
 set smartcase
 set incsearch
+
+" exit and save shortcuts
+nmap \x :conf qa<CR>
+nmap \s :wa<CR>
+nmap \q :x<CR>
+
+" fuzzyfinder config
+"let g:fufcoveragefile_exclude = 'build/.*'  " doesnt work

@@ -1,4 +1,8 @@
-folding plugin
+folding plugin http://vim.wikia.com/wiki/Folding 
 smarcase and incsearch (DONE)
 autocomplete
 https://github.com/Raimondi/delimitMate  (bracket completion)
+make cursor more visible
+shortcut for saving and quitting
+autoformatting http://astyle.sourceforge.net/ 
+select entire function https://stackoverflow.com/questions/11723169/selecting-entire-function-definition-in-vim
