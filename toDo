@@ -1,6 +1,6 @@
 folding plugin http://vim.wikia.com/wiki/Folding 
 smarcase and incsearch (DONE)
-autocomplete
+autocomplete (DONE)
 https://github.com/Raimondi/delimitMate  (bracket completion)
 make cursor more visible
 shortcut for saving and quitting

@@ -40,6 +40,9 @@ Plugin 'ying17zi/vim-live-latex-preview'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
+" youcomplete me code completion
+Plugin 'valloric/youcompleteme'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -143,3 +146,7 @@ nmap \q :x<CR>
 
 " fuzzyfinder config
 "let g:fufcoveragefile_exclude = 'build/.*'  " doesnt work
+"
+" youcompletme config
+let g:ycm_server_python_interpreter = "/bin/python2.7"
+let g:ycm_filetype_whitelist = { 'cpp': 1 }
