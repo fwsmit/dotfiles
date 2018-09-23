@@ -5,6 +5,7 @@ set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 " turn off annoying beep
 set visualbell
 
+let g:useAllPlugins = 1
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -14,34 +15,48 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" file tree explorer
-Plugin 'scrooloose/nerdtree'
+if useAllPlugins 
+	" easy insert mode escape
+	Plugin 'zhou13/vim-easyescape'
+	
+	" file tree explorer
+	Plugin 'scrooloose/nerdtree'
 
-" nerd commenter
-Plugin 'scrooloose/nerdcommenter'
+	" nerd commenter
+	Plugin 'scrooloose/nerdcommenter'
 
-" Header/source switching
-"Plugin 'ericcurtin/CurtineIncSw.vim'
-Bundle 'LucHermitte/lh-vim-lib'
+	" color schemes:
+	" material-monokai
+	Plugin 'skielbasa/vim-material-monokai'
+
+	" fuzzy finder
+	Bundle 'L9'
+	Bundle 'FuzzyFinder'
+
+	" latex
+	"Plugin 'ying17zi/vim-live-latex-preview'
+
+	" vim-airline
+	Plugin 'vim-airline/vim-airline'
+	Plugin 'vim-airline/vim-airline-themes'
+
+	" youcomplete me code completion
+	Plugin 'valloric/youcompleteme'
+endif
+"
+" LucHerimitte stuff
+"  - Header/source switching
+"  - Brackets
+Plugin 'LucHermitte/lh-vim-lib'
+Plugin 'LucHermitte/lh-style'
+Plugin 'LucHermitte/lh-tags'
+Plugin 'LucHermitte/lh-dev'
+Plugin 'LucHermitte/lh-brackets'
+Plugin 'LucHermitte/searchInRuntime'
+Plugin 'LucHermitte/mu-template'
+Plugin 'tomtom/stakeholders_vim'
 Plugin 'LucHermitte/alternate-lite'
-
-" color schemes:
-" material-monokai
-Plugin 'skielbasa/vim-material-monokai'
-
-" fuzzy finder
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-
-" latex
-Plugin 'ying17zi/vim-live-latex-preview'
-
-" vim-airline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-" youcomplete me code completion
-Plugin 'valloric/youcompleteme'
+Plugin 'LucHermitte/lh-cpp'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -69,22 +84,25 @@ set relativenumber
 "turn on syntax highlighting
 syntax on
 
-" NERDTree config
-" Give a shortcut key to NERD Tree
-map <F2> :NERDTreeToggle<CR>
+if useAllPlugins 
+	" NERDTree config
+	" Give a shortcut key to NERD Tree
+	map <F2> :NERDTreeToggle<CR>
 
-" fuzzy finder mappings
-" open fuzzy file
-nmap \t :FufFile<CR>
-" open fuzzy buffer
-"nmap \b :FufBuffer<CR>
-" open fuzzy coverage file (search file recursively)
-nmap \f :FufCoverageFile<CR>
+	" fuzzy finder mappings
+	" open fuzzy file
+	nmap \t :FufFile<CR>
+	" open fuzzy buffer
+	"nmap \b :FufBuffer<CR>
+	" open fuzzy coverage file (search file recursively)
+	nmap \f :FufCoverageFile<CR>
 
-" header/source switching
-" map \a :call CurtineIncSw()<CR>
-nmap \a :AS<CR>
-
+	" header/source switching (alternate)
+	" map \a :call CurtineIncSw()<CR>
+	nmap \a :AS<CR>
+	call lh#alternate#register_extension('g', 'cpp', ['h'], 1)
+	call lh#alternate#register_extension('g', 'h', ['cpp'], 1)
+endif
 
 
 " colorschemes
@@ -142,7 +160,7 @@ set incsearch
 " exit and save shortcuts
 nmap \x :conf qa<CR>
 nmap \s :wa<CR>
-nmap \q :x<CR>
+nmap \q :conf q<CR>
 
 " fuzzyfinder config
 "let g:fufcoveragefile_exclude = 'build/.*'  " doesnt work
@@ -150,3 +168,14 @@ nmap \q :x<CR>
 " youcompletme config
 let g:ycm_server_python_interpreter = "/bin/python2.7"
 let g:ycm_filetype_whitelist = { 'cpp': 1 }
+
+" Don't insert a template
+let g:mt_IDontWantTemplatesAutomaticallyInserted = 1
+
+" Mappings to go to insert mode
+"imap jk <Esc>l
+"imap kj <Esc>l
+
+inoremap <Esc> jk:echo "Don't use escape"
+
+let g:easyescape_timeout = 30
