@@ -2,13 +2,9 @@
 
 # install script for vim c++ programming setup
 
-##symlinking vimrc to home directory
-ln -sv ~/dotfiles/.vimrc ~/.vimrc
-#ln -sv ./.bashrc ~/.bashrc
-ln -sv ~/dotfiles/.gitconfig ~/.gitconfig
 
-git config --global user.email "fw.smit01@gmail.com"
-git config --global user.name "fwsmit"
+#git config --global user.email "fw.smit01@gmail.com"
+#git config --global user.name "fwsmit"
 
 ##install powerline symbols (airline plugin)
 #git clone https://github.com/powerline/fonts.git --depth=1 # clone
@@ -22,3 +18,12 @@ git config --global user.name "fwsmit"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 #call vundle pluginInstall from the commandline
 vim +PluginInstall +qall
+
+##symlinking configuration files to home directory
+ln -sv ~/dotfiles/.vimrc ~/.vimrc  # vim config
+#ln -sv ./.bashrc ~/.bashrc
+ln -sv ~/dotfiles/.gitconfig ~/.gitconfig # git config
+# i3 config
+# make directory if it doesnt exist yet
+mkdir -p ~/.i3/config
+ln -sv ~/dotfiles/config ~/.i3/config 
