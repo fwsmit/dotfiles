@@ -176,6 +176,6 @@ let g:mt_IDontWantTemplatesAutomaticallyInserted = 1
 "imap jk <Esc>l
 "imap kj <Esc>l
 
-inoremap <Esc> jk:echo "Don't use escape"
+"inoremap <Esc> jk:echo "Don't use escape"
 
 let g:easyescape_timeout = 30
