@@ -172,10 +172,4 @@ let g:ycm_filetype_whitelist = { 'cpp': 1 }
 " Don't insert a template
 let g:mt_IDontWantTemplatesAutomaticallyInserted = 1
 
-" Mappings to go to insert mode
-"imap jk <Esc>l
-"imap kj <Esc>l
-
-"inoremap <Esc> jk:echo "Don't use escape"
-
 let g:easyescape_timeout = 30
