@@ -166,11 +166,17 @@ nmap \q :conf q<CR>
 "let g:fufcoveragefile_exclude = 'build/.*'  " doesnt work
 "
 " youcompletme config
-let g:ycm_server_python_interpreter = "/bin/python2.7"
+let g:ycm_server_python_interpreter = "/bin/python"
 let g:ycm_filetype_whitelist = { 'cpp': 1 }
 
 " Don't insert a template
 let g:mt_IDontWantTemplatesAutomaticallyInserted = 1
+
+" Mappings to go to insert mode
+"imap jk <Esc>l
+"imap kj <Esc>l
+
+"inoremap <Esc> jk:echo "Don't use escape"
 
 let g:easyescape_timeout = 30
 
