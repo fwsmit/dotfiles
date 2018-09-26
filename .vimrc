@@ -173,3 +173,7 @@ let g:ycm_filetype_whitelist = { 'cpp': 1 }
 let g:mt_IDontWantTemplatesAutomaticallyInserted = 1
 
 let g:easyescape_timeout = 30
+
+" Mappings to move trough camelCase words
+nnoremap ,w /\u<CR>
+nnoremap ,b ?\u<CR>
