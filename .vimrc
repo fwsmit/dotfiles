@@ -166,7 +166,7 @@ nmap \q :conf q<CR>
 "let g:fufcoveragefile_exclude = 'build/.*'  " doesnt work
 "
 " youcompletme config
-let g:ycm_server_python_interpreter = "/bin/python"
+let g:ycm_server_python_interpreter = "/bin/python2"
 let g:ycm_filetype_whitelist = { 'cpp': 1 }
 
 " Don't insert a template

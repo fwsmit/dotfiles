@@ -25,5 +25,5 @@ ln -sv ~/dotfiles/.vimrc ~/.vimrc  # vim config
 ln -sv ~/dotfiles/.gitconfig ~/.gitconfig # git config
 # i3 config
 # make directory if it doesnt exist yet
-mkdir -p ~/.i3/config
+mkdir ~/.i3/
 ln -sv ~/dotfiles/config ~/.i3/config 
