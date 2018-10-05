@@ -45,9 +45,9 @@ bindsym $mod+b exec firefox
 bindsym $mod+Shift+q kill
 
 # brightness controls
-bindsym XF86MonBrightnessUp exec ~/brightness/setBrightness 1
+bindsym XF86MonBrightnessUp exec ~/brightness/brightnessUp
 
-bindsym XF86MonBrightnessDown exec ~/brightness/setBrightness 0.5
+bindsym XF86MonBrightnessDown exec ~/brightness/brightnessDown
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
