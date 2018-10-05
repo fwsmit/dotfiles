@@ -6,3 +6,4 @@ make cursor more visible
 shortcut for saving and quitting
 autoformatting http://astyle.sourceforge.net/ 
 select entire function https://stackoverflow.com/questions/11723169/selecting-entire-function-definition-in-vim
+vim sessions https://vimawesome.com/plugin/vim-workspace

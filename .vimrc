@@ -53,7 +53,7 @@ Plugin 'LucHermitte/lh-tags'
 Plugin 'LucHermitte/lh-dev'
 Plugin 'LucHermitte/lh-brackets'
 Plugin 'LucHermitte/searchInRuntime'
-Plugin 'LucHermitte/mu-template'
+"Plugin 'LucHermitte/mu-template'
 Plugin 'tomtom/stakeholders_vim'
 Plugin 'LucHermitte/alternate-lite'
 Plugin 'LucHermitte/lh-cpp'
@@ -102,11 +102,12 @@ if useAllPlugins
 	nmap \a :AS<CR>
 	call lh#alternate#register_extension('g', 'cpp', ['h'], 1)
 	call lh#alternate#register_extension('g', 'h', ['cpp'], 1)
+	let g:usemarks = 0
 endif
 
 
 " colorschemes
-set background=dark
+"set background=dark
 "set termguicolors
 "colorscheme material-monokai
 
@@ -116,42 +117,19 @@ highlight Comment cterm=italic
 
 
 " vim-airline
-let g:airline_powerline_fonts = 1 " activate powerline symbols
+"let g:airline_symbols.maxlinenr = 'L'
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.readonly = 'READ ONLY'
+"let g:airline_powerline_fonts = 1 " activate powerline symbols
 
 set encoding=utf-8
 "set guifont=Liberation\ Mono\ for\ Powerline\ 100
 "set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 10
 
-"if !exists('g:airline_symbols')
-	"let g:airline_symbols = {}
-"endif
 
-  "" unicode symbols
-  "let g:airline_left_sep = '»'
-  "let g:airline_left_sep = '▶'
-  "let g:airline_right_sep = '«'
-  "let g:airline_right_sep = '◀'
-  "let g:airline_symbols.linenr = '␊'
-  "let g:airline_symbols.linenr = '␤'
-  "let g:airline_symbols.linenr = '¶'
-  "let g:airline_symbols.branch = '⎇'
-  "let g:airline_symbols.paste = 'ρ'
-  "let g:airline_symbols.paste = 'Þ'
-  "let g:airline_symbols.paste = '∥'
-  "let g:airline_symbols.whitespace = 'Ξ'
-
-  "" airline symbols
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep = ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-"let g:airline_symbols.branch = ''
-"let g:airline_symbols.readonly = ''
-"let g:airline_symbols.linenr = ''
-"
-"let g:airline_symbols_ascii = 1
-"
-"
 "Searching
 set ignorecase
 set smartcase
@@ -164,9 +142,11 @@ nmap \q :conf q<CR>
 
 " fuzzyfinder config
 "let g:fufcoveragefile_exclude = 'build/.*'  " doesnt work
+let g:fufcoveragefile_exclude = '*.cpp'  " doesnt work
 "
 " youcompletme config
-let g:ycm_server_python_interpreter = "/bin/python"
+let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+"let g:ycm_server_python_interpreter = "/bin/python"
 let g:ycm_filetype_whitelist = { 'cpp': 1 }
 
 " Don't insert a template
