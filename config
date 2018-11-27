@@ -8,6 +8,27 @@
 # To get a config file with the same key positions, but for your current
 # layout, use the i3-config-wizard
 #
+# *************** My own customizations ***************
+
+hide_edge_borders both
+
+default_border none
+
+#title_align center
+title_align left
+
+# start a terminal
+bindsym $mod+Return exec gnome-terminal
+
+# start a browser
+bindsym $mod+b exec firefox
+
+# brightness controls
+bindsym XF86MonBrightnessUp exec ~/brightness/brightnessUp
+
+bindsym XF86MonBrightnessDown exec ~/brightness/brightnessDown
+
+# *************** End of my own customizations ***************
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -35,19 +56,8 @@ set $mod Mod4
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec gnome-terminal
-
-# start a browser
-bindsym $mod+b exec firefox
-
 # kill focused window
 bindsym $mod+Shift+q kill
-
-# brightness controls
-bindsym XF86MonBrightnessUp exec ~/brightness/brightnessUp
-
-bindsym XF86MonBrightnessDown exec ~/brightness/brightnessDown
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
