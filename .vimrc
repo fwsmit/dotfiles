@@ -42,6 +42,9 @@ if useAllPlugins
 
 	" youcomplete me code completion
 	Plugin 'valloric/youcompleteme'
+
+	" surround vim
+	Plugin 'tpope/vim-surround'
 endif
 "
 " LucHerimitte stuff
