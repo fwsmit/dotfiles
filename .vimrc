@@ -162,7 +162,7 @@ let g:mt_IDontWantTemplatesAutomaticallyInserted = 1
 
 "inoremap <Esc> jk:echo "Don't use escape"
 
-let g:easyescape_timeout = 30
+let g:easyescape_timeout = 300
 
 " Mappings to move trough camelCase words
 nnoremap ,w /\u<CR>
