@@ -146,7 +146,7 @@ let g:fufcoveragefile_exclude = '*.cpp'  " doesnt work
 "
 " youcompletme config
 let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-"let g:ycm_server_python_interpreter = "/bin/python"
+"let g:ycm_server_python_interpreter = "/bin/python2"
 let g:ycm_filetype_whitelist = { 'cpp': 1 }
 
 " Don't insert a template
