@@ -59,7 +59,7 @@ Plugin 'LucHermitte/searchInRuntime'
 "Plugin 'LucHermitte/mu-template'
 Plugin 'tomtom/stakeholders_vim'
 Plugin 'LucHermitte/alternate-lite'
-Plugin 'LucHermitte/lh-cpp'
+"Plugin 'LucHermitte/lh-cpp'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
