@@ -169,5 +169,5 @@ nnoremap ,w /\u<CR>
 nnoremap ,b ?\u<CR>
 
 " insert new line without going to insert mode
-noremap ]w O<Esc>
+noremap <Bar> O<Esc>
 noremap <CR> o<Esc>
