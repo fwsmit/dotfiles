@@ -110,9 +110,8 @@ endif
 
 
 " colorschemes
-"set background=dark
-"set termguicolors
-"colorscheme material-monokai
+set termguicolors
+colorscheme material-monokai
 
 " make comments italic
 "let g:materialmonokai_italic=1 " this doesn't seem to work
