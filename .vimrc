@@ -151,6 +151,8 @@ let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/
 "let g:ycm_server_python_interpreter = "/bin/python2"
 let g:ycm_filetype_whitelist = { 'cpp': 1 }
 let g:ycm_autoclose_preview_window_after_insertion = 1
+nnoremap \e :YcmCompleter FixIt<CR>
+inoremap \e <C-O>:YcmCompleter FixIt<CR>
 
 " Don't insert a template
 let g:mt_IDontWantTemplatesAutomaticallyInserted = 1
