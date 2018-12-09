@@ -169,3 +169,7 @@ let g:easyescape_timeout = 300
 " Mappings to move trough camelCase words
 nnoremap ,w /\u<CR>
 nnoremap ,b ?\u<CR>
+
+" insert new line without going to insert mode
+noremap <Bar> O<Esc>
+noremap <CR> o<Esc>
