@@ -28,6 +28,8 @@ if useAllPlugins
 	" color schemes:
 	" material-monokai
 	Plugin 'skielbasa/vim-material-monokai'
+	Plugin 'altercation/vim-colors-solarized'
+	
 
 	" fuzzy finder
 	Bundle 'L9'
@@ -84,9 +86,6 @@ set smartindent
 set number
 set relativenumber
 
-"turn on syntax highlighting
-syntax on
-
 if useAllPlugins 
 	" NERDTree config
 	" Give a shortcut key to NERD Tree
@@ -110,9 +109,12 @@ endif
 
 
 " colorschemes
-"set background=dark
-"set termguicolors
-"colorscheme material-monokai
+set background=dark
+set termguicolors
+syntax enable
+set t_Co=256
+colorscheme material-monokai
+"colorscheme solarized
 
 " make comments italic
 "let g:materialmonokai_italic=1 " this doesn't seem to work
@@ -173,3 +175,5 @@ nnoremap ,b ?\u<CR>
 " insert new line without going to insert mode
 noremap <Bar> O<Esc>
 noremap <CR> o<Esc>
+
+set guioptions-=T
