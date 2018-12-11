@@ -32,9 +32,11 @@ if useAllPlugins
 	
 
 	" fuzzy finder
-	Bundle 'L9'
-	Bundle 'FuzzyFinder'
+	"Bundle 'L9'
+	"Bundle 'FuzzyFinder'
 
+	" Fuzzy file finder
+	Plugin 'kien/ctrlp.vim'
 	" latex
 	"Plugin 'ying17zi/vim-live-latex-preview'
 
@@ -47,21 +49,24 @@ if useAllPlugins
 
 	" surround vim
 	Plugin 'tpope/vim-surround'
+
+	" bracket completion
+	Plugin 'Raimondi/delimitMate'
 endif
 "
 " LucHerimitte stuff
 "  - Header/source switching
 "  - Brackets
 Plugin 'LucHermitte/lh-vim-lib'
-Plugin 'LucHermitte/lh-style'
-Plugin 'LucHermitte/lh-tags'
-Plugin 'LucHermitte/lh-dev'
-Plugin 'LucHermitte/lh-brackets'
-Plugin 'LucHermitte/searchInRuntime'
-"Plugin 'LucHermitte/mu-template'
-Plugin 'tomtom/stakeholders_vim'
+"Plugin 'LucHermitte/lh-style'
+"Plugin 'LucHermitte/lh-tags'
+"Plugin 'LucHermitte/lh-dev'
+"Plugin 'LucHermitte/lh-brackets'
+"Plugin 'LucHermitte/searchInRuntime'
+""Plugin 'LucHermitte/mu-template'
+"Plugin 'tomtom/stakeholders_vim'
 Plugin 'LucHermitte/alternate-lite'
-"Plugin 'LucHermitte/lh-cpp'
+""Plugin 'LucHermitte/lh-cpp'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -93,11 +98,11 @@ if useAllPlugins
 
 	" fuzzy finder mappings
 	" open fuzzy file
-	nmap \t :FufFile<CR>
+	"nmap \t :FufFile<CR>
 	" open fuzzy buffer
 	"nmap \b :FufBuffer<CR>
 	" open fuzzy coverage file (search file recursively)
-	nmap \f :FufCoverageFile<CR>
+	"nmap \f :FufCoverageFile<CR>
 
 	" header/source switching (alternate)
 	" map \a :call CurtineIncSw()<CR>
@@ -105,6 +110,15 @@ if useAllPlugins
 	call lh#alternate#register_extension('g', 'cpp', ['h'], 1)
 	call lh#alternate#register_extension('g', 'h', ['cpp'], 1)
 	let g:usemarks = 0
+
+	"\ 'dir': "\v(\.git|\.hg|\.svn|cmake|build)$",
+	" Ctrl p mappings
+	let g:ctrlp_map = '<c-p>'	
+	let g:ctrlp_working_path_mode = 'ra'
+	let g:ctrlp_custom_ignore = {
+				\ 'dir': '\v[\/](\.git|cmake|build)$',
+				\ 'file': '\v\.(exe|so|dll)$',
+				\ }
 endif
 
 
@@ -147,7 +161,7 @@ nmap \q :conf q<CR>
 
 " fuzzyfinder config
 "let g:fufcoveragefile_exclude = 'build/.*'  " doesnt work
-let g:fufcoveragefile_exclude = '*.cpp'  " doesnt work
+"let g:fufcoveragefile_exclude = '*.cpp'  " doesnt work
 "
 " youcompletme config
 let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
@@ -177,3 +191,7 @@ noremap <Bar> O<Esc>
 noremap <CR> o<Esc>
 
 set guioptions-=T
+
+" bracket completion options
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
