@@ -5,7 +5,6 @@ set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 " turn off annoying beep
 set visualbell
 
-let g:useAllPlugins = 1
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -15,44 +14,42 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-if useAllPlugins 
-	" easy insert mode escape
-	Plugin 'zhou13/vim-easyescape'
-	
-	" file tree explorer
-	Plugin 'scrooloose/nerdtree'
+" easy insert mode escape
+Plugin 'zhou13/vim-easyescape'
 
-	" nerd commenter
-	Plugin 'scrooloose/nerdcommenter'
+" file tree explorer
+Plugin 'scrooloose/nerdtree'
 
-	" color schemes:
-	" material-monokai
-	Plugin 'skielbasa/vim-material-monokai'
-	Plugin 'altercation/vim-colors-solarized'
-	
+" nerd commenter
+Plugin 'scrooloose/nerdcommenter'
 
-	" fuzzy finder
-	"Bundle 'L9'
-	"Bundle 'FuzzyFinder'
+" color schemes:
+" material-monokai
+Plugin 'skielbasa/vim-material-monokai'
+Plugin 'altercation/vim-colors-solarized'
 
-	" Fuzzy file finder
-	Plugin 'kien/ctrlp.vim'
-	" latex
-	"Plugin 'ying17zi/vim-live-latex-preview'
 
-	" vim-airline
-	Plugin 'vim-airline/vim-airline'
-	Plugin 'vim-airline/vim-airline-themes'
+" fuzzy finder
+"Bundle 'L9'
+"Bundle 'FuzzyFinder'
 
-	" youcomplete me code completion
-	Plugin 'valloric/youcompleteme'
+" Fuzzy file finder
+Plugin 'kien/ctrlp.vim'
+" latex
+"Plugin 'ying17zi/vim-live-latex-preview'
 
-	" surround vim
-	Plugin 'tpope/vim-surround'
+" vim-airline
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
-	" bracket completion
-	Plugin 'Raimondi/delimitMate'
-endif
+" youcomplete me code completion
+Plugin 'valloric/youcompleteme'
+
+" surround vim
+Plugin 'tpope/vim-surround'
+
+" bracket completion
+Plugin 'Raimondi/delimitMate'
 "
 " LucHerimitte stuff
 "  - Header/source switching
@@ -91,35 +88,22 @@ set smartindent
 set number
 set relativenumber
 
-if useAllPlugins 
-	" NERDTree config
-	" Give a shortcut key to NERD Tree
-	map <F2> :NERDTreeToggle<CR>
+" NERDTree config
+" Give a shortcut key to NERD Tree
+map <F2> :NERDTreeToggle<CR>
 
-	" fuzzy finder mappings
-	" open fuzzy file
-	"nmap \t :FufFile<CR>
-	" open fuzzy buffer
-	"nmap \b :FufBuffer<CR>
-	" open fuzzy coverage file (search file recursively)
-	"nmap \f :FufCoverageFile<CR>
+nmap \a :AS<CR>
+call lh#alternate#register_extension('g', 'cpp', ['h'], 1)
+call lh#alternate#register_extension('g', 'h', ['cpp'], 1)
+let g:usemarks = 0
 
-	" header/source switching (alternate)
-	" map \a :call CurtineIncSw()<CR>
-	nmap \a :AS<CR>
-	call lh#alternate#register_extension('g', 'cpp', ['h'], 1)
-	call lh#alternate#register_extension('g', 'h', ['cpp'], 1)
-	let g:usemarks = 0
-
-	"\ 'dir': "\v(\.git|\.hg|\.svn|cmake|build)$",
-	" Ctrl p mappings
-	let g:ctrlp_map = '<c-p>'	
-	let g:ctrlp_working_path_mode = 'ra'
-	let g:ctrlp_custom_ignore = {
-				\ 'dir': '\v[\/](\.git|cmake|build)$',
-				\ 'file': '\v\.(exe|so|dll)$',
-				\ }
-endif
+" Ctrl p mappings
+let g:ctrlp_map = '<c-p>'	
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = {
+			\ 'dir': '\v[\/](\.git|cmake|build)$',
+			\ 'file': '\v\.(exe|so|dll)$',
+			\ }
 
 
 " colorschemes
@@ -130,13 +114,16 @@ set t_Co=256
 colorscheme material-monokai
 "colorscheme solarized
 
-" make comments italic
-"let g:materialmonokai_italic=1 " this doesn't seem to work
+" change comment settings 
 highlight Comment cterm=italic
-
+let g:NERDSpaceDelims = 1
+let g:NERDTrimTrailingWhitespace = 1
+autocmd BufRead,BufNewFile *.frag setfiletype shader
+let g:NERDCustomDelimiters = {
+			\ 'shader': { 'left': '//'},
+			\ }
 
 " vim-airline
-"let g:airline_symbols.maxlinenr = 'L'
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
@@ -153,6 +140,7 @@ set encoding=utf-8
 set ignorecase
 set smartcase
 set incsearch
+set nohlsearch
 
 " exit and save shortcuts
 nmap \x :conf qa<CR>
