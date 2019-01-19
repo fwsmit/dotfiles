@@ -25,9 +25,9 @@ Plugin 'scrooloose/nerdcommenter'
 
 " color schemes:
 " material-monokai
-Plugin 'skielbasa/vim-material-monokai'
-Plugin 'altercation/vim-colors-solarized'
-
+" Plugin 'skielbasa/vim-material-monokai'
+" Plugin 'altercation/vim-colors-solarized'
+Plugin 'morhetz/gruvbox'
 
 " fuzzy finder
 "Bundle 'L9'
@@ -105,15 +105,15 @@ let g:ctrlp_custom_ignore = {
 			\ 'file': '\v\.(exe|so|dll)$',
 			\ }
 
-
 " colorschemes
 set background=dark
-set termguicolors
 syntax enable
-set t_Co=256
-colorscheme material-monokai
-"colorscheme solarized
-
+" set t_Co=256
+" colorscheme material-monokai
+" colorscheme solarized
+" let g:gruvbox_italic=1
+set termguicolors
+colorscheme gruvbox
 " change comment settings 
 highlight Comment cterm=italic
 let g:NERDSpaceDelims = 1
