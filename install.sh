@@ -30,4 +30,4 @@ ln -sv ~/dotfiles/.gitconfig ~/.gitconfig # git config
 # i3 config
 # make directory if it doesnt exist yet
 mkdir ~/.i3/
-ln -sv ~/dotfiles/config ~/.i3/config 
+ln -sv ~/dotfiles/i3Config ~/.i3/config 
