@@ -1,11 +1,14 @@
 folding plugin http://vim.wikia.com/wiki/Folding 
-smarcase and incsearch (DONE)
-autocomplete (DONE)
-https://github.com/Raimondi/delimitMate  (bracket completion) (DONE)
 make cursor more visible
-shortcut for saving and quitting (DONE)
 autoformatting http://astyle.sourceforge.net/ 
 select entire function https://stackoverflow.com/questions/11723169/selecting-entire-function-definition-in-vim
 vim sessions https://vimawesome.com/plugin/vim-workspace
-insert new line below and dont go to insert mode (one way is press o, then Ctl-o to do a command in insert mode) (DONE)
 cool plugin: unimpaired.vim
+format on pasting
+
+DONE:
+smarcase and incsearch (DONE)
+autocomplete (DONE)
+https://github.com/Raimondi/delimitMate  (bracket completion) (DONE)
+shortcut for saving and quitting (DONE)
+insert new line below and dont go to insert mode (one way is press o, then Ctl-o to do a command in insert mode) (DONE)

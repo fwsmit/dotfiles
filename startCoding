@@ -1,0 +1,3 @@
+#!/bin/sh
+repo=$(ls ~/git_repos | dmenu)
+gnome-terminal --window --working-directory=$HOME/git_repos/$repo/build --window --working-directory=$HOME/git_repos/$repo/
