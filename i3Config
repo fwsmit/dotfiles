@@ -31,13 +31,34 @@ bindsym XF86MonBrightnessDown exec ~/brightness/brightnessDown
 
 bindsym $mod+c exec ~/dotfiles/startCoding
 
+bindsym $mod+Shift+b exec feh --recursive --randomize --bg-fill ~/wallpapers
+exec feh --recursive --randomize --bg-fill ~/wallpapers
+# bindsym $mod+t exec feh ~/Downloads/background.jpg
+
 # automatically go back and forth between workspaces when repeatedly pressing $mod + 2
 workspace_auto_back_and_forth yes
 
-# power off or suspend computer
-bindsym $mod+Shift+BackSpace exec --no-startup-id prompt "Shutdown computer?" systemctl poweroff
-bindsym $mod+Shift+Enter exec --no-startup-id prompt "Suspend computer?" sudo -A systemctl suspend 
+# bindsym $mod+Shift+BackSpace exec --no-startup-id prompt "Shutdown computer?" systemctl poweroff
+# bindsym $mod+Shift+Enter exec --no-startup-id prompt "Suspend computer?" sudo -A systemctl suspend
+# bindsym $mod+Shift+BackSpace exec --no-startup-id i3-input -P "start terminal?" gnome-terminal
 
+for_window [class="Tor"] floating enable border pixel 1
+
+# power off or suspend computer
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id ~/dotfiles/i3exit lock, mode "default"
+    bindsym e exec --no-startup-id ~/dotfiles/i3exit logout, mode "default"
+    bindsym s exec --no-startup-id ~/dotfiles/i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id ~/dotfiles/i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id ~/dotfiles/i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id ~/dotfiles/i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "$mode_system"
 # *************** End of my own customizations ***************
  
 # use these keys for focus, movement, and resize directions when reaching for
@@ -178,7 +199,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
