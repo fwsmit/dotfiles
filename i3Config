@@ -19,10 +19,10 @@ default_border none
 title_align left
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
 # start a browser
-bindsym $mod+b exec firefox
+bindsym $mod+b exec $BROWSER
 
 # brightness controls
 bindsym XF86MonBrightnessUp exec ~/brightness/brightnessUp
@@ -31,10 +31,29 @@ bindsym XF86MonBrightnessDown exec ~/brightness/brightnessDown
 
 bindsym $mod+c exec ~/dotfiles/startCoding
 
-bindsym $mod+Shift+b exec feh --recursive --randomize --bg-fill ~/wallpapers
-exec feh --recursive --randomize --bg-fill ~/wallpapers
+# sound control
+bindsym XF86AudioRaiseVolume exec pulsemixer --change-volume +2
+bindsym XF86AudioLowerVolume exec pulsemixer --change-volume -2
+bindsym XF86AudioPlay        exec mpc toggle
+bindsym XF86AudioPause       exec mpc pause
+bindsym XF86AudioMute        exec pulsemixer --toggle-mute #exec notify-send "muted"
+bindsym XF86AudioNext        exec mpc next
+bindsym XF86AudioPrev        exec mpc prev
+exec pasystray --notify=all
+
+#desktop background
+bindsym $mod+Shift+b exec --no-startup-id feh --recursive --randomize --bg-fill ~/wallpapers
+exec --no-startup-id feh --recursive --randomize --bg-fill ~/wallpapers
 # bindsym $mod+t exec feh ~/Downloads/background.jpg
 
+# bindsym $mod+m workspace 3; exec io.elementary.music
+# bindsym $mod+m workspace 3; exec io.elementary.music
+bindsym $mod+m exec ashuffle
+
+# bindsym XF86AudioMedia       exec ario
+bindsym XF86Tools       exec ario
+# bindsym $mod+m workspace 3
+               # exec --no-startup-id i3-msg 'workspace 1:Web; exec /usr/bin/firefox'
 # automatically go back and forth between workspaces when repeatedly pressing $mod + 2
 workspace_auto_back_and_forth yes
 
@@ -43,16 +62,19 @@ workspace_auto_back_and_forth yes
 # bindsym $mod+Shift+BackSpace exec --no-startup-id i3-input -P "start terminal?" gnome-terminal
 
 for_window [class="Tor"] floating enable border pixel 1
-
+# for_window [class="io.elementary.music"] workspace 3
+# bindsym $mod+t exec no-startup-id i3-msg 'workspace 7; exec io.elementary.music'
+bindsym $mod+t workspace 3; exec io.elementary.music
 # power off or suspend computer
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system System (l) lock, (o) logout, (Shift+s) suspend, (h) hibernate, (r) reboot, (s) shutdown, (p) pause
 mode "$mode_system" {
     bindsym l exec --no-startup-id ~/dotfiles/i3exit lock, mode "default"
-    bindsym e exec --no-startup-id ~/dotfiles/i3exit logout, mode "default"
-    bindsym s exec --no-startup-id ~/dotfiles/i3exit suspend, mode "default"
+    bindsym o exec --no-startup-id ~/dotfiles/i3exit logout, mode "default"
+    bindsym Shift+s exec --no-startup-id ~/dotfiles/i3exit suspend, mode "default"
     bindsym h exec --no-startup-id ~/dotfiles/i3exit hibernate, mode "default"
     bindsym r exec --no-startup-id ~/dotfiles/i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id ~/dotfiles/i3exit shutdown, mode "default"
+    bindsym s exec --no-startup-id ~/dotfiles/i3exit shutdown, mode "default"
+    bindsym p exec --no-startup-id ~/dotfiles/i3exit pause, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
