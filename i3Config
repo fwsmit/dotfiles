@@ -65,6 +65,8 @@ for_window [class="Tor"] floating enable border pixel 1
 # for_window [class="io.elementary.music"] workspace 3
 # bindsym $mod+t exec no-startup-id i3-msg 'workspace 7; exec io.elementary.music'
 bindsym $mod+t workspace 3; exec io.elementary.music
+for_window [class="^SFML"] floating enable border pixel 1
+assign [class="^Firefox$"] 1
 # power off or suspend computer
 set $mode_system System (l) lock, (o) logout, (Shift+s) suspend, (h) hibernate, (r) reboot, (s) shutdown, (p) pause
 mode "$mode_system" {
