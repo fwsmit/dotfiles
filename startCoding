@@ -1,3 +1,8 @@
 #!/bin/sh
 repo=$(ls ~/git_repos | dmenu)
-gnome-terminal --window --working-directory=$HOME/git_repos/$repo/build --window --working-directory=$HOME/git_repos/$repo/
+succes=$?
+echo $succes >> ~/scriptResult
+if [ $succes -eq 0 ]
+then
+	gnome-terminal --window --working-directory=$HOME/git_repos/$repo/build --window --working-directory=$HOME/git_repos/$repo/
+fi
