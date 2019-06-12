@@ -29,7 +29,7 @@ bindsym XF86MonBrightnessUp exec ~/brightness/brightnessUp
 
 bindsym XF86MonBrightnessDown exec ~/brightness/brightnessDown
 
-bindsym $mod+c exec ~/dotfiles/startCoding
+bindsym $mod+c exec --no-startup-id ~/dotfiles/startCoding
 
 # sound control
 bindsym XF86AudioRaiseVolume exec pulsemixer --change-volume +2
