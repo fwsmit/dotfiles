@@ -9,3 +9,5 @@ export BROWSER="firefox"
 # echo "TERMINAL: $TERMINAL" >>$LOG
 # echo "EDITOR: $EDITOR" >>$LOG
 # echo "BROWSER: $BROWSER" >>$LOG
+xset dpms 6000 6000 6000
+xset s 6000 6000
