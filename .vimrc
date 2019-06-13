@@ -34,7 +34,7 @@ Plugin 'morhetz/gruvbox'
 "Bundle 'FuzzyFinder'
 
 " Fuzzy file finder
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 " latex
 "Plugin 'ying17zi/vim-live-latex-preview'
 

@@ -32,14 +32,14 @@ bindsym XF86MonBrightnessDown exec ~/brightness/brightnessDown
 bindsym $mod+c exec --no-startup-id ~/dotfiles/startCoding
 
 # sound control
-bindsym XF86AudioRaiseVolume exec pulsemixer --change-volume +10 --max-volume 100
-bindsym XF86AudioLowerVolume exec pulsemixer --change-volume -10
-bindsym XF86AudioPlay        exec mpc toggle
-bindsym XF86AudioPause       exec mpc pause
-bindsym XF86AudioMute        exec pulsemixer --toggle-mute #exec notify-send "muted"
-bindsym XF86AudioNext        exec mpc next
-bindsym XF86AudioPrev        exec mpc prev
-exec pasystray --notify=all
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +10 --max-volume 100; exec --no-startup-id ~/dotfiles/notify audio
+bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -10; exec --no-startup-id ~/dotfiles/notify audio
+bindsym XF86AudioPlay        exec --no-startup-id mpc toggle; #exec --no-startup-id
+# bindsym XF86AudioPause       exec mpc pause
+bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute; exec --no-startup-id ~/dotfiles/notify muted
+bindsym XF86AudioNext        exec --no-startup-id mpc next
+bindsym XF86AudioPrev        exec --no-startup-id mpc prev
+# exec --no-startup-id pasystray --notify=all
 
 #desktop background
 bindsym $mod+Shift+b exec --no-startup-id feh --recursive --randomize --bg-fill ~/wallpapers

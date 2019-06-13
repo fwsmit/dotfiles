@@ -3,6 +3,7 @@
 export TERMINAL="gnome-terminal"
 export EDITOR="vim"
 export BROWSER="firefox"
+export XDG_MUSIC_DIR="~/Music"
 # LOG="$HOME/profile-invocations"
 # echo "-----" >>$LOG
 # echo "Caller: $0" >>$LOG
@@ -11,3 +12,4 @@ export BROWSER="firefox"
 # echo "BROWSER: $BROWSER" >>$LOG
 xset dpms 6000 6000 6000
 xset s 6000 6000
+
