@@ -34,7 +34,7 @@ bindsym $mod+c exec --no-startup-id ~/dotfiles/startCoding
 # sound control
 bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +10 --unmute --max-volume 100; exec --no-startup-id ~/dotfiles/notify audio
 bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -10 --unmute; exec --no-startup-id ~/dotfiles/notify audio
-bindsym XF86AudioPlay        exec --no-startup-id mpc toggle; #exec --no-startup-id
+bindsym XF86AudioPlay        exec --no-startup-id mpc toggle #; exec --no-startup-id
 # bindsym XF86AudioPause       exec mpc pause
 bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute; exec --no-startup-id ~/dotfiles/notify muted
 bindsym XF86AudioNext        exec --no-startup-id mpc next
