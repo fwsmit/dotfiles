@@ -15,6 +15,10 @@ hide_edge_borders both
 
 default_border none
 
+focus_follows_mouse no
+
+focus_wrapping no
+
 #title_align center
 title_align left
 
@@ -34,7 +38,7 @@ bindsym $mod+c exec --no-startup-id ~/dotfiles/startCoding
 # sound control
 bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +10 --unmute --max-volume 100; exec --no-startup-id ~/dotfiles/notify audio
 bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -10 --unmute; exec --no-startup-id ~/dotfiles/notify audio
-bindsym XF86AudioPlay        exec --no-startup-id mpc toggle #; exec --no-startup-id
+bindsym XF86AudioPlay        exec --no-startup-id mpc toggle 
 # bindsym XF86AudioPause       exec mpc pause
 bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute; exec --no-startup-id ~/dotfiles/notify muted
 bindsym XF86AudioNext        exec --no-startup-id mpc next
@@ -46,12 +50,9 @@ bindsym $mod+Shift+b exec --no-startup-id feh --recursive --randomize --bg-fill 
 exec --no-startup-id feh --recursive --randomize --bg-fill ~/wallpapers
 # bindsym $mod+t exec feh ~/Downloads/background.jpg
 
-# bindsym $mod+m workspace 3; exec io.elementary.music
-# bindsym $mod+m workspace 3; exec io.elementary.music
 bindsym $mod+m exec ashuffle
 
-# bindsym XF86AudioMedia       exec ario
-bindsym XF86Tools       exec ario
+bindsym XF86Tools       exec gnome-terminal -e 'ncmpcpp -s playlist'
 # bindsym $mod+m workspace 3
                # exec --no-startup-id i3-msg 'workspace 1:Web; exec /usr/bin/firefox'
 # automatically go back and forth between workspaces when repeatedly pressing $mod + 2
@@ -68,6 +69,7 @@ for_window [class="Tor"] floating enable border pixel 1
 for_window [class="^SFML"] floating enable border pixel 1
 for_window [class="^SFML"] move position center
 assign [class="^Firefox$"] 1
+# assign [class="^Music$"] 4
 # power off or suspend computer
 set $mode_system System (l) lock, (o) logout, (Shift+s) suspend, (h) hibernate, (r) reboot, (s) shutdown, (p) pause
 mode "$mode_system" {
