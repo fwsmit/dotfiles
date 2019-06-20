@@ -1,7 +1,7 @@
 #!/bin/sh
 # doesnt seem to work
 export TERMINAL="gnome-terminal"
-export EDITOR="vim"
+export EDITOR="nvim"
 export BROWSER="firefox"
 export XDG_MUSIC_DIR="~/Music"
 # LOG="$HOME/profile-invocations"

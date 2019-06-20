@@ -97,3 +97,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vim="$EDITOR"
+alias i3conf="nvim ~/dotfiles/i3Config"
+alias zshconf="nvim ~/dotfiles/.zshrc"
+alias make="make -j$(($(nproc)-1))"
+alias vimconf="nvim ~/dotfiles/.vimrc"
