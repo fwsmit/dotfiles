@@ -26,7 +26,7 @@ title_align left
 bindsym $mod+Return exec i3-sensible-terminal
 
 # start a browser
-bindsym $mod+b exec $BROWSER
+bindsym $mod+b exec --no-startup-id sh -c "~/dotfiles/launchOnce $BROWSER $BROWSER 1"
 
 # brightness controls
 bindsym XF86MonBrightnessUp exec ~/brightness/brightnessUp
@@ -50,7 +50,7 @@ bindsym $mod+Shift+b exec --no-startup-id feh --recursive --randomize --bg-fill 
 exec --no-startup-id feh --recursive --randomize --bg-fill ~/wallpapers
 # bindsym $mod+t exec feh ~/Downloads/background.jpg
 
-bindsym $mod+m exec ashuffle
+bindsym $mod+m exec --no-startup-id sh -c "~/dotfiles/launchOnce ashuffle ashuffle"
 
 bindsym XF86Tools       exec gnome-terminal -e 'ncmpcpp -s playlist'
 # bindsym $mod+m workspace 3

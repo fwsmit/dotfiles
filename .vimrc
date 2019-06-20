@@ -65,6 +65,9 @@ Plugin 'LucHermitte/lh-vim-lib'
 Plugin 'LucHermitte/alternate-lite'
 ""Plugin 'LucHermitte/lh-cpp'
 
+" for building cmake projects
+Plugin 'skywind3000/asyncrun.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -187,3 +190,8 @@ set guioptions-=T
 " bracket completion options
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
+
+" async configuration
+let g:asyncrun_open = 6
+nnoremap <F5> :AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;<CR>
+nnoremap <F4> :AsyncRun -cwd=<root>/build cmake ..<CR>

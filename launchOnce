@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# usage: launchonce NAME COMMAND WORKSPACE
+pid=`pidof $1 -s`
+error=$?
+# echo $error
+if [ $error -eq 1 ]
+then
+	# echo "executing command"
+	sh -c "$2 &"
+fi
+if [ $# -gt 2 ]
+then
+	# echo "changing workspace"
+	i3-msg "workspace $3"
+fi
