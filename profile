@@ -4,6 +4,7 @@ export TERMINAL="gnome-terminal"
 export EDITOR="nvim"
 export BROWSER="firefox"
 export XDG_MUSIC_DIR="~/Music"
+export PATH=$PATH:~/dotfiles/scripts/
 # LOG="$HOME/profile-invocations"
 # echo "-----" >>$LOG
 # echo "Caller: $0" >>$LOG

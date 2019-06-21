@@ -26,21 +26,21 @@ title_align left
 bindsym $mod+Return exec i3-sensible-terminal
 
 # start a browser
-bindsym $mod+b exec --no-startup-id sh -c "~/dotfiles/launchOnce $BROWSER $BROWSER 1"
+bindsym $mod+t exec --no-startup-id sh -c "launchOnce $BROWSER $BROWSER 1"
 
 # brightness controls
 bindsym XF86MonBrightnessUp exec ~/brightness/brightnessUp
 
 bindsym XF86MonBrightnessDown exec ~/brightness/brightnessDown
 
-bindsym $mod+c exec --no-startup-id ~/dotfiles/startCoding
+bindsym $mod+c exec --no-startup-id startCoding
 
 # sound control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +10 --unmute --max-volume 100; exec --no-startup-id ~/dotfiles/notify audio
-bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -10 --unmute; exec --no-startup-id ~/dotfiles/notify audio
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +10 --unmute --max-volume 100; exec --no-startup-id notify audio
+bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -10 --unmute; exec --no-startup-id notify audio
 bindsym XF86AudioPlay        exec --no-startup-id mpc toggle 
 # bindsym XF86AudioPause       exec mpc pause
-bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute; exec --no-startup-id ~/dotfiles/notify muted
+bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute; exec --no-startup-id notify muted
 bindsym XF86AudioNext        exec --no-startup-id mpc next
 bindsym XF86AudioPrev        exec --no-startup-id mpc prev
 # exec --no-startup-id pasystray --notify=all
@@ -50,7 +50,7 @@ bindsym $mod+Shift+b exec --no-startup-id feh --recursive --randomize --bg-fill 
 exec --no-startup-id feh --recursive --randomize --bg-fill ~/wallpapers
 # bindsym $mod+t exec feh ~/Downloads/background.jpg
 
-bindsym $mod+m exec --no-startup-id sh -c "~/dotfiles/launchOnce ashuffle ashuffle"
+bindsym $mod+m exec --no-startup-id sh -c "launchOnce ashuffle ashuffle"
 
 bindsym XF86Tools       exec gnome-terminal -e 'ncmpcpp -s playlist'
 # bindsym $mod+m workspace 3
@@ -73,13 +73,13 @@ assign [class="^Firefox$"] 1
 # power off or suspend computer
 set $mode_system System (l) lock, (o) logout, (Shift+s) suspend, (h) hibernate, (r) reboot, (s) shutdown, (p) pause
 mode "$mode_system" {
-    bindsym l exec --no-startup-id ~/dotfiles/i3exit lock, mode "default"
-    bindsym o exec --no-startup-id ~/dotfiles/i3exit logout, mode "default"
-    bindsym Shift+s exec --no-startup-id ~/dotfiles/i3exit suspend, mode "default"
-    bindsym h exec --no-startup-id ~/dotfiles/i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id ~/dotfiles/i3exit reboot, mode "default"
-    bindsym s exec --no-startup-id ~/dotfiles/i3exit shutdown, mode "default"
-    bindsym p exec --no-startup-id ~/dotfiles/i3exit pause, mode "default"
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym o exec --no-startup-id i3exit logout, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym p exec --no-startup-id i3exit pause, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
