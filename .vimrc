@@ -193,5 +193,8 @@ let g:delimitMate_expand_space = 1
 
 " async configuration
 let g:asyncrun_open = 6
-nnoremap <F5> :AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;<CR>
-nnoremap <F4> :AsyncRun -cwd=<root>/build cmake ..<CR>
+nnoremap <F5> :wa <bar> AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;<CR>
+nnoremap <F4> :wa <bar> AsyncRun -cwd=<root>/build cmake ..<CR>
+
+nnoremap <C-j> :cn<CR>
+nnoremap <C-k> :cp<CR>
