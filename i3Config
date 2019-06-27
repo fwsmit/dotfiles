@@ -52,6 +52,8 @@ exec --no-startup-id feh --recursive --randomize --bg-fill ~/wallpapers
 
 bindsym $mod+m exec --no-startup-id sh -c "launchOnce ashuffle ashuffle"
 
+bindsym $mod+p exec gnome-system-monitor
+
 bindsym XF86Tools       exec gnome-terminal -e 'ncmpcpp -s playlist'
 # bindsym $mod+m workspace 3
                # exec --no-startup-id i3-msg 'workspace 1:Web; exec /usr/bin/firefox'
