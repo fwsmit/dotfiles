@@ -2,3 +2,4 @@
 
 xrandr --output LVDS-1 --auto
 xrandr --output VGA-1 --off
+sudo umount /mnt/usbstick
