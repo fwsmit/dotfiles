@@ -1,0 +1,5 @@
+#!/bin/sh
+
+name=$(basename $0)
+script=$(ls ~/dotfiles/scripts | sed "/$name/ d" | dmenu)
+$script
