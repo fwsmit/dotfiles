@@ -1,10 +1,13 @@
-#!/bin/sh
+#!/bin/zsh
 
 downloadDir="/tmp/ytdtest"
 # cd $downloadDir
 mkdir -p "$downloadDir/$1"
 cd "$downloadDir/$1"
 # youtube-dl -f bestaudio "ytsearch:$1 - $2 audio" --write-thumbnail --add-metadata
-ffmpeg -loglevel warning -i *.webm "$2".ogg
-
-# rename downloadDir/*.jpg downloadDir/cover.jpg
+for filename in *.webm; do
+	base=$(echo $filename | sed 's/\.webm//')
+	ffmpeg -loglevel warning -i $filename "$base.ogg"
+	mv "$base.jpg" cover.jpg
+	# rm $filename
+done
