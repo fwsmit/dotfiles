@@ -1,0 +1,10 @@
+#!/bin/sh
+
+downloadDir="/tmp/ytdtest"
+# cd $downloadDir
+mkdir -p "$downloadDir/$1"
+cd "$downloadDir/$1"
+# youtube-dl -f bestaudio "ytsearch:$1 - $2 audio" --write-thumbnail --add-metadata
+ffmpeg -loglevel warning -i *.webm "$2".ogg
+
+# rename downloadDir/*.jpg downloadDir/cover.jpg
