@@ -1,13 +1,49 @@
 #!/bin/zsh
 
+# how to call:
+# ytAudio "Artist" "Album" "Song name"
+# or: ytAudio "Artist" "Song name"
+# or: ytAudio URL
+
 downloadDir="/tmp/ytdtest"
-# cd $downloadDir
-mkdir -p "$downloadDir/$1"
-cd "$downloadDir/$1"
-# youtube-dl -f bestaudio "ytsearch:$1 - $2 audio" --write-thumbnail --add-metadata
+
+if (( $# > 3 || $# < 1))
+then
+	echo '	Wrong number of arguments
+	how to call:
+		ytAudio "Artist" "Album" "Song name"
+		ytAudio "Artist" "Song name"
+		ytAudio URL
+	'
+fi
+
+if (( $# == 1 ))
+then
+	youtube-dl -f bestaudio --write-thumbnail --add-metadata "$1"
+elif (( $# == 2 ))
+then
+	mkdir -p "$downloadDir/$1"
+	cd "$downloadDir/$1"
+	youtube-dl -f bestaudio "ytsearch:$1 - $2 audio" --write-thumbnail --add-metadata
+	cd "$downloadDir/$1"
+elif (( $# == 3 ))
+then
+	mkdir -p "$downloadDir/$1/$3"
+	cd "$downloadDir/$1/$3"
+	youtube-dl -f bestaudio "ytsearch:$1 - $3 audio" --write-thumbnail --add-metadata
+fi
+echo "Converting files to ogg"
 for filename in *.webm; do
 	base=$(echo $filename | sed 's/\.webm//')
 	ffmpeg -loglevel warning -i $filename "$base.ogg"
-	mv "$base.jpg" cover.jpg
-	# rm $filename
+	rm "$filename"
+	# mv "$base.jpg" cover.jpg
+	echo "File done"
+done
+for filename in *.m4a; do
+	base=$(echo $filename | sed 's/\.m4a//')
+	ffmpeg -loglevel warning -i $filename "$base.ogg"
+	rm "$filename"
+	# mv "$base.jpg" cover.jpg
+	echo "File done"
 done
