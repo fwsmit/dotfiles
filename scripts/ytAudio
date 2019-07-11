@@ -23,8 +23,11 @@ then
 	exit 2
 fi
 
-youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --recode-video ogg --exec 'echo {} > /tmp/filename' "ytsearch:$1"
+# youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --recode-video ogg --exec 'echo {} > /tmp/filename' "ytsearch:$1"
 
+# cd $(downloadDir)
+# youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --recode-video ogg --exec '' "ytsearch:$1"
+youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --recode-video ogg "$1"
 
 # if (( $# == 1 ))
 # then
