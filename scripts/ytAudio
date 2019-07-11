@@ -42,8 +42,9 @@ for filename in *.webm; do
 done
 for filename in *.m4a; do
 	base=$(echo $filename | sed 's/\.m4a//')
-	ffmpeg -loglevel warning -i $filename "$base.ogg"
-	rm "$filename"
+	newName="$base.ogg"
+	ffmpeg -loglevel warning -i $filename "$newName"
+	# rm "$filename"
 	# mv "$base.jpg" cover.jpg
 	echo "File done"
 done
