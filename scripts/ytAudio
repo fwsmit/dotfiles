@@ -7,44 +7,52 @@
 
 downloadDir="/tmp/ytdtest"
 
+usage()
+{
+	echo 'Wrong number of arguments
+how to call:
+	ytAudio "Artist" "Album" "Song name"
+	ytAudio "Artist" "Song name"
+	ytAudio URL'
+	exit 2
+}
+
 if (( $# > 3 || $# < 1))
 then
-	echo '	Wrong number of arguments
-	how to call:
-		ytAudio "Artist" "Album" "Song name"
-		ytAudio "Artist" "Song name"
-		ytAudio URL
-	'
+	usage
+	exit 2
 fi
 
-if (( $# == 1 ))
-then
-	youtube-dl -f bestaudio --write-thumbnail --add-metadata "$1"
-elif (( $# == 2 ))
-then
-	mkdir -p "$downloadDir/$1"
-	cd "$downloadDir/$1"
-	youtube-dl -f bestaudio "ytsearch:$1 - $2 audio" --write-thumbnail --add-metadata
-	cd "$downloadDir/$1"
-elif (( $# == 3 ))
-then
-	mkdir -p "$downloadDir/$1/$3"
-	cd "$downloadDir/$1/$3"
-	youtube-dl -f bestaudio "ytsearch:$1 - $3 audio" --write-thumbnail --add-metadata
-fi
-echo "Converting files to ogg"
-for filename in *.webm; do
-	base=$(echo $filename | sed 's/\.webm//')
-	ffmpeg -loglevel warning -i $filename "$base.ogg"
-	rm "$filename"
-	# mv "$base.jpg" cover.jpg
-	echo "File done"
-done
-for filename in *.m4a; do
-	base=$(echo $filename | sed 's/\.m4a//')
-	newName="$base.ogg"
-	ffmpeg -loglevel warning -i $filename "$newName"
+youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --recode-video ogg --exec 'echo {} > /tmp/filename' "ytsearch:$1"
+
+
+# if (( $# == 1 ))
+# then
+	# youtube-dl -f bestaudio --write-thumbnail --add-metadata -o "%(track)s.%(ext)s" --metadata-from-title "(?P<artist>.+?) ?- ?(?P<title>.+)( ?\(.*\))?" "$1"
+# elif (( $# == 2 ))
+# then
+	# mkdir -p "$downloadDir/$1"
+	# cd "$downloadDir/$1"
+	# youtube-dl -f bestaudio "ytsearch:$1 - $2 audio" --write-thumbnail --add-metadata -o "%(track)s.%(ext)s" --metadata-from-title "(?P<artist>.+?) ?- ?(?P<title>.+)( ?\(.*\))?"
+# elif (( $# == 3 ))
+# then
+	# mkdir -p "$downloadDir/$1/$3"
+	# cd "$downloadDir/$1/$3"
+	# youtube-dl -f bestaudio "ytsearch:$1 - $3 audio" --write-thumbnail --add-metadata -o "%(track)s.%(ext)s" --metadata-from-title "(?P<artist>.+?) ?- ?(?P<title>.+)( ?\(.*\))?"
+# fi
+# echo "Converting files to ogg"
+# for filename in *.webm; do
+	# base=$(echo $filename | sed 's/\.webm//')
+	# ffmpeg -loglevel warning -i $filename "$base.ogg"
 	# rm "$filename"
-	# mv "$base.jpg" cover.jpg
-	echo "File done"
-done
+	# # mv "$base.jpg" cover.jpg
+	# echo "File done"
+# done
+# for filename in *.m4a; do
+	# base=$(echo $filename | sed 's/\.m4a//')
+	# newName="$base.ogg"
+	# ffmpeg -loglevel warning -i $filename "$newName"
+	# # rm "$filename"
+	# # mv "$base.jpg" cover.jpg
+	# echo "File done"
+# done
