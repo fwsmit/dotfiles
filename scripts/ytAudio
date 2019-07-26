@@ -11,10 +11,29 @@ usage()
 {
 	echo 'Wrong number of arguments
 how to call:
-	ytAudio "Artist" "Album" "Song name"
-	ytAudio "Artist" "Song name"
-	ytAudio URL'
+	ytAudio URL "ALBUM"'
 	exit 2
+}
+
+download_audio(){
+	export album="$2"
+	# youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --exec 'echo $album; echo {}' $1
+	youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --recode-video ogg --keep-video --exec '
+	echo "Filename: {}"
+	artist=$(echo "{}" | sed -r "s/ ?-.*//" | sed -r "s/^.//")
+	echo "Artist: $artist"
+	title=$(echo "{}" | sed -r "s/(.+?) ?- ?(.+)/\2/" | sed -r "s/([^\(]*).*/\1/" | sed -r "s/[ \t]+$//" | sed -r "s/\..*$//")
+	echo "Title: $title"
+	if [ -n "$album" ]
+	then
+		echo "Album: $album"
+		id3v2 --artist "$artist" --song "$title" --album "$album" {}
+	else
+		id3v2 --artist "$artist" --song "$title" {}
+	fi
+	mv {} "${title}.ogg"
+	echo "${title}.ogg"
+	' "$1"
 }
 
 if (( $# > 3 || $# < 1))
@@ -23,6 +42,10 @@ then
 	exit 2
 fi
 
+download_audio $1 $2
+# new_file_name=`download_audio $1`
+# echo "$new_file_name"
+
 # youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --recode-video ogg --exec 'echo {} > /tmp/filename' "ytsearch:$1"
 
 # cd $(downloadDir)
@@ -30,8 +53,7 @@ fi
 # youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --recode-video ogg --exec 'title=$(echo "{}" | sed -r 's/(.+?) ?- ?(.+)/\2/' | sed -r 's/([^\(]*).*/\1/' | sed -r 's/[ \t]+$//'); echo $title' "$1"
 
 # youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --exec 'title=$(echo "{}" | sed -r 's/(.+?) ?- ?(.+)/\2/' | sed -r 's/([^\(]*).*/\1/' | sed -r 's/[ \t]+$//'); echo $title' "$1"
-
-youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --exec 'title=$(echo "{}" | sed -r "s/(.+?) ?- ?(.+)/\2/" | sed -r "s/([^\(]*).*/\1/" | sed -r "s/[ \t]+$//" | sed -r "s/\..*$//"); echo $title' "$1"
+#--recode-video ogg --keep-video
 
 # if (( $# == 1 ))
 # then
