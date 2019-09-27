@@ -13,5 +13,3 @@ export PATH=$PATH:~/dotfiles/scripts
 # echo "BROWSER: $BROWSER" >>$LOG
 # xset dpms 6000 6000 6000
 # xset s 6000 6000
-# xrandr --output eDP-1-1 --auto --primary
-# xrandr --output HDMI-0 --off

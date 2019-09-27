@@ -7,10 +7,10 @@ error=$?
 if [ $error -eq 1 ]
 then
 	# echo "executing command"
-	sh -c "$2 &"
+	i3-msg "exec $2 &"
 fi
 if [ $# -gt 2 ]
 then
 	# echo "changing workspace"
-	i3-msg "workspace $3"
+	# i3-msg "workspace $3"
 fi

@@ -17,7 +17,7 @@
 #install vundle (vim package manager)
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 #call vundle pluginInstall from the commandline
-vim +PluginInstall +qall
+nvim +PluginInstall +qall
 
 ##symlinking configuration files to home directory
 ln -sv ~/dotfiles/.vimrc ~/.vimrc  # vim config

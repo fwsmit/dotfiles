@@ -5,8 +5,6 @@
 # or: ytAudio "Artist" "Song name"
 # or: ytAudio URL
 
-downloadDir="/tmp/ytdtest"
-
 usage()
 {
 	echo 'Wrong number of arguments
@@ -20,7 +18,7 @@ download_audio(){
 	# youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --exec 'echo $album; echo {}' $1
 	youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --recode-video ogg --keep-video --exec '
 	echo "Filename: {}"
-	artist=$(echo "{}" | sed -r "s/ ?-.*//" | sed -r "s/^.//")
+	artist=$(echo "{}" | sed -r "s/ ?-.*//")
 	echo "Artist: $artist"
 	title=$(echo "{}" | sed -r "s/(.+?) ?- ?(.+)/\2/" | sed -r "s/([^\(]*).*/\1/" | sed -r "s/[ \t]+$//" | sed -r "s/\..*$//")
 	echo "Title: $title"
@@ -31,18 +29,39 @@ download_audio(){
 	else
 		id3v2 --artist "$artist" --song "$title" {}
 	fi
-	mv {} "${title}.ogg"
-	echo "${title}.ogg"
-	' "$1"
+	mkdir "$artist"
+	if [ -n "$album" ]
+	then
+		mkdir "$artist"
+		mv {} "$artist/$album/${title}.ogg"
+		echo "$artist/$album/${title}.ogg"
+	else
+		mv {} "$artist/${title}.ogg"
+		echo "$artist/${title}.ogg"
+	fi
+	# echo "${title}.ogg"
+	' "$1" --verbose
 }
+
+move_audio(){
+	find -mindepth 1 -maxdepth 1 -type d -print -exec cp {} /media/friso/nas/moveToPhone -r \;
+	find -mindepth 1 -maxdepth 1 -type d -print -exec mv {} /media/friso/nas/Music \;
+	rm *.webm *.jpg
+}
+
 
 if (( $# > 3 || $# < 1))
 then
 	usage
 	exit 2
 fi
-
+# tempDir="/media/friso/nas/tmp/tmp.izuI7XJVh7"
+tempDir=`mktemp -p /media/friso/nas/tmp -d`
+cd "$tempDir"
+pwd
 download_audio $1 $2
+move_audio
+rmdir "$tempDir"
 # new_file_name=`download_audio $1`
 # echo "$new_file_name"
 
