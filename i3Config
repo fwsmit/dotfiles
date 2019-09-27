@@ -9,6 +9,9 @@
 # layout, use the i3-config-wizard
 #
 # *************** My own customizations ***************
+
+# force_xinerama yes
+ 
 set $mod Mod4
 
 hide_edge_borders both
@@ -46,8 +49,10 @@ bindsym XF86AudioPrev        exec --no-startup-id mpc prev
 # exec --no-startup-id pasystray --notify=all
 
 #desktop background
+
 bindsym $mod+Shift+b exec --no-startup-id feh --recursive --randomize --bg-fill ~/wallpapers
 exec --no-startup-id feh --recursive --randomize --bg-fill ~/wallpapers
+exec --no-startup-id ~/fixScreen
 # bindsym $mod+t exec feh ~/Downloads/background.jpg
 
 bindsym $mod+m exec --no-startup-id sh -c "launchOnce ashuffle ashuffle"
@@ -261,4 +266,6 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+		position bottom
+		font pango:DejaVu Sans Mono 11
 }
