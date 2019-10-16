@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# required programs: qpdf, ps2pdf and graphicsmagick
+
+if (( $# < 1 ))
+then
+	echo "Please specify the directory to compile"
+	exit 2
+fi
+
+echo "Creating backup in /tmp"
+cp -r "$1" /tmp/
+# cp -i -r "$1" /tmp/
+cd "$1"
+
+# extract the first page of the exercise
+find ./ -name "*.pdf" -exec qpdf --empty --pages {} 1-1 -- firstPage.pdf \;
+
+# write student number on the first page
+qpdf firstPage.pdf --underlay ../firstPage_text.pdf -- firstPage_edited.pdf
+
+# convert all images to pdf
+gm convert -page A4+0+0 *.jpg images.pdf
+
+# stitch all pages together
+qpdf --empty --pages firstPage_edited.pdf images.pdf -- "stitched.pdf"
+
+# optimize pdf
+ps2pdf -dPDFSETTINGS=/ebook stitched.pdf final.pdf
+
+firefox final.pdf
