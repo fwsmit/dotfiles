@@ -6,11 +6,15 @@ error=$?
 # echo $error
 if [ $error -eq 1 ]
 then
-	# echo "executing command"
-	i3-msg "exec $2 &"
+	echo "executing command"
+	i3-msg "exec \"$2\""
+	echo "going on"
+else
+	echo "not executing command"
 fi
-if [ $# -gt 2 ]
-then
-	# echo "changing workspace"
-	# i3-msg "workspace $3"
-fi
+
+# if [ $# -gt 2 ]
+# then
+	# # echo "changing workspace"
+	# # i3-msg "workspace $3"
+# fi
