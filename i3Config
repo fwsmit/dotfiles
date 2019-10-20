@@ -33,10 +33,14 @@ bindsym $mod+Return exec i3-sensible-terminal
 # start a browser
 bindsym $mod+t exec --no-startup-id sh -c "launchOnce $BROWSER $BROWSER 1"
 
-# brightness controls
-bindsym XF86MonBrightnessUp exec sudo ~/brightness/brightnessUp
-
-bindsym XF86MonBrightnessDown exec sudo ~/brightness/brightnessDown
+# brightness controls for laptop
+bindsym F3 	exec ~/brightness/brightnessDown
+bindsym F4	exec ~/brightness/brightnessUp
+bindsym F2	exec --no-startup-id mpc toggle 
+# bindsym XF86MonBrightnessUp exec sudo ~/brightness/brightnessUp
+# bindsym XF86AudioMicMute exec testHotkey "brigthness"
+# bindsym XF86AudioMicMute exec ~/brightness/brightnessUp
+# bindsym XF86MonBrightnessDown exec sudo ~/brightness/brightnessDown
 
 bindsym $mod+c exec --no-startup-id startCoding
 
