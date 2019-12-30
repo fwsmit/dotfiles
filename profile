@@ -1,5 +1,4 @@
 #!/bin/sh
-# doesnt seem to work
 export TERMINAL="termite"
 export EDITOR="nvim"
 export BROWSER="firefox"
