@@ -1,4 +1,6 @@
 #!/bin/sh
+
+# make a symbolic link to this file called ~/.zprofile
 export TERMINAL="termite"
 export EDITOR="nvim"
 export BROWSER="firefox"

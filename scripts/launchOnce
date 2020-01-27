@@ -1,6 +1,8 @@
 #!/bin/sh
 
-# usage: launchonce NAME COMMAND WORKSPACE
+# usage: launchonce NAME COMMAND ALTERNATE_COMMAND
+# when the program NAME isn't running, COMMAND is run
+# otherwise ALTERNATE_COMMAND is run
 pid=`pidof $1 -s`
 error=$?
 # echo $error
@@ -8,9 +10,12 @@ if [ $error -eq 1 ]
 then
 	echo "executing command"
 	i3-msg "exec \"$2\""
-	echo "going on"
 else
-	echo "not executing command"
+	if [ $# -gt 2 ]
+	then
+		echo "executing alternate command"
+		i3-msg "exec \"$3\""
+	fi
 fi
 
 # if [ $# -gt 2 ]
