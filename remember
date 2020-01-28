@@ -1,3 +1,8 @@
+HOW TO MOUNT SMB DRIVE:
+
+sudo mount -t cifs //HOSTNAME/sharename /mnt/mountpoint -o "username=*,password=*"
+
+
 emacs shortcuts:
 C-a    Home
 C-b    Left

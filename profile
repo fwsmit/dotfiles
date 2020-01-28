@@ -5,6 +5,7 @@ export EDITOR="nvim"
 export BROWSER="firefox"
 export XDG_MUSIC_DIR="~/Music"
 export PATH=$PATH:~/dotfiles/scripts
+export $XDG_CONFIG_HOME=~/.config
 # LOG="$HOME/profile-invocations"
 # echo "-----" >>$LOG
 # echo "Caller: $0" >>$LOG
