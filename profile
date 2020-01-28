@@ -1,5 +1,6 @@
 #!/bin/sh
-# doesnt seem to work
+
+# make a symbolic link to this file called ~/.zprofile
 export TERMINAL="termite"
 export EDITOR="nvim"
 export BROWSER="firefox"
