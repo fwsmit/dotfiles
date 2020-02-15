@@ -24,9 +24,10 @@ exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
 
 set $mod Mod4
 
-hide_edge_borders both
+hide_edge_borders smart
 
-default_border none
+# default_border none
+default_border pixel
 
 focus_follows_mouse no
 
@@ -59,8 +60,8 @@ bindsym Print exec --no-startup-id gnome-screenshot -i
 bindsym $mod+c exec --no-startup-id startCoding
 
 ############################### sound control ####################################
-bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +10 --unmute --max-volume 100; exec --no-startup-id notify audio
-bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -10 --unmute; exec --no-startup-id notify audio
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +5 --unmute --max-volume 100; exec --no-startup-id notify audio
+bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -5 --unmute; exec --no-startup-id notify audio
 bindsym XF86AudioPlay        exec --no-startup-id toggleMusic 
 # bindsym XF86AudioPause       exec mpc pause
 bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute; exec --no-startup-id notify muted
@@ -292,4 +293,6 @@ bar {
         status_command i3status
 		position bottom
 		font pango:DejaVu Sans Mono 11
+		bindsym button4 nop
+		bindsym button5 nop
 }
