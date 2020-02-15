@@ -12,6 +12,13 @@
 
 # exec --no-startup-id ~/fixScreen
 # This is done by lightdm
+#
+
+# compositor
+exec --no-startup-id picom --backend xrender
+
+# show a notification if the battery is low
+exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
 
 exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
 
@@ -44,6 +51,10 @@ bindsym F2	exec --no-startup-id toggleMusic
 # bindsym XF86AudioMicMute exec testHotkey "brigthness"
 # bindsym XF86AudioMicMute exec ~/brightness/brightnessUp
 # bindsym XF86MonBrightnessDown exec sudo ~/brightness/brightnessDown
+
+
+# print screen shortcut
+bindsym Print exec --no-startup-id gnome-screenshot -i
 
 bindsym $mod+c exec --no-startup-id startCoding
 

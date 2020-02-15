@@ -32,3 +32,11 @@ M-h    Up
 M-j    Page down
 M-k    Page up
 M-l    Down
+
+Execute script you're currently editing:
+https://stackoverflow.com/questions/953398/how-to-execute-file-im-editing-in-vim
+:set makeprg=python\ %
+:make
+
+:set autowrite
+to safe before running 
