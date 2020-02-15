@@ -2,8 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
-" turn off annoying beep
-set visualbell
+set visualbell " turn off annoying beep
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -43,7 +42,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 " youcomplete me code completion
-" Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'
 
 " surround vim
 Plugin 'tpope/vim-surround'
@@ -198,3 +197,12 @@ nnoremap <F4> :wa <bar> AsyncRun -cwd=<root>/build cmake ..<CR>
 
 nnoremap <C-j> :cn<CR>
 nnoremap <C-k> :cp<CR>
+
+" Python specific
+autocmd FileType python call PythonMake()
+autocmd FileType text setlocal spell
+
+function PythonMake()
+	set autowrite
+	set makeprg=python\ %
+endfunction

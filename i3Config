@@ -9,11 +9,25 @@
 # layout, use the i3-config-wizard
 #
 # *************** My own customizations ***************
+
+# exec --no-startup-id ~/fixScreen
+# This is done by lightdm
+#
+
+# compositor
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
+
+# show a notification if the battery is low
+exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
+
+exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
+
 set $mod Mod4
 
-hide_edge_borders both
+hide_edge_borders smart
 
-default_border none
+# default_border none
+default_border pixel
 
 focus_follows_mouse no
 
@@ -25,39 +39,52 @@ title_align left
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# bindsym $mod+shift+t exec --no-startup-id sh -c "sudo ~/fixTouchpad"
+
 # start a browser
 bindsym $mod+t exec --no-startup-id sh -c "launchOnce $BROWSER $BROWSER 1"
 
-# brightness controls
-bindsym XF86MonBrightnessUp exec ~/brightness/brightnessUp
+# brightness controls for laptop
+bindsym F3 	exec --no-startup-id ~/brightness/brightnessDown
+bindsym F4	exec --no-startup-id ~/brightness/brightnessUp
+bindsym F2	exec --no-startup-id toggleMusic 
+# bindsym XF86MonBrightnessUp exec sudo ~/brightness/brightnessUp
+# bindsym XF86AudioMicMute exec testHotkey "brigthness"
+# bindsym XF86AudioMicMute exec ~/brightness/brightnessUp
+# bindsym XF86MonBrightnessDown exec sudo ~/brightness/brightnessDown
 
-bindsym XF86MonBrightnessDown exec ~/brightness/brightnessDown
+
+# print screen shortcut
+bindsym Print exec --no-startup-id gnome-screenshot -i
 
 bindsym $mod+c exec --no-startup-id startCoding
 
-# sound control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +10 --unmute --max-volume 100; exec --no-startup-id notify audio
-bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -10 --unmute; exec --no-startup-id notify audio
-bindsym XF86AudioPlay        exec --no-startup-id mpc toggle 
+############################### sound control ####################################
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +5 --unmute --max-volume 100; exec --no-startup-id notify audio
+bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -5 --unmute; exec --no-startup-id notify audio
+bindsym XF86AudioPlay        exec --no-startup-id toggleMusic 
 # bindsym XF86AudioPause       exec mpc pause
 bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute; exec --no-startup-id notify muted
 bindsym XF86AudioNext        exec --no-startup-id mpc next
+
 bindsym XF86AudioPrev        exec --no-startup-id mpc prev
-# exec --no-startup-id pasystray --notify=all
+exec --no-startup-id pasystray
 
 #desktop background
+
 bindsym $mod+Shift+b exec --no-startup-id feh --recursive --randomize --bg-fill ~/wallpapers
 exec --no-startup-id feh --recursive --randomize --bg-fill ~/wallpapers
 # bindsym $mod+t exec feh ~/Downloads/background.jpg
 
-bindsym $mod+m exec --no-startup-id sh -c "launchOnce ashuffle ashuffle"
+bindsym $mod+m exec --no-startup-id launchOnce ashuffle 'ashuffle --queue-buffer 1' 'mpc toggle'"
 
 bindsym $mod+p exec gnome-system-monitor
 
-bindsym XF86Tools       exec gnome-terminal -e 'ncmpcpp -s playlist'
+bindsym XF86Tools       exec $TERMINAL -e 'ncmpcpp -s playlist'
 # bindsym $mod+m workspace 3
                # exec --no-startup-id i3-msg 'workspace 1:Web; exec /usr/bin/firefox'
-# automatically go back and forth between workspaces when repeatedly pressing $mod + 2
+			   #
+# automatically go back and forth between workspaces when repeatedly pressing $mod + num
 workspace_auto_back_and_forth yes
 
 # bindsym $mod+Shift+BackSpace exec --no-startup-id prompt "Shutdown computer?" systemctl poweroff
@@ -65,14 +92,12 @@ workspace_auto_back_and_forth yes
 # bindsym $mod+Shift+BackSpace exec --no-startup-id i3-input -P "start terminal?" gnome-terminal
 
 for_window [class="Tor"] floating enable border pixel 1
-# for_window [class="io.elementary.music"] workspace 3
-# bindsym $mod+t exec no-startup-id i3-msg 'workspace 7; exec io.elementary.music'
-# bindsym $mod+t workspace 3; exec io.elementary.music
 for_window [class="^SFML"] floating enable border pixel 1
 for_window [class="^SFML"] move position center
-assign [class="^Firefox$"] 1
+# assign [class="^Firefox$"] 1 ## seems to do nothing
 # assign [class="^Music$"] 4
-# power off or suspend computer
+ 
+############################### power off or suspend computer ############################## 
 set $mode_system System (l) lock, (o) logout, (Shift+s) suspend, (h) hibernate, (r) reboot, (s) shutdown, (p) pause
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -87,8 +112,13 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 bindsym $mod+Shift+e mode "$mode_system"
-# *************** End of my own customizations ***************
+
+
+
+
+# *********************************************************** End of my own customizations *****************************************************************
  
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
@@ -261,4 +291,8 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+		position bottom
+		font pango:DejaVu Sans Mono 11
+		bindsym button4 nop
+		bindsym button5 nop
 }

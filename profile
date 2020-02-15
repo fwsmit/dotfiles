@@ -1,10 +1,12 @@
 #!/bin/sh
-# doesnt seem to work
-export TERMINAL="gnome-terminal"
+
+# make a symbolic link to this file called ~/.zprofile
+export TERMINAL="termite"
 export EDITOR="nvim"
 export BROWSER="firefox"
 export XDG_MUSIC_DIR="~/Music"
 export PATH=$PATH:~/dotfiles/scripts
+export $XDG_CONFIG_HOME=~/.config
 # LOG="$HOME/profile-invocations"
 # echo "-----" >>$LOG
 # echo "Caller: $0" >>$LOG
@@ -13,4 +15,3 @@ export PATH=$PATH:~/dotfiles/scripts
 # echo "BROWSER: $BROWSER" >>$LOG
 # xset dpms 6000 6000 6000
 # xset s 6000 6000
-
