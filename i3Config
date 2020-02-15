@@ -15,7 +15,7 @@
 #
 
 # compositor
-exec --no-startup-id picom --backend xrender
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
 # show a notification if the battery is low
 exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
