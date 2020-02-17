@@ -1,0 +1,6 @@
+#!/bin/sh
+
+xrandr --output HDMI-0 --auto
+xrandr --output eDP-1-1 --off
+# sudo mount /dev/sdb1 /mnt/usbstick
+# vlc

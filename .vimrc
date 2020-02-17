@@ -197,3 +197,12 @@ nnoremap <F4> :wa <bar> AsyncRun -cwd=<root>/build cmake ..<CR>
 
 nnoremap <C-j> :cn<CR>
 nnoremap <C-k> :cp<CR>
+
+" Python specific
+autocmd FileType python call PythonMake()
+autocmd FileType text setlocal spell
+
+function PythonMake()
+	set autowrite
+	set makeprg=python\ %
+endfunction

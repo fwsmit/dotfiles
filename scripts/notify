@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# dependencies: notify-desktop, pulsemixer, sed
+
 function notify {
     this=`basename $0`
     tmp_file=/tmp/${this//./-}.txt
@@ -49,6 +51,6 @@ case "$1" in
 		;;
 		
 	*)
-		echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+		echo "Not the right arguments"
 		exit 2
 esac
