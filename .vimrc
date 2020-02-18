@@ -67,6 +67,9 @@ Plugin 'LucHermitte/alternate-lite'
 " for building cmake projects
 Plugin 'skywind3000/asyncrun.vim'
 
+" python flake
+Plugin 'nvie/vim-flake8'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -156,7 +159,7 @@ nmap \q :conf q<CR>
 " youcompletme config
 let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 "let g:ycm_server_python_interpreter = "/bin/python2"
-let g:ycm_filetype_whitelist = { 'cpp': 1 }
+let g:ycm_filetype_whitelist = { 'cpp': 1, 'python': 1 }
 let g:ycm_autoclose_preview_window_after_insertion = 1
 nnoremap \ef :YcmCompleter FixIt<CR>
 nnoremap \et :YcmCompleter GetType<CR>
@@ -199,7 +202,7 @@ nnoremap <C-j> :cn<CR>
 nnoremap <C-k> :cp<CR>
 
 " Python specific
-autocmd FileType python call PythonMake()
+" autocmd FileType python call PythonMake()
 autocmd FileType text setlocal spell
 
 function PythonMake()
