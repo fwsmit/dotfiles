@@ -1,0 +1,10 @@
+sound: 
+alsamixer 
+press m to unmute everything
+
+internet:
+nmtui
+networkmanager
+
+middlemousebutton doesn't autoscroll in firefox
+setting -> autoscrolling -> check

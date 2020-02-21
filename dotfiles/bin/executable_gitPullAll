@@ -1,0 +1,10 @@
+#!/bin/sh
+
+for dir in ~/git_repos/*
+do
+	cd $dir
+	echo ""
+	echo "current dir: $PWD"
+	git pull
+	# echo $?
+done
