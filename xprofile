@@ -1,3 +1,0 @@
-#!/bin/sh
-# ln -sv ~/dotfile/xprofile .xprofile
-[[ -f ~/.zprofile ]] && source ~/.zprofile
