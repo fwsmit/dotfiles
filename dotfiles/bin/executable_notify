@@ -22,7 +22,10 @@ notifyMuted() {
 	notify "Muted" -t 1500 --icon audio-volume-muted
 }
 notifyAudio() {
-	volume=$(pulsemixer --get-volume | awk '{print $1}')
+	volume="$1"
+	case $volume in
+		''|*[!0-9]*) volume=$(pulsemixer --get-volume | awk '{print $1}') ;;
+	esac
 	if [ $volume -eq 0 ]; then
 		notifyMuted
 	elif [ $volume -le 30 ]; then
@@ -34,11 +37,14 @@ notifyAudio() {
 	fi
 }
 
+
+volume=`cat /dev/stdin`
+
 case "$1" in
 	muted)
 		if [ $(pulsemixer --get-mute) -eq 0 ]
 		then
-			notifyAudio
+			notifyAudio $volume
 			# notify "Unmuted" -t 1000 --icon audio-volume-high
 			# echo unmuted
 		else
