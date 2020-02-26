@@ -126,12 +126,12 @@ let g:NERDCustomDelimiters = {
 			\ }
 
 " vim-airline
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.readonly = 'READ ONLY'
-"let g:airline_powerline_fonts = 1 " activate powerline symbols
+" if !exists('g:airline_symbols')
+	" let g:airline_symbols = {}
+" endif
+" let g:airline_symbols.maxlinenr = ''
+" let g:airline_symbols.readonly = 'READ ONLY'
+let g:airline_powerline_fonts = 1 " activate powerline symbols
 
 set encoding=utf-8
 "set guifont=Liberation\ Mono\ for\ Powerline\ 100
@@ -168,12 +168,6 @@ nnoremap \ej :YcmCompleter GoToDeclaration<CR>
 " Don't insert a template
 let g:mt_IDontWantTemplatesAutomaticallyInserted = 1
 
-" Mappings to go to insert mode
-"imap jk <Esc>l
-"imap kj <Esc>l
-
-"inoremap <Esc> jk:echo "Don't use escape"
-
 let g:easyescape_timeout = 300
 
 " Mappings to move trough camelCase words
@@ -191,6 +185,7 @@ let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 
 " async configuration
+" Vertical size of the quickfix window
 let g:asyncrun_open = 6
 nnoremap <F5> :wa <bar> AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;<CR>
 nnoremap <F4> :wa <bar> AsyncRun -cwd=<root>/build cmake ..<CR>
