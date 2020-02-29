@@ -1,1 +1,0 @@
-ssh -nNT -L 8090:localhost:7070 -L 8091:localhost:4444 odroid

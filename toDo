@@ -12,3 +12,4 @@ autocomplete (DONE)
 https://github.com/Raimondi/delimitMate  (bracket completion) (DONE)
 shortcut for saving and quitting (DONE)
 insert new line below and dont go to insert mode (one way is press o, then Ctl-o to do a command in insert mode) (DONE)
+test
