@@ -1,3 +1,5 @@
 remember
 toDo
 troubleshooting
+lightdm.conf
+lightdm-webkit2-greeter.conf
