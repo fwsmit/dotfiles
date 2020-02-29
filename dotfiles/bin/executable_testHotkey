@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# script for testing if a hotkey does something (used in i3 config)
-
-echo "$1" >> /tmp/testHotkey
-
