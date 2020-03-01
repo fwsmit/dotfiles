@@ -108,7 +108,10 @@ alias vimconf="chezmoi edit ~/.vimrc"
 alias script="cd ~/dotfiles/bin"
 alias feh="feh --scale-down"
 alias less="$PAGER"
+{{- if eq .chezmoi.hostname "archstudent" }}
 source /usr/share/nvm/init-nvm.sh
+{{- end }}
+
 eval `chezmoi completion zsh`
 
 # Fish-like syntax highlighting. This must be at the end of .zshrc
