@@ -40,3 +40,9 @@ https://stackoverflow.com/questions/953398/how-to-execute-file-im-editing-in-vim
 
 :set autowrite
 to safe before running 
+
+Turn of abi syscall for league anticheat
+
+sudo sysctl -w abi.vsyscall32=0
+# permanent
+sudo sh -c 'echo "abi.vsyscall32 = 0" >> /etc/sysctl.conf && sysctl -p'

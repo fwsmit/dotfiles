@@ -98,6 +98,7 @@ for_window [class="Tor"] floating enable border pixel 1
 for_window [class="^SFML"] floating enable border pixel 1
 for_window [class="^SFML"] move position center
 # assign [class="^Firefox$"] 1 ## seems to do nothing
+# league window class: leagueclientux.exe"
 # assign [class="^Music$"] 4
  
 ############################### power off or suspend computer ############################## 
