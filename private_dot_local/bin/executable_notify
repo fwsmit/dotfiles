@@ -38,13 +38,13 @@ notifyAudio() {
 }
 
 
-volume=`cat /dev/stdin`
+input=`cat /dev/stdin`
 
 case "$1" in
 	muted)
-		if [ $(pulsemixer --get-mute) -eq 0 ]
+		if [ "$input" -eq 0 ]
 		then
-			notifyAudio $volume
+			notifyAudio
 			# notify "Unmuted" -t 1000 --icon audio-volume-high
 			# echo unmuted
 		else
@@ -53,7 +53,7 @@ case "$1" in
 		fi
 		;;
 	audio)
-		notifyAudio
+		notifyAudio "$input"
 		;;
 		
 	*)
