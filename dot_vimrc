@@ -196,6 +196,7 @@ nnoremap <C-k> :cp<CR>
 " Python specific
 autocmd FileType python call PythonMake()
 autocmd FileType text setlocal spell
+autocmd FileType template set ft=config
 
 function PythonMake()
 	set autowrite

@@ -30,7 +30,7 @@ set $mod Mod4
 hide_edge_borders smart
 
 # default_border none
-default_border pixel
+default_border pixel 3
 
 focus_follows_mouse no
 
