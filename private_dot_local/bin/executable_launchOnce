@@ -9,12 +9,12 @@ error=$?
 if [ $error -eq 1 ]
 then
 	echo "executing command"
-	i3-msg "exec \"$2\""
+	i3-msg "exec --no-startup-id \"$2\""
 else
 	if [ $# -gt 2 ]
 	then
 		echo "executing alternate command"
-		i3-msg "exec \"$3\""
+		i3-msg "exec --no-startup-id \"$3\""
 	fi
 fi
 
