@@ -5,7 +5,7 @@ export TERMINAL="termite"
 export EDITOR="nvim"
 export BROWSER="firefox"
 export XDG_MUSIC_DIR="~/Music"
-export PATH=$PATH:~/.local/bin
+export PATH=~/.local/bin:$PATH
 export PAGER="less"
 # LOG="$HOME/profile-invocations"
 # echo "-----" >>$LOG
