@@ -14,8 +14,12 @@
 # This is done by lightdm
 #
 
+exec --no-startup-id feh --recursive --randomize --bg-fill /usr/share/backgrounds
+
 # compositor
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
+
+exec --no-startup-id nextcloud --background
 
 # set menu as compose key
 exec --no-startup-id setxkbmap -option compose:menu
@@ -76,7 +80,6 @@ exec --no-startup-id pasystray
 #desktop background
 
 bindsym $mod+Shift+b exec --no-startup-id feh --recursive --randomize --bg-fill /usr/share/backgrounds
-exec --no-startup-id feh --recursive --randomize --bg-fill /usr/share/backgrounds
 # bindsym $mod+t exec feh ~/Downloads/background.jpg
 
 bindsym $mod+m exec --no-startup-id launchOnce ashuffle 'ashuffle --queue-buffer 1' 'mpc toggle'"
