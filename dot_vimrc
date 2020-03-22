@@ -42,7 +42,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 " youcomplete me code completion
-Plugin 'valloric/youcompleteme'
+" Plugin 'valloric/youcompleteme'
 
 " surround vim
 Plugin 'tpope/vim-surround'
