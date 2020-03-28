@@ -17,6 +17,8 @@
 # compositor
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
+exec --no-startup-id nextcloud --background
+
 # set menu as compose key
 exec --no-startup-id setxkbmap -option compose:menu
 
