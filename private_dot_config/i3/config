@@ -14,6 +14,8 @@
 # This is done by lightdm
 #
 
+exec --no-startup-id feh --recursive --randomize --bg-fill /usr/share/backgrounds
+
 # compositor
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
@@ -53,6 +55,8 @@ bindsym $mod+t exec --no-startup-id sh -c "launchOnce $BROWSER $BROWSER 1"
 bindsym F3 	exec --no-startup-id ~/brightness/brightnessDown
 bindsym F4	exec --no-startup-id ~/brightness/brightnessUp
 bindsym F2	exec --no-startup-id toggleMusic 
+bindsym Ctrl+F2			exec --no-startup-id mpc next 
+bindsym Ctrl+Shift+F2	exec --no-startup-id mpc prev 
 # bindsym XF86MonBrightnessUp exec sudo ~/brightness/brightnessUp
 # bindsym XF86AudioMicMute exec testHotkey "brigthness"
 # bindsym XF86AudioMicMute exec ~/brightness/brightnessUp
@@ -78,7 +82,6 @@ exec --no-startup-id pasystray
 #desktop background
 
 bindsym $mod+Shift+b exec --no-startup-id feh --recursive --randomize --bg-fill /usr/share/backgrounds
-exec --no-startup-id feh --recursive --randomize --bg-fill /usr/share/backgrounds
 # bindsym $mod+t exec feh ~/Downloads/background.jpg
 
 bindsym $mod+m exec --no-startup-id launchOnce ashuffle 'ashuffle --queue-buffer 1' 'mpc toggle'"
