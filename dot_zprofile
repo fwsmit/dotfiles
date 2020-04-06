@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # make a symbolic link to this file called ~/.zprofile
-export TERMINAL="termite"
+export TERMINAL="gnome-terminal"
 export EDITOR="nvim"
 export BROWSER="firefox"
 export XDG_MUSIC_DIR="~/Music"

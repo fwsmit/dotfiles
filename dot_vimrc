@@ -1,7 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+" set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set visualbell " turn off annoying beep
 
 " set the runtime path to include Vundle and initialize
@@ -42,7 +42,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 " youcomplete me code completion
-Plugin 'valloric/youcompleteme'
+" Plugin 'valloric/youcompleteme'
 
 " surround vim
 Plugin 'tpope/vim-surround'
@@ -187,12 +187,11 @@ let g:delimitMate_expand_space = 1
 " async configuration
 " Vertical size of the quickfix window
 let g:asyncrun_open = 6
-nnoremap <F5> :wa <bar> AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;<CR>
-nnoremap <F4> :wa <bar> AsyncRun -cwd=<root>/build cmake ..<CR>
+autocmd FileType cpp call CppMake()
 
 nnoremap <C-j> :cn<CR>
 nnoremap <C-k> :cp<CR>
-
+nnoremap <F5> :make<CR>
 " Python specific
 autocmd FileType python call PythonMake()
 autocmd FileType text setlocal spell
@@ -201,4 +200,8 @@ autocmd FileType template set ft=config
 function PythonMake()
 	set autowrite
 	set makeprg=python\ %
+endfunction
+function CppMake()
+	set makeprg=:wa <bar> AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;<CR>
+	nnoremap <F4> :wa <bar> AsyncRun -cwd=<root>/build cmake ..<CR>
 endfunction
