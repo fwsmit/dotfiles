@@ -51,6 +51,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 # start a browser
 bindsym $mod+t exec --no-startup-id sh -c "launchOnce $BROWSER $BROWSER 1"
 
+bindsym $mod+l exec nautilus
+
 # brightness controls for laptop
 bindsym F3 	exec --no-startup-id ~/brightness/brightnessDown
 bindsym F4	exec --no-startup-id ~/brightness/brightnessUp
