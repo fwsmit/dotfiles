@@ -18,32 +18,6 @@ download_audio(){
 	# youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --exec 'echo $album; echo {}' $1
 	youtube-dl -i -f bestaudio -o "%(title)s.%(ext)s" --recode-video ogg "$1"
 	
-	# --exec '
-	# echo "Filename: {}"
-	# artist=$(echo "{}" | sed -r "s/ ?-.*//")
-	# echo "Artist: $artist"
-	# title=$(echo "{}" | sed -r "s/(.+?) ?- ?(.+)/\2/" | sed -r "s/([^\(]*).*/\1/" | sed -r "s/[ \t]+$//" | sed -r "s/\..*$//")
-	# echo "Title: $title"
-	# if [ -n "$album" ]
-	# then
-		# echo "Album: $album"
-		# id3v2 --artist "$artist" --song "$title" --album "$album" {}
-	# else
-		# id3v2 --artist "$artist" --song "$title" {}
-	# fi
-	# mkdir "$artist"
-	# if [ -n "$album" ]
-	# then
-		# mkdir "$artist"
-		# mv {} "$artist/$album/${title}.ogg"
-		# echo "$artist/$album/${title}.ogg"
-	# else
-		# mv {} "$artist/${title}.ogg"
-		# echo "$artist/${title}.ogg"
-	# fi
-	# # echo "${title}.ogg"
-	# ' "$1"
-	#--verbose
 }
 
 rename_tag_and_place(){ # renames all files and moves to directory $artist/$album ($1/$2)
@@ -81,11 +55,7 @@ then
 	usage
 	exit 2
 fi
-# tempDir="/mnt/nas/tmp/tmp.izuI7XJVh7"
 tempDir=`mktemp -p /mnt/nas/tmp -d`
-# tempDir="/media/nas/tmp/tmp.eniwvUe9Hm"
-# tempDir=`mktemp -p /tmp -d`
-# tempDir="/tmp/tmp.DNmQNryQr2"
 cd "$tempDir"
 pwd
 download_audio $1 $2
@@ -95,46 +65,3 @@ then
 fi
 rename_tag_and_place $2 $3
 move_audio
-# rmdir "$tempDir"
-# new_file_name=`download_audio $1`
-# echo "$new_file_name"
-
-# youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --recode-video ogg --exec 'echo {} > /tmp/filename' "ytsearch:$1"
-
-# cd $(downloadDir)
-# youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --recode-video ogg --exec '' "ytsearch:$1"
-# youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --recode-video ogg --exec 'title=$(echo "{}" | sed -r 's/(.+?) ?- ?(.+)/\2/' | sed -r 's/([^\(]*).*/\1/' | sed -r 's/[ \t]+$//'); echo $title' "$1"
-
-# youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --exec 'title=$(echo "{}" | sed -r 's/(.+?) ?- ?(.+)/\2/' | sed -r 's/([^\(]*).*/\1/' | sed -r 's/[ \t]+$//'); echo $title' "$1"
-#--recode-video ogg --keep-video
-
-# if (( $# == 1 ))
-# then
-	# youtube-dl -f bestaudio --write-thumbnail --add-metadata -o "%(track)s.%(ext)s" --metadata-from-title "(?P<artist>.+?) ?- ?(?P<title>.+)( ?\(.*\))?" "$1"
-# elif (( $# == 2 ))
-# then
-	# mkdir -p "$downloadDir/$1"
-	# cd "$downloadDir/$1"
-	# youtube-dl -f bestaudio "ytsearch:$1 - $2 audio" --write-thumbnail --add-metadata -o "%(track)s.%(ext)s" --metadata-from-title "(?P<artist>.+?) ?- ?(?P<title>.+)( ?\(.*\))?"
-# elif (( $# == 3 ))
-# then
-	# mkdir -p "$downloadDir/$1/$3"
-	# cd "$downloadDir/$1/$3"
-	# youtube-dl -f bestaudio "ytsearch:$1 - $3 audio" --write-thumbnail --add-metadata -o "%(track)s.%(ext)s" --metadata-from-title "(?P<artist>.+?) ?- ?(?P<title>.+)( ?\(.*\))?"
-# fi
-# echo "Converting files to ogg"
-# for filename in *.webm; do
-	# base=$(echo $filename | sed 's/\.webm//')
-	# ffmpeg -loglevel warning -i $filename "$base.ogg"
-	# rm "$filename"
-	# # mv "$base.jpg" cover.jpg
-	# echo "File done"
-# done
-# for filename in *.m4a; do
-	# base=$(echo $filename | sed 's/\.m4a//')
-	# newName="$base.ogg"
-	# ffmpeg -loglevel warning -i $filename "$newName"
-	# # rm "$filename"
-	# # mv "$base.jpg" cover.jpg
-	# echo "File done"
-# done
