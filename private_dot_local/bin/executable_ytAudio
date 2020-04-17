@@ -71,8 +71,8 @@ rename_tag_and_place(){ # renames all files and moves to directory $artist/$albu
 
 move_audio(){
 	echo "Copying it to the right directories"
-	find -mindepth 1 -maxdepth 1 -type d -print -exec cp {} /media/nas/moveToPhone -r \;
-	find -mindepth 1 -maxdepth 1 -type d -print -exec cp {} /media/nas/Music -r \;
+	find -mindepth 1 -maxdepth 1 -type d -print -exec cp {} /mnt/nas/moveToPhone -r \;
+	find -mindepth 1 -maxdepth 1 -type d -print -exec cp {} /mnt/nas/Music -r \;
 }
 
 
@@ -81,8 +81,8 @@ then
 	usage
 	exit 2
 fi
-# tempDir="/media/nas/tmp/tmp.izuI7XJVh7"
-tempDir=`mktemp -p /media/nas/tmp -d`
+# tempDir="/mnt/nas/tmp/tmp.izuI7XJVh7"
+tempDir=`mktemp -p /mnt/nas/tmp -d`
 # tempDir="/media/nas/tmp/tmp.eniwvUe9Hm"
 # tempDir=`mktemp -p /tmp -d`
 # tempDir="/tmp/tmp.DNmQNryQr2"
