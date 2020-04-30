@@ -51,6 +51,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 # start a browser
 bindsym $mod+t exec --no-startup-id sh -c "launchOnce $BROWSER $BROWSER 1"
 
+bindsym $mod+o exec nautilus
+
 # brightness controls for laptop
 bindsym F3 	exec --no-startup-id ~/brightness/brightnessDown
 bindsym F4	exec --no-startup-id ~/brightness/brightnessUp
@@ -69,8 +71,11 @@ bindsym Print exec --no-startup-id gnome-screenshot -i
 bindsym $mod+c exec --no-startup-id startCoding
 
 ############################### sound control ####################################
+# ponymix --sink-input -d "ALSA Playback" -N set-volume 50
 bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +5 --unmute --max-volume 100 | notify audio
 bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -5 --unmute | notify audio
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" increase 5 | notify audio
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" decrease 5 | notify audio
 bindsym XF86AudioPlay        exec --no-startup-id toggleMusic 
 # bindsym XF86AudioPause       exec mpc pause
 bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute --get-mute | notify muted
