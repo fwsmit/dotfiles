@@ -1,8 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+
 # Path to your oh-my-zsh installation.
-  {{- if eq .chezmoi.hostname "odroid-server" }}
+  {{- if eq .chezmoi.hostname "odroid-server" | eq .chezmoi.hostname "manjaro-laptop" }}
   export ZSH="/usr/share/oh-my-zsh"
   {{else}}
   export ZSH="/home/friso/.oh-my-zsh"
@@ -116,6 +117,7 @@ alias script="cd ~/.local/bin"
 alias feh="feh --scale-down"
 alias less="$PAGER"
 alias wop="cd ~/wop/wop3"
+alias ce="chezmoi edit"
 {{- if eq .chezmoi.hostname "archstudent" }}
 source /usr/share/nvm/init-nvm.sh
 {{- end }}
