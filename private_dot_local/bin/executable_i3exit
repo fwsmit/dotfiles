@@ -25,8 +25,11 @@ case "$1" in
 	pause)
         systemctl suspend
         ;;
+    update_shut)
+		gnome-terminal -- update_system_and_shutdown # && systemctl poweroff
+        ;;
     *)
-        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown|pause}"
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown|pause|update_shut}"
         exit 2
 esac
 
