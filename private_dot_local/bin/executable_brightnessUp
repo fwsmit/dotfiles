@@ -1,0 +1,4 @@
+#!/bin/sh
+
+xdotool keyup F4
+xdotool key XF86MonBrightnessUp
