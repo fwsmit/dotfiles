@@ -126,3 +126,7 @@ eval `chezmoi completion zsh`
 
 # Fish-like syntax highlighting. This must be at the end of .zshrc
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+typeset -A ZSH_HIGHLIGHT_STYLES
+
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=red'
