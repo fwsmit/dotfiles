@@ -199,6 +199,9 @@ autocmd FileType template set ft=config
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply
 autocmd BufWritePost ~/.local/share/chezmoi/* echo ("Applied the changes")
 
+" Run xrdb whenever Xdefaults or Xresources are updated.
+	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
+
 function PythonMake()
 	set autowrite
 	set makeprg=python\ %
