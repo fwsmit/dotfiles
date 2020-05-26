@@ -192,6 +192,7 @@ autocmd FileType cpp nnoremap <leader>b :wa <CR> :call CppMake() <CR>
 nnoremap <C-j> :cn<CR>
 nnoremap <C-k> :cp<CR>
 nnoremap <F5> :make<CR>
+nnoremap <C-b> :make<CR>
 " Python specific
 autocmd FileType python call PythonMake()
 autocmd FileType text setlocal spell
