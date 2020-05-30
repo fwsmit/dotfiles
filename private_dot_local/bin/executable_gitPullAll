@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for dir in ~/git_repos/*
+for dir in $gitrepos/*
 do
 	cd $dir
 	echo ""

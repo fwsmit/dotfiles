@@ -46,3 +46,13 @@ Turn of abi syscall for league anticheat
 sudo sysctl -w abi.vsyscall32=0
 # permanent
 sudo sh -c 'echo "abi.vsyscall32 = 0" >> /etc/sysctl.conf && sysctl -p'
+
+
+## convert images 
+
+for file in *.jpg
+do
+	basename=$(basename -- $file)
+	filename="${file%.*}"
+	magick convert "$file" "$filename.png"
+done
