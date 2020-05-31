@@ -147,3 +147,7 @@ load-module module-filter-apply
 ### Make some devices default
 #set-default-sink output
 #set-default-source input
+
+{{- if eq .chezmoi.hostname "archlinux" }}
+set-card-profile alsa_card.pci-0000_01_00.1 off
+{{end}}
