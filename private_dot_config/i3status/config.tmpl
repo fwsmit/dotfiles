@@ -13,11 +13,11 @@ general {
 
 order += "ipv6"
 order += "disk /"
-{{- if eq .chezmoi.hostname "archstudent" }}
+{{- if eq .chezmoi.hostname "archstudent" | eq .chezmoi.hostname "manjaro-laptop" }}
 order += "wireless _first_"
 {{- end }}
 order += "ethernet _first_"
-{{- if eq .chezmoi.hostname "archstudent" }}
+{{- if eq .chezmoi.hostname "archstudent" | eq .chezmoi.hostname "manjaro-laptop" }}
 order += "battery all"
 {{- end }}
 order += "load"

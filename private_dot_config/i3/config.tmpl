@@ -14,6 +14,20 @@
 # This is done by lightdm
 #
 
+##### Dependencies #####
+# pulsemmixer
+# ponymix
+# notify-dekstop-git (AUR)
+# picom
+# feh
+# mpc
+# mpd
+# nautilus
+# gnome-system-monitor
+
+
+##### End of Dependencies #####
+
 exec --no-startup-id feh --recursive --randomize --bg-fill /usr/share/backgrounds
 
 # compositor
@@ -54,10 +68,10 @@ bindsym $mod+t exec --no-startup-id sh -c "launchOnce $BROWSER $BROWSER 1"
 bindsym $mod+o exec nautilus
 
 
-{{- if eq .chezmoi.hostname "manjaro_laptop" }}
+{{- if eq .chezmoi.hostname "manjaro-laptop" }}
 # brightness controls for laptop
-bindsym F3 	exec --no-startup-id ~/brightness/brightnessDown
-bindsym F4	exec --no-startup-id ~/brightness/brightnessUp
+bindsym F3 	exec --no-startup-id brightnessDown_i3
+bindsym F4	exec --no-startup-id brightnessUp_i3
 bindsym F2	exec --no-startup-id toggleMusic 
 bindsym Ctrl+F2			exec --no-startup-id mpc next 
 bindsym Ctrl+Shift+F2	exec --no-startup-id mpc prev 
@@ -92,7 +106,7 @@ exec --no-startup-id pasystray
 bindsym $mod+Shift+b exec --no-startup-id feh --recursive --randomize --bg-fill /usr/share/backgrounds
 # bindsym $mod+t exec feh ~/Downloads/background.jpg
 
-bindsym $mod+m exec --no-startup-id launchOnce ashuffle 'ashuffle --queue-buffer 1' 'mpc toggle'"
+bindsym $mod+m exec --no-startup-id launchOnce ashuffle 'ashuffle --queue-buffer 1' 'mpc toggle'
 
 bindsym $mod+p exec gnome-system-monitor
 
