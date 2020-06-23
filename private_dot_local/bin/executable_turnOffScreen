@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# echo "Turnging off screen"
+sleep 1
+xset dpms force off
