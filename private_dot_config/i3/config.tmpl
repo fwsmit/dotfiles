@@ -38,6 +38,9 @@ exec --no-startup-id nextcloud --background
 # set menu as compose key
 exec --no-startup-id setxkbmap -option compose:menu
 
+# bluetooth applet
+exec --no-startup-id blueman-tray
+
 # show a notification if the battery is low
 exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
 
