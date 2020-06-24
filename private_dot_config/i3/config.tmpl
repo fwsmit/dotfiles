@@ -71,7 +71,7 @@ bindsym $mod+o exec nautilus
 
 {{- if eq .chezmoi.hostname "manjaro-laptop" }}
 # brightness controls for laptop
-# bindsym F3 	exec --no-startup-id brightnessDown_i3
+bindsym F3 	exec --no-startup-id brightnessDown_i3
 bindsym F4	exec --no-startup-id brightnessUp_i3
 bindsym Mod1+F3	exec --no-startup-id turnOffScreen
 bindsym F2	exec --no-startup-id toggleMusic 
