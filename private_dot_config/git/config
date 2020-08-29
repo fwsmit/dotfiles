@@ -5,3 +5,5 @@
 	helper = cache --timeout=3600
 [core]
 	editor = nvim
+[pull]
+	rebase = /usr/bin/false
