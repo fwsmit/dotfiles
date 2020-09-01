@@ -6,4 +6,4 @@
 [core]
 	editor = nvim
 [pull]
-	rebase = /usr/bin/false
+	rebase = false
