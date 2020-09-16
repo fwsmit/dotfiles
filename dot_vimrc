@@ -248,3 +248,7 @@ nnoremap <silent>         <C-a> :<C-u>call AddSubtract("\<C-a>", '')<CR>
 nnoremap <silent> <Leader><C-a> :<C-u>call AddSubtract("\<C-a>", 'b')<CR>
 nnoremap <silent>         <C-x> :<C-u>call AddSubtract("\<C-x>", '')<CR>
 nnoremap <silent> <Leader><C-x> :<C-u>call AddSubtract("\<C-x>", 'b')<CR>
+
+" Add color column only when line is longer than 80 characters
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
