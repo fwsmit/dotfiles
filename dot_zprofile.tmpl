@@ -2,7 +2,7 @@
 
 # make a symbolic link to this file called ~/.zprofile
 {{- if eq .chezmoi.hostname "manjaro-laptop" }}
-export TERMINAL="st"
+export TERMINAL="xfce4-terminal"
 {{else}}
 export TERMINAL="gnome-terminal"
 {{- end }}
