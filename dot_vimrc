@@ -188,8 +188,8 @@ nnoremap ,w /\u<CR>
 nnoremap ,b ?\u<CR>
 
 " insert new line without going to insert mode
-noremap <Bar> O<Esc>
-noremap <CR> o<Esc>
+nnoremap <Bar> O<Esc>
+nnoremap <CR> o<Esc>
 
 set guioptions-=T
 
@@ -200,12 +200,25 @@ let g:delimitMate_expand_space = 1
 " async configuration
 " Vertical size of the quickfix window
 let g:asyncrun_open = 6
-autocmd FileType cpp nnoremap <leader>b :wa <CR> :call CppMake() <CR>
 
 nnoremap <C-j> :cn<CR>
 nnoremap <C-k> :cp<CR>
 nnoremap <F5> :make<CR>
 nnoremap <C-b> :make<CR>
+
+function PythonMake()
+	set autowrite
+	set makeprg=python\ %
+endfunction
+
+function PrepCppMake()
+	set autowrite
+	nnoremap <C-b> :wa <CR> :call CppMake() <CR>
+endfunction
+
+
+" Cpp specific
+autocmd FileType cpp call PrepCppMake()
 " Python specific
 autocmd FileType python call PythonMake()
 autocmd FileType text setlocal spell
@@ -219,18 +232,9 @@ autocmd VimResized * wincmd =
 " Run xrdb whenever Xdefaults or Xresources are updated.
 	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 
-function PythonMake()
-	set autowrite
-	set makeprg=python\ %
-endfunction
 
 function CppMake()
-	AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;
-
-	" set makeprg=:wa <CR>  :AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;<CR>
-	" set makeprg=ls
-	" nnoremap <F4> :wa AsyncRun -cwd=<root>/build cmake ..<CR>
-
+	 AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;
 endfunction
 
 " Syntastic configuration
