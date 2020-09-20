@@ -76,7 +76,6 @@ bindsym $mod+t exec --no-startup-id sh -c "launchOnce $BROWSER $BROWSER 1"
 bindsym $mod+o exec nautilus
 
 
-{{- if eq .chezmoi.hostname "manjaro-laptop" }}
 # brightness controls for laptop
 bindsym F3 	exec --no-startup-id brightnessDown_i3
 bindsym F4	exec --no-startup-id brightnessUp_i3
@@ -88,6 +87,7 @@ bindsym Ctrl+Shift+F2	exec --no-startup-id mpc prev
 # bindsym XF86AudioMicMute exec testHotkey "brigthness"
 # bindsym XF86AudioMicMute exec ~/brightness/brightnessUp
 # bindsym XF86MonBrightnessDown exec sudo ~/brightness/brightnessDown
+{{- if eq .chezmoi.hostname "manjaro-laptop" "arch"}}
 {{- end }}
 
 
