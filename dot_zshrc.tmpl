@@ -131,13 +131,14 @@ ZSH_HIGHLIGHT_STYLES[globbing]='fg=red'
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # Other themes are: af-magic bureau robbyrussel
-{{- if eq .chezmoi.hostname "odroid-server" }}
-ZSH_THEME="agnoster"
-{{else}}
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-{{- end }}
+if [ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme -a -f ~/.p10k.zsh ]
+then
+	source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme 
+	source ~/.p10k.zsh
+else
+	ZSH_THEME="agnoster"
+fi
 
 source $ZSH/oh-my-zsh.sh
 # Fish-like syntax highlighting. This must be at the end of .zshrc
