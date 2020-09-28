@@ -3,14 +3,10 @@
 
 
 # Path to your oh-my-zsh installation.
-  {{- if eq .chezmoi.hostname "odroid-server" }}
+  {{- if eq .chezmoi.hostname "odroid-server" "manjaro-laptop" }}
 	  export ZSH="/usr/share/oh-my-zsh" 
   {{else}}
-	  {{- if eq .chezmoi.hostname "manjaro-laptop" }}
-	  export ZSH="/usr/share/oh-my-zsh"
-	  {{else}}
-	  export ZSH="/home/friso/.oh-my-zsh"
-	  {{- end }}
+  export ZSH="/home/friso/.oh-my-zsh"
   {{- end }}
   # export TERMINAL="termite"
 
