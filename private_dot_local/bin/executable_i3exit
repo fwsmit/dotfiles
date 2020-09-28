@@ -26,7 +26,7 @@ case "$1" in
         systemctl suspend
         ;;
     update_shut)
-		gnome-terminal -- update_system_and_shutdown # && systemctl poweroff
+		$TERMINAL -- update_system_and_shutdown # && systemctl poweroff
         ;;
     *)
         echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown|pause|update_shut}"

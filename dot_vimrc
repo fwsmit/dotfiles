@@ -70,6 +70,17 @@ Plugin 'skywind3000/asyncrun.vim'
 " Syntastic, for syntax highlighting
 Plugin 'vim-syntastic/syntastic.git' 
 
+" Goyo, for removing clutter and centering text
+Plugin 'junegunn/goyo.vim'
+
+"autoswap
+" Got the file from https://gist.githubusercontent.com/Uroc327/8134169/raw/d00268413240f0d82a846a3b402d6138a60ff210/autoswap_wmctrl.vim'
+" Plugin 'file:///home/friso/.vim/bundle/autoswap_wmctl.vim'
+Plugin 'gioele/vim-autoswap'
+
+" Julia support
+Plugin 'JuliaEditorSupport/julia-vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -107,7 +118,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
 			\ 'dir': '\v[\/](\.git|cmake|build)$',
-			\ 'file': '\v\.(exe|so|dll)$',
+			\ 'file': '\v\.(exe|so|dll|o)$',
 			\ }
 
 " colorschemes
@@ -177,8 +188,8 @@ nnoremap ,w /\u<CR>
 nnoremap ,b ?\u<CR>
 
 " insert new line without going to insert mode
-noremap <Bar> O<Esc>
-noremap <CR> o<Esc>
+nnoremap <Bar> O<Esc>
+nnoremap <CR> o<Esc>
 
 set guioptions-=T
 
@@ -189,12 +200,25 @@ let g:delimitMate_expand_space = 1
 " async configuration
 " Vertical size of the quickfix window
 let g:asyncrun_open = 6
-autocmd FileType cpp nnoremap <leader>b :wa <CR> :call CppMake() <CR>
 
 nnoremap <C-j> :cn<CR>
 nnoremap <C-k> :cp<CR>
 nnoremap <F5> :make<CR>
 nnoremap <C-b> :make<CR>
+
+function PythonMake()
+	set autowrite
+	set makeprg=python\ %
+endfunction
+
+function PrepCppMake()
+	set autowrite
+	nnoremap <C-b> :wa <CR> :call CppMake() <CR>
+endfunction
+
+
+" Cpp specific
+autocmd FileType cpp call PrepCppMake()
 " Python specific
 autocmd FileType python call PythonMake()
 autocmd FileType text setlocal spell
@@ -208,18 +232,9 @@ autocmd VimResized * wincmd =
 " Run xrdb whenever Xdefaults or Xresources are updated.
 	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 
-function PythonMake()
-	set autowrite
-	set makeprg=python\ %
-endfunction
 
 function CppMake()
-	AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;
-
-	" set makeprg=:wa <CR>  :AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;<CR>
-	" set makeprg=ls
-	" nnoremap <F4> :wa AsyncRun -cwd=<root>/build cmake ..<CR>
-
+	 AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;
 endfunction
 
 " Syntastic configuration
@@ -231,3 +246,28 @@ let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+
+" Better number adding with <C-a> and <C-x> (previously it only works for one
+" figure numbers
+function! AddSubtract(char, back)
+  let pattern = &nrformats =~ 'alpha' ? '[[:alpha:][:digit:]]' : '[[:digit:]]'
+  call search(pattern, 'cw' . a:back)
+  execute 'normal! ' . v:count1 . a:char
+  silent! call repeat#set(":\<C-u>call AddSubtract('" .a:char. "', '" .a:back. "')\<CR>")
+endfunction
+nnoremap <silent>         <C-a> :<C-u>call AddSubtract("\<C-a>", '')<CR>
+nnoremap <silent> <Leader><C-a> :<C-u>call AddSubtract("\<C-a>", 'b')<CR>
+nnoremap <silent>         <C-x> :<C-u>call AddSubtract("\<C-x>", '')<CR>
+nnoremap <silent> <Leader><C-x> :<C-u>call AddSubtract("\<C-x>", 'b')<CR>
+
+" Add color column only when line is longer than 80 characters
+" highlight ColorColumn ctermbg=magenta
+" call matchadd('ColorColumn', '\%81v', 100)
+
+" For the autoswap plugin, the terminal title has to be set to the file name
+set title titlestring=
+
+if has('mouse')
+	set mouse=a
+end

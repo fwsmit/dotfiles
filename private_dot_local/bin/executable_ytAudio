@@ -16,8 +16,7 @@ how to call:
 download_audio(){
 	# export album="$2"
 	# youtube-dl -f bestaudio --write-thumbnail -o "%(title)s.%(ext)s" --exec 'echo $album; echo {}' $1
-	youtube-dl -i -f bestaudio -o "%(title)s.%(ext)s" --recode-video ogg "$1"
-	
+	youtube-dl -i -f bestaudio -o "%(title)s.%(ext)s" --recode-video ogg "$1" --write-info-json
 }
 
 rename_tag_and_place(){ # renames all files and moves to directory $artist/$album ($1/$2)
@@ -55,7 +54,8 @@ then
 	usage
 	exit 2
 fi
-tempDir=`mktemp -p /mnt/nas/tmp -d`
+# tempDir=`mktemp -p /mnt/nas/tmp -d`
+tempDir=`mktemp -p /tmp/ -d`
 cd "$tempDir"
 pwd
 download_audio $1 $2
@@ -63,5 +63,6 @@ if [ -n "$4" ]
 then
 	wget "$4" -O Folder.jpg
 fi
+extract_metadata.py $tempDir
 rename_tag_and_place $2 $3
-move_audio
+# move_audio

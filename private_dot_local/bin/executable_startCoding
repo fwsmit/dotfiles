@@ -1,10 +1,17 @@
 #!/bin/sh
-repo=$(ls ~/git_repos | dmenu)
+repo=$(ls $gitrepos | dmenu -i)
 succes=$?
-echo $succes >> ~/scriptResult
+# echo $succes >> ~/scriptResult
 if [ $succes -eq 0 ]
 then
 	# gnome-terminal --window --working-directory=$HOME/git_repos/$repo/build --window --working-directory=$HOME/git_repos/$repo/
 	# gnome-terminal --working-directory=$HOME/git_repos/$repo/src
-	$TERMINAL -d ~/git_repos/$repo/src
+	dir=$gitrepos/$repo
+	if [ -d $dir/src ]
+	then
+		$TERMINAL -d $dir/src
+	else
+		$TERMINAL -d $dir
+	fi
+		
 fi

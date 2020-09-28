@@ -14,18 +14,18 @@ cp -r "$1" /tmp/
 cd "$1"
 
 # extract the first page of the exercise
-find ./ -name "*.pdf" -exec qpdf --empty --pages {} 1-1 -- firstPage.pdf \;
+# find ./ -name "*.pdf" -exec qpdf --empty --pages {} 1-1 -- firstPage.pdf \;
 
 # write student number on the first page
-qpdf firstPage.pdf --underlay ../firstPage_text.pdf -- firstPage_edited.pdf
+# qpdf firstPage.pdf --underlay ../firstPage_text.pdf -- firstPage_edited.pdf
 
 # convert all images to pdf
 gm convert -page A4+0+0 *.jpg images.pdf
 
 # stitch all pages together
-qpdf --empty --pages firstPage_edited.pdf images.pdf -- "stitched.pdf"
+# qpdf --empty --pages images.pdf -- "stitched.pdf"
 
 # optimize pdf
-ps2pdf -dPDFSETTINGS=/ebook stitched.pdf final.pdf
+ps2pdf -dPDFSETTINGS=/ebook images.pdf final.pdf
 
 firefox final.pdf
