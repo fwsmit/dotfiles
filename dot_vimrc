@@ -211,6 +211,11 @@ function PythonMake()
 	set makeprg=python\ %
 endfunction
 
+function ShellMake()
+	set autowrite
+	set makeprg=sh\ %
+endfunction
+
 function PrepCppMake()
 	set autowrite
 	nnoremap <C-b> :wa <CR> :call CppMake() <CR>
@@ -221,6 +226,7 @@ endfunction
 autocmd FileType cpp call PrepCppMake()
 " Python specific
 autocmd FileType python call PythonMake()
+autocmd FileType sh call ShellMake()
 autocmd FileType text setlocal spell
 autocmd FileType template set ft=config
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply

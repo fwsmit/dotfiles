@@ -2,4 +2,5 @@
 
 /home/friso/.local/bin/update_system
 echo "Done updating, shutting down in 3 seconds"
+sleep 3
 systemctl poweroff

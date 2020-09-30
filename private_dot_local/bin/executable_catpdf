@@ -1,12 +1,27 @@
 #!/bin/sh
 
+# this script concatenates the files it gets into a single pdf 
+# and opens the pdf in your browser
+
 # required programs: qpdf, ps2pdf and graphicsmagick
+
+usage(){
+	echo "Usage: $(basename $0) files"
+}
 
 if (( $# < 1 ))
 then
-	echo "Please specify the directory to compile"
+	echo "Please specify the files to concatenate"
+	usage
 	exit 2
 fi
+
+while getopts 'h' c
+do
+	case $c in
+		h) usage; exit;;
+	esac
+done
 
 echo "Creating backup in /tmp"
 cp -r "$1" /tmp/
