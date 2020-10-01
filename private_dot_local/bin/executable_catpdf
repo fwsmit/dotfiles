@@ -6,8 +6,20 @@
 # required programs: qpdf, ps2pdf and graphicsmagick
 
 usage(){
-	echo "Usage: $(basename $0) files"
+	echo "Usage: $(basename $0) [-h] [-v] files"
 }
+
+VERBOSE=false
+
+while getopts 'hv' c
+do
+	case $c in
+		h) usage; exit ;;
+		v) VERBOSE=true; echo "Outputting verbose info" ;;
+	esac
+done
+
+shift $((OPTIND-1))
 
 if (( $# < 1 ))
 then
@@ -16,17 +28,41 @@ then
 	exit 2
 fi
 
-while getopts 'h' c
+if [ $VERBOSE = true ]
+then
+	echo "Concatenating the files $@"
+fi
+
+PDFS=""
+IMGS=""
+
+# check if files exist, are readable and are not a directory
+for file in "$@"
 do
-	case $c in
-		h) usage; exit;;
-	esac
+	[ -d "$file" ] && echo "$file is a directory" && exit 2
+	[ ! -r "$file" ] && echo "$file does not exist or is not readable" && exit 2
 done
 
-echo "Creating backup in /tmp"
-cp -r "$1" /tmp/
-# cp -i -r "$1" /tmp/
-cd "$1"
+for file in "$@"
+do
+	if [ $(file --mime-type -b "$file") = "application/pdf" ]; then
+		PDFS+="$file "
+	fi
+	if [ $(file --mime-type -b "$file") = "image/jpeg" ]; then
+		base=$(basename "$file")
+		pdf_file_name="${base%.*}.pdf"
+		gm convert -page A4+0+0 "$file" "$pdf_file_name"
+		PDFS+="$pdf_file_name "
+		IMGS+="$file "
+	fi
+done
+# tempdir=$(mktemp -d)
+# echo "Creating backup in $tempdir"
+# cp $@ "$tempdir"
+
+echo "PDFS: $PDFS"
+echo "IMGS: $IMGS"
+
 
 # extract the first page of the exercise
 # find ./ -name "*.pdf" -exec qpdf --empty --pages {} 1-1 -- firstPage.pdf \;
@@ -35,12 +71,12 @@ cd "$1"
 # qpdf firstPage.pdf --underlay ../firstPage_text.pdf -- firstPage_edited.pdf
 
 # convert all images to pdf
-gm convert -page A4+0+0 *.jpg images.pdf
+# gm convert -page A4+0+0 "$IMGS" images.pdf
 
 # stitch all pages together
-# qpdf --empty --pages images.pdf -- "stitched.pdf"
+qpdf --empty --pages $PDFS -- "stitched.pdf"
 
 # optimize pdf
-ps2pdf -dPDFSETTINGS=/ebook images.pdf final.pdf
+# ps2pdf -dPDFSETTINGS=/ebook images.pdf final.pdf
 
-firefox final.pdf
+#$BROWSER final.pdf
