@@ -9,9 +9,17 @@ then
 	dir=$gitrepos/$repo
 	if [ -d $dir/src ]
 	then
-		$TERMINAL -d $dir/src
+		newdir=$dir/src
 	else
-		$TERMINAL -d $dir
+		newdir=$dir
+	fi
+
+	echo $newdir
+	if [ $TERMINAL = "gnome-terminal" ]
+	then
+		gnome-terminal --working-directory "$newdir"
+	else
+		$TERMINAL -d "$newdir"
 	fi
 		
 fi
