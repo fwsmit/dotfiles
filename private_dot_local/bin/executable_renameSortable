@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# This script renames the input files to a sortable name.
+# It makes all the names like 10.jpg, 20.jpg, 30.jpg
+
+usage(){
+	echo "Usage: $(basename $0) [-h] [-v] [-d] FILES"
+}
+
+DRYRUN=false
+VERBOSE=false
+
+while getopts 'hvd' c
+do
+	case $c in
+		h) usage; exit ;;
+		v) VERBOSE=true; echo "Outputting verbose info" ;;
+		d) DRYRUN=true ;;
+	esac
+done
+shift $((OPTIND-1))
+
+if (( $# < 1 ))
+then
+	echo "Please files to rename"
+	usage
+	exit 2
+fi
+if [ $DRYRUN = true ]; then
+	if [ $VERBOSE = true ]; then
+		echo "Running in dryrun mode"
+	fi
+fi
+val=10
+while [ $# -gt 0 ]
+do
+	oldname="$1"
+	dir=`dirname "$1"`
+	prefix="${oldname%.*}"
+	suffix="${oldname#*.}"
+	filename=`basename "$1"`
+	newname="$dir/$val-$filename"
+	# echo $oldname " - " $dir " - " $filename " - " $suffix
+	if [ $VERBOSE = true ]; then
+		echo "mv" "$oldname" "$newname"
+	fi
+	if [ $DRYRUN = false ]; then
+		mv "$oldname" "$newname"
+	fi
+	let "val += 5"
+	shift 1
+done

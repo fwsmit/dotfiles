@@ -1,0 +1,85 @@
+#!/bin/sh
+
+# this script concatenates the files it gets into a single pdf 
+# and opens the pdf in your browser
+
+# required programs: qpdf, ps2pdf and graphicsmagick
+
+usage(){
+	echo "Usage: $(basename $0) [-h] [-v] [-n] [FILE] directory"
+}
+
+VERBOSE=false
+BACKUP=true
+
+while getopts 'hvn' c
+do
+	case $c in
+		h) usage; exit ;;
+		v) VERBOSE=true; echo "Outputting verbose info" ;;
+		n) BACKUP=false ;;
+	esac
+done
+shift $((OPTIND-1))
+
+if (( $# < 1 ))
+then
+	echo "Please specify the directory"
+	usage
+	exit 2
+fi
+
+while [ $# -gt 1 ]
+do
+	PDFS+=($PDFS "$1")
+	shift 1
+done
+
+if [ ! -d "$1" ]; then
+	echo "Directory does not exist"
+	usage
+	exit 2
+else
+	if [ $VERBOSE = true ]
+	then
+		echo "Directory exists"
+	fi
+fi
+
+if [ $VERBOSE = true ]
+then
+	echo "PDFS: $PDFS"
+fi
+
+if [ $VERBOSE = true -a $BACKUP = false ]
+then
+	echo "Turning off backup";
+fi
+# check if files exist, are readable and are not a directory
+if [ $BACKUP = true ]
+then
+	tempdir=$(mktemp -d)
+	echo "Creating backup in $tempdir"
+	cp -r $@ "$tempdir"
+fi
+
+# extract the first page of the exercise
+# find ./ -name "*.pdf" -exec qpdf --empty --pages {} 1-1 -- firstPage.pdf \;
+
+# write student number on the first page
+# qpdf firstPage.pdf --underlay ../firstPage_text.pdf -- firstPage_edited.pdf
+
+# convert all images to pdf
+gm convert -page A4+0+0 *.jpg images.pdf
+
+# stitch all pages together
+if [ -n "$PDFS" ]; then
+	qpdf --empty --pages images.pdf "$PDFS" -- "stitched.pdf"
+else
+	qpdf --empty --pages images.pdf -- "stitched.pdf"
+fi	
+
+# optimize pdf
+ps2pdf -dPDFSETTINGS=/ebook stitched.pdf final.pdf
+
+$BROWSER final.pdf
