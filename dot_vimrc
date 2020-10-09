@@ -227,7 +227,7 @@ autocmd FileType cpp call PrepCppMake()
 " Python specific
 autocmd FileType python call PythonMake()
 autocmd FileType sh call ShellMake()
-autocmd FileType text setlocal spell
+autocmd FileType text markdown setlocal spell
 autocmd FileType template set ft=config
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply
 autocmd BufWritePost ~/.local/share/chezmoi/* echo ("Applied the changes")

@@ -73,7 +73,6 @@ plugins=(
   git archlinux
 )
 
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -118,6 +117,7 @@ alias wop="cd ~/wop/wop3"
 alias ce="chezmoi edit"
 alias vj="nvim ~/journals/vim.md"
 alias rj="nvim ~/journals/rigid.md"
+
 {{- if eq .chezmoi.hostname "archstudent" }}
 source /usr/share/nvm/init-nvm.sh
 {{- end }}
@@ -145,3 +145,6 @@ fi
 source $ZSH/oh-my-zsh.sh
 # Fish-like syntax highlighting. This must be at the end of .zshrc
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# this alias (from ohmyzsh git plugin) will otherwise interfere with graphicsmagick
+unalias gm
