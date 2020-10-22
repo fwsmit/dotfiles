@@ -1,9 +1,0 @@
-[user]
-	email = fw.smit01@gmail.com
-	name = fwsmit
-[credential]
-	helper = cache --timeout=3600
-[core]
-	editor = nvim
-[pull]
-	rebase = false
