@@ -17,14 +17,16 @@
 ##### Dependencies #####
 # pulsemmixer
 # ponymix
-# notify-dekstop-git (AUR)
+# notify-dekstop-git (AUR) (not anymore)
 # picom
 # feh
 # mpc
 # mpd
 # nautilus
 # gnome-system-monitor
-
+# pavucontrol
+# thunderbird
+# dunst
 
 ##### End of Dependencies #####
 
@@ -47,7 +49,8 @@ exec --no-startup-id nm-applet
 # show a notification if the battery is low
 exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
 
-exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
+# exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
+exec --no-startup-id dunst
 
 set $mod Mod4
 
@@ -78,8 +81,14 @@ bindsym $mod+o exec nautilus
 # launch thunderbird for mail
 bindsym $mod+i exec thunderbird
 
+# launch pavucontrol for audio control
+bindsym $mod+u exec pavucontrol
+
 # launch appfinder
-bindsym $mod+u exec xfce4-appfinder
+bindsym $mod+i exec xfce4-appfinder
+
+# configure display
+bindsym $mod+Shift+d exec configureDisplay.sh
 
 # brightness controls for laptop
 bindsym F3 	exec --no-startup-id brightnessDown_i3
@@ -88,6 +97,7 @@ bindsym Mod1+F3	exec --no-startup-id turnOffScreen
 bindsym F2	exec --no-startup-id toggleMusic 
 bindsym Ctrl+F2			exec --no-startup-id mpc next
 bindsym Ctrl+Shift+F2	exec --no-startup-id mpc prev 
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 # bindsym XF86MonBrightnessUp exec sudo ~/brightness/brightnessUp
 # bindsym XF86AudioMicMute exec testHotkey "brigthness"
 # bindsym XF86AudioMicMute exec ~/brightness/brightnessUp
@@ -105,8 +115,10 @@ bindsym $mod+c exec --no-startup-id startCoding
 # ponymix --sink-input -d "ALSA Playback" -N set-volume 50
 bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +5 --unmute --max-volume 100 | notify audio
 bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -5 --unmute | notify audio
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" increase 5 | notify audio
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" decrease 5 | notify audio
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +1 --unmute --max-volume 100 | notify audio
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -1 --unmute | notify audio
+# bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" increase 5 | notify audio
+# bindsym Shift+XF86AudioLowerVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" decrease 5 | notify audio
 bindsym XF86AudioPlay        exec --no-startup-id toggleMusic 
 # bindsym XF86AudioPause       exec mpc pause
 bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute --get-mute | notify muted
@@ -229,7 +241,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+Shift+h split h
+bindsym $mod+Ctrl+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v

@@ -70,7 +70,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git archlinux
+  git archlinux vi-mode
 )
 
 # User configuration
@@ -117,6 +117,8 @@ alias wop="cd ~/wop/wop3"
 alias ce="chezmoi edit"
 alias vj="nvim ~/journals/vim.md"
 alias rj="nvim ~/journals/rigid.md"
+alias lj="nvim ~/journals/linux.md"
+alias ej="nvim ~/journals/recepten.md"
 
 {{- if eq .chezmoi.hostname "archstudent" }}
 source /usr/share/nvm/init-nvm.sh
@@ -146,5 +148,6 @@ source $ZSH/oh-my-zsh.sh
 # Fish-like syntax highlighting. This must be at the end of .zshrc
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+bindkey -v
 # this alias (from ohmyzsh git plugin) will otherwise interfere with graphicsmagick
 unalias gm

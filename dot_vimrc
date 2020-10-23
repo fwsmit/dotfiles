@@ -68,7 +68,7 @@ Plugin 'LucHermitte/alternate-lite'
 Plugin 'skywind3000/asyncrun.vim'
 
 " Syntastic, for syntax highlighting
-Plugin 'vim-syntastic/syntastic.git' 
+Plugin 'vim-syntastic/syntastic.git'
 
 " Goyo, for removing clutter and centering text
 Plugin 'junegunn/goyo.vim'
@@ -114,7 +114,7 @@ call lh#alternate#register_extension('g', 'h', ['cpp'], 1)
 let g:usemarks = 0
 
 " Ctrl p mappings
-let g:ctrlp_map = '<c-p>'	
+let g:ctrlp_map = '<c-p>'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
 			\ 'dir': '\v[\/](\.git|cmake|build)$',
@@ -130,14 +130,14 @@ syntax enable
 " let g:gruvbox_italic=1
 set termguicolors
 colorscheme gruvbox
-" change comment settings 
+" change comment settings
 highlight Comment cterm=italic
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
 autocmd BufRead,BufNewFile *.frag setfiletype shader
 let g:NERDCustomDelimiters = {
-			\ 'shader': { 'left': '//'},
-			\ }
+		\ 'shader': { 'left': '//'},
+		\ }
 
 " vim-airline
 " if !exists('g:airline_symbols')
@@ -227,26 +227,27 @@ autocmd FileType cpp call PrepCppMake()
 " Python specific
 autocmd FileType python call PythonMake()
 autocmd FileType sh call ShellMake()
-autocmd FileType text markdown setlocal spell
+autocmd FileType text,markdown setlocal spell
 autocmd FileType template set ft=config
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply
 autocmd BufWritePost ~/.local/share/chezmoi/* echo ("Applied the changes")
+autocmd FileType text,markdown call setbufvar(bufnr("%"), 'easyescape_disable', 1)
 
 " Resize windows proportionally when resizing window
 autocmd VimResized * wincmd =
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
-	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
+autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 
 
 function CppMake()
-	 AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;
+	AsyncRun -cwd=<root>/build make && find ./ -maxdepth 1 -executable -type f -exec '{}' \;
 endfunction
 
 " Syntastic configuration
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
@@ -273,6 +274,14 @@ nnoremap <silent> <Leader><C-x> :<C-u>call AddSubtract("\<C-x>", 'b')<CR>
 
 " For the autoswap plugin, the terminal title has to be set to the file name
 set title titlestring=
+
+" Storage for useful macros
+" Paste a h2 header from markdown file for generating TOC. First mark b for
+" the start of your search
+" ma'b/^## f ly$mb'apzz
+
+" Create a toc entry from line
+" I* lv$hS]lyi[A(a#p^
 
 if has('mouse')
 	set mouse=a
