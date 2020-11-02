@@ -79,7 +79,11 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'gioele/vim-autoswap'
 
 " Julia support
-Plugin 'JuliaEditorSupport/julia-vim'
+" Plugin 'JuliaEditorSupport/julia-vim'
+
+" Screenshot plugin
+" Plugin 'vim-scripts/ScreenShot' " Doensn't seem to wor
+Plugin 'jmckiern/vim-shoot'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -109,8 +113,9 @@ set relativenumber
 map <F2> :NERDTreeToggle<CR>
 
 nmap \a :AS<CR>
-call lh#alternate#register_extension('g', 'cpp', ['h'], 1)
-call lh#alternate#register_extension('g', 'h', ['cpp'], 1)
+call lh#alternate#register_extension('g', 'h',   ['c', 'cpp'], 1)
+" call lh#alternate#register_extension('g', 'cpp', ['h'], 1)
+" call lh#alternate#register_extension('g', 'h', ['cpp'], 1)
 let g:usemarks = 0
 
 " Ctrl p mappings

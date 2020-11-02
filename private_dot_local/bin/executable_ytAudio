@@ -7,10 +7,9 @@
 
 usage()
 {
-	echo 'Wrong number of arguments
-how to call:
-	ytAudio "URL" "ARTIST" "ALBUM" (URL to album picture)'
-	exit 2
+	echo "Usage:"
+	echo "$(basename $0) -a ARTIST -A ALBUM [-c ALBUMCOVER] [-n] URL "
+	echo "-n: Don't recode to ogg"
 }
 
 download_audio(){
@@ -48,21 +47,43 @@ move_audio(){
 	find -mindepth 1 -maxdepth 1 -type d -print -exec cp {} /mnt/nas/Music -r \;
 }
 
+declare ARTIST
+declare ALBUM
+declare COVER
+declare HASCOVER
 
-if (( $# > 4 || $# < 2))
+while getopts 'ha:A:c:' c
+do
+	case $c in
+		h) usage; exit ;;
+		a) ARTIST="$OPTARG" ;;
+		A) ALBUM="$OPTARG" ;;
+		c) COVER="$OPTARG"; HASCOVER=1; ;;
+	esac
+done
+
+shift $((OPTIND-1))
+
+# if [ ( -z "asdf" ) -o ( -z "$ALBUM" ) ]
+if [ -z "$ARTIST" -o -z "$ALBUM" ]
 then
+	echo "Please provide an artist and album"
+	echo "$ARTIST"
+	echo "$ALBUM"
 	usage
 	exit 2
 fi
+
 # tempDir=`mktemp -p /mnt/nas/tmp -d`
 tempDir=`mktemp -p /tmp/ -d`
 cd "$tempDir"
 pwd
-download_audio $1 $2
-if [ -n "$4" ]
+exit
+download_audio "$ARTIST" "$ALBUM"
+if [ ! -z $HASCOVER ]
 then
-	wget "$4" -O Folder.jpg
+	wget "$COVER" -O Folder.jpg
 fi
-extract_metadata.py $tempDir
-rename_tag_and_place $2 $3
+rename_tag_and_place "$ARTIST" "$ALBUM"
+# extract_metadata.py $tempDir
 # move_audio
