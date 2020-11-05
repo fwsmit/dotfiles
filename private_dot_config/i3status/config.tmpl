@@ -19,7 +19,9 @@ order += "wireless _first_"
 {{- if eq .chezmoi.hostname "manjaro-laptop" }}
 order += "wireless _first_"
 {{- end }}
+{{- if not (eq .chezmoi.hostname "archstudent") }}
 order += "ethernet _first_"
+{{- end }}
 {{- if eq .chezmoi.hostname "archstudent" }}
 order += "battery all"
 {{- end }}
