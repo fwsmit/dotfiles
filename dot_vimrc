@@ -178,10 +178,9 @@ let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/
 let g:ycm_autoclose_preview_window_after_insertion = 1
 nnoremap \ef :YcmCompleter FixIt<CR>
 nnoremap \et :YcmCompleter GetType<CR>
-nnoremap \er :YcmCompleter RefactorRename
+nnoremap \er :YcmCompleter RefactorRename<Space>
 nnoremap \ed :YcmCompleter GoToDefinition<CR>
 nnoremap \ej :YcmCompleter GoToDeclaration<CR>
-" inoremap \e <C-O>:YcmCompleter FixIt<CR>
 
 " Don't insert a template
 let g:mt_IDontWantTemplatesAutomaticallyInserted = 1
