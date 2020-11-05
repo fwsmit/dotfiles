@@ -1,50 +1,46 @@
 #!/bin/sh
 
-# dependencies: notify-desktop, pulsemixer, sed
-
-function notify {
-    this=`basename $0`
-    tmp_file=/tmp/${this//./-}.txt
-    argument=""
-
-    if [ -e $tmp_file ]; then
-        last_id=`cat $tmp_file | sed 's/[^0-9]//g'`
-
-        if [ -n "$last_id" ]; then
-            argument="-r $last_id"
-        fi
-    fi
-
-    notify-desktop $argument "$@" > $tmp_file
-}
+# dependencies: notify-send, pulsemixer, sed
 
 notifyMuted() {
-	notify "Muted" -t 1500 --icon audio-volume-muted
+	dunstify -h string:x-canonical-private-synchronous:audio "Muted" -h int:value:"0" -t 1500 --icon audio-volume-muted
 }
+
 notifyAudio() {
 	volume="$1"
-	case $volume in
-		''|*[!0-9]*) volume=$(pulsemixer --get-volume | awk '{print $1}') ;;
-	esac
 	if [ $volume -eq 0 ]; then
 		notifyMuted
 	elif [ $volume -le 30 ]; then
-		notify "volume: $volume%" -t 1500 --icon audio-volume-low
+		dunstify -h string:x-canonical-private-synchronous:audio "Volume: [$volume%]" -h int:value:"$volume" -t 1500 --icon audio-volume-low
 	elif [ $volume -le 70 ]; then
-		notify "volume: $volume%" -t 1500 --icon audio-volume-medium
+		dunstify -h string:x-canonical-private-synchronous:audio "Volume: [$volume%]" -h int:value:"$volume" -t 1500 --icon audio-volume-medium
 	else
-		notify "volume: $volume%" -t 1500 --icon audio-volume-high
+		dunstify -h string:x-canonical-private-synchronous:audio "Volume: [$volume%]" -h int:value:"$volume" -t 1500 --icon audio-volume-high
+	fi
+		# notify "volume: $volume%" -t 1500 --icon audio-volume-medium
+		# notify "volume: $volume%" -t 1500 --icon audio-volume-high
+}
+
+notifyBrightness() {
+	brightness="$1"
+	if [ $brightness -eq 0 ]; then
+		dunstify -h string:x-canonical-private-synchronous:brightness "Brightness: [$brightness%]" -h int:value:"$brightness" -t 1500 --icon /usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-off-symbolic.svg	
+	elif [ $brightness -le 30 ]; then
+		dunstify -h string:x-canonical-private-synchronous:brightness "Brightness: [$brightness%]" -h int:value:"$brightness" -t 1500 --icon /usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-low-symbolic.svg	
+	elif [ $brightness -le 70 ]; then
+		dunstify -h string:x-canonical-private-synchronous:brightness "Brightness: [$brightness%]" -h int:value:"$brightness" -t 1500 --icon /usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-medium-symbolic.svg	
+	else
+		dunstify -h string:x-canonical-private-synchronous:brightness "Brightness: [$brightness%]" -h int:value:"$brightness" -t 1500 --icon /usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-high-symbolic.svg	
 	fi
 }
 
-
 input=`cat /dev/stdin`
-
+echo "Received input"
 case "$1" in
 	muted)
 		if [ "$input" -eq 0 ]
 		then
-			notifyAudio
+			notifyAudio `ponymix get-volume`
 			# notify "Unmuted" -t 1000 --icon audio-volume-high
 			# echo unmuted
 		else
@@ -55,8 +51,12 @@ case "$1" in
 	audio)
 		notifyAudio "$input"
 		;;
+	brightness)
+		notifyBrightness "$input"
+		;;
 		
 	*)
 		echo "Not the right arguments"
+		echo "$1"
 		exit 2
 esac
