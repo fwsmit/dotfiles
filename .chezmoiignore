@@ -4,5 +4,6 @@ troubleshooting
 lightdm.conf
 lightdm-desktop.conf
 lightdm-webkit2-greeter.conf
+hostlist
 not_home
 not_home/*
