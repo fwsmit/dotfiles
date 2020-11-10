@@ -1,9 +1,10 @@
 #!/bin/sh
 
-# dependencies: notify-send, pulsemixer, sed
+# dependencies: notify-send, ponymix, sed
 
 notifyMuted() {
-	dunstify -h string:x-canonical-private-synchronous:audio "Muted" -h int:value:"0" -t 1500 --icon audio-volume-muted
+	volume=`ponymix get-volume`
+	dunstify -h string:x-canonical-private-synchronous:audio "Muted" -h int:value:"$volume" -t 1500 --icon audio-volume-muted
 }
 
 notifyAudio() {
@@ -11,11 +12,11 @@ notifyAudio() {
 	if [ $volume -eq 0 ]; then
 		notifyMuted
 	elif [ $volume -le 30 ]; then
-		dunstify -h string:x-canonical-private-synchronous:audio "Volume: [$volume%]" -h int:value:"$volume" -t 1500 --icon audio-volume-low
+		dunstify -h string:x-canonical-private-synchronous:audio "Volume: " -h int:value:"$volume" -t 1500 --icon audio-volume-low
 	elif [ $volume -le 70 ]; then
-		dunstify -h string:x-canonical-private-synchronous:audio "Volume: [$volume%]" -h int:value:"$volume" -t 1500 --icon audio-volume-medium
+		dunstify -h string:x-canonical-private-synchronous:audio "Volume: " -h int:value:"$volume" -t 1500 --icon audio-volume-medium
 	else
-		dunstify -h string:x-canonical-private-synchronous:audio "Volume: [$volume%]" -h int:value:"$volume" -t 1500 --icon audio-volume-high
+		dunstify -h string:x-canonical-private-synchronous:audio "Volume: " -h int:value:"$volume" -t 1500 --icon audio-volume-high
 	fi
 		# notify "volume: $volume%" -t 1500 --icon audio-volume-medium
 		# notify "volume: $volume%" -t 1500 --icon audio-volume-high
@@ -24,13 +25,13 @@ notifyAudio() {
 notifyBrightness() {
 	brightness="$1"
 	if [ $brightness -eq 0 ]; then
-		dunstify -h string:x-canonical-private-synchronous:brightness "Brightness: [$brightness%]" -h int:value:"$brightness" -t 1500 --icon /usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-off-symbolic.svg	
+		dunstify -h string:x-canonical-private-synchronous:brightness "Brightness: " -h int:value:"$brightness" -t 1500 --icon /usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-off-symbolic.svg	
 	elif [ $brightness -le 30 ]; then
-		dunstify -h string:x-canonical-private-synchronous:brightness "Brightness: [$brightness%]" -h int:value:"$brightness" -t 1500 --icon /usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-low-symbolic.svg	
+		dunstify -h string:x-canonical-private-synchronous:brightness "Brightness: " -h int:value:"$brightness" -t 1500 --icon /usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-low-symbolic.svg	
 	elif [ $brightness -le 70 ]; then
-		dunstify -h string:x-canonical-private-synchronous:brightness "Brightness: [$brightness%]" -h int:value:"$brightness" -t 1500 --icon /usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-medium-symbolic.svg	
+		dunstify -h string:x-canonical-private-synchronous:brightness "Brightness: " -h int:value:"$brightness" -t 1500 --icon /usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-medium-symbolic.svg	
 	else
-		dunstify -h string:x-canonical-private-synchronous:brightness "Brightness: [$brightness%]" -h int:value:"$brightness" -t 1500 --icon /usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-high-symbolic.svg	
+		dunstify -h string:x-canonical-private-synchronous:brightness "Brightness: " -h int:value:"$brightness" -t 1500 --icon /usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-high-symbolic.svg	
 	fi
 }
 

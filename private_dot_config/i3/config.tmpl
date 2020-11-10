@@ -100,14 +100,12 @@ bindsym Ctrl+F2			exec --no-startup-id mpc next
 bindsym Ctrl+Shift+F2	exec --no-startup-id mpc prev
 # bindsym Mod1+F3	exec --no-startup-id turnOffScreen
 
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send "Mute"
-# bindsym XF86AudioMicMute exec testHotkey "brigthness"
-# bindsym XF86AudioMicMute exec ~/brightness/brightnessUp
-bindsym XF86MonBrightnessUp exec brightnessUp_i3 | notify brightness
-bindsym XF86MonBrightnessDown exec brightnessDown_i3 | notify brightness
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send "Mute mic"
 {{- if eq .chezmoi.hostname "manjaro-laptop" "archstudent"}}
-bindsym Ctrl+Shift+plus exec --no-startup-id pulsemixer --change-volume +1 --unmute --max-volume 100 | notify audio
-bindsym Ctrl+Shift+minus exec --no-startup-id pulsemixer --change-volume -1 --unmute | notify audio
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessUp_i3 | notify brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessDown_i3 | notify brightness
+bindsym Ctrl+Shift+plus exec --no-startup-id ponymix increase 1 | notify audio
+bindsym Ctrl+Shift+minus exec --no-startup-id ponymix decrease 1 | notify audio
 {{- end }}
 
 
@@ -117,17 +115,12 @@ bindsym Print exec --no-startup-id gnome-screenshot -i
 bindsym $mod+c exec --no-startup-id startCoding
 
 ############################### sound control ####################################
-# ponymix --sink-input -d "ALSA Playback" -N set-volume 50
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +5 --unmute --max-volume 100 --get-volume | notify audio
-# bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -5 --unmute --get-volume | notify audio
-# bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +1 --unmute --max-volume 100 --get-volume | notify audio
-# bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -1 --unmute --get-volume | notify audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id  ponymix increase 5 | notify audio
 bindsym XF86AudioLowerVolume exec --no-startup-id  ponymix decrease 5 | notify audio
 # bindsym XF86AudioRaiseVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" increase 5 | notify audio
 # bindsym XF86AudioLowerVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" decrease 5 | notify audio
 bindsym XF86AudioPlay        exec --no-startup-id toggleMusic 
-# bindsym XF86AudioPause       exec mpc pause
+bindsym XF86AudioPause       exec mpc pause
 bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute --get-mute | notify muted
 bindsym XF86AudioNext        exec --no-startup-id mpc next
 bindsym XF86AudioPrev        exec --no-startup-id mpc prev
