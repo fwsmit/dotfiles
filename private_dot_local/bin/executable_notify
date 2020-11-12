@@ -9,6 +9,8 @@ notifyMuted() {
 
 notifyAudio() {
 	volume="$1"
+    ponymix is-muted && notifyMuted && return
+
 	if [ $volume -eq 0 ]; then
 		notifyMuted
 	elif [ $volume -le 30 ]; then
