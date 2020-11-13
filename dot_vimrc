@@ -104,6 +104,7 @@ filetype plugin indent on    " required
 set tabstop=4
 set shiftwidth=4
 set smartindent
+set expandtab
 "turn on line numbers
 set number
 set relativenumber
@@ -123,7 +124,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
 			\ 'dir': '\v[\/](\.git|cmake|build)$',
-			\ 'file': '\v\.(exe|so|dll|o)$',
+			\ 'file': '\v\.(exe|so|dll|o|d)$',
 			\ }
 
 " colorschemes
