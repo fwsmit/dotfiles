@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for file in *.{c,h}; do
+	sed -i '$a \/* vim: set ft=c tabstop=8 shiftwidth=8 expandtab textwidth=0: */' $file
+done
+# vim: set ft=sh:

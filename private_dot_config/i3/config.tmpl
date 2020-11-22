@@ -37,23 +37,6 @@ exec --no-startup-id feh --recursive --randomize --bg-fill /usr/share/background
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 {{ end }}
 
-exec --no-startup-id nextcloud --background
-
-# set menu as compose key
-exec --no-startup-id setxkbmap -option compose:menu
-
-# bluetooth applet
-exec --no-startup-id blueman-tray
-
-# networkmanager - internet
-exec --no-startup-id nm-applet
-
-# show a notification if the battery is low
-exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
-
-# exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
-exec --no-startup-id ~/testing/dunst
-
 set $mod Mod4
 
 hide_edge_borders smart
@@ -356,3 +339,23 @@ bar {
 		bindsym button4 nop
 		bindsym button5 nop
 }
+
+## Launch external programs without priority
+# nextcloud
+exec --no-startup-id nextcloud --background
+
+# set menu as compose key
+exec --no-startup-id setxkbmap -option compose:menu
+
+# bluetooth applet
+exec --no-startup-id blueman-tray
+
+# networkmanager - internet
+exec --no-startup-id nm-applet
+
+# show a notification if the battery is low
+exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
+
+# Notification daemon
+# exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
+exec --no-startup-id ~/testing/dunst
