@@ -101,8 +101,8 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 "turn on automatic indentation
-set tabstop=4
-set shiftwidth=4
+set tabstop=8
+set shiftwidth=8
 set smartindent
 set expandtab
 "turn on line numbers

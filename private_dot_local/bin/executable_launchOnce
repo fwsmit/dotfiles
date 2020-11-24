@@ -9,7 +9,7 @@ error=$?
 if [ $error -eq 1 ]
 then
 	echo "executing command"
-	$2 &
+	sh -c "$2 &"
 	#i3-msg "exec --no-startup-id \"$2\""
 else
 	echo "else"

@@ -7,12 +7,12 @@ then
 	# gnome-terminal --window --working-directory=$HOME/git_repos/$repo/build --window --working-directory=$HOME/git_repos/$repo/
 	# gnome-terminal --working-directory=$HOME/git_repos/$repo/src
 	dir=$gitrepos/$repo
-	if [ -d $dir/src ]
-	then
-		newdir=$dir/src
-	else
-		newdir=$dir
-	fi
+	# if [ -d $dir/src ]
+	# then
+		# newdir=$dir/src
+	# else
+        newdir=$dir
+	# fi
 
 	echo $newdir
 	if [ $TERMINAL = "gnome-terminal" ]
