@@ -76,8 +76,8 @@ bindsym $mod+y exec xfce4-appfinder
 bindsym $mod+Shift+d exec --no-startup-id configureDisplay.sh
 
 # test notification
-bindsym Ctrl+Shift+l exec --no-startup-id notify-send -i no_icon_name -h int:value:42 "Test long line like this"
-bindsym Ctrl+Shift+k exec --no-startup-id notify-send -i no_icon_name -h int:value:42 "Test long ladfine like thisasdf asdf asdf asdf asfa sdfs asdfasdfasdfasdfasdafsdWith multiple lines of text you can test more stuff."
+bindsym Ctrl+Shift+l exec --no-startup-id notify-send -h string:x-canonical-private-synchronous:i3 -i no_icon_name -h int:value:42 "Test long line like this asl"
+bindsym Ctrl+Shift+k exec --no-startup-id notify-send -h string:x-canonical-private-synchronous:i3 -i no_icon_name -h int:value:42 "Test long ladfine like thisasdf asdf asdf asdf asfa sdfs asdfasdfasdfasdfasdafsdWith multiple lines of text you can test more stuff."
  
 # brightness controls for laptop
 bindsym F2	exec --no-startup-id toggleMusic
