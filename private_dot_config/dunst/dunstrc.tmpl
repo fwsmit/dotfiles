@@ -1,4 +1,5 @@
 [global]
+    layer = overlay
     corner_radius = 20
     frame_width = 1
     frame_color = "#788388"
@@ -69,11 +70,11 @@
     # the top and down respectevly.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-	{{ if eq .chezmoi.hostname "archlinux" }}
+{{ if eq .chezmoi.hostname "archlinux" }}
     geometry = "0x4+25+25"
-	{{ else }}
+{{ else }}
     geometry = "0x4-25+25"
-	{{ end }}
+{{ end }}
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
     shrink = yes
@@ -81,7 +82,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing windowmanager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 40
+    transparency = 10
     
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -190,7 +191,7 @@
     timeout = 10
 
 [urgency_normal]
-    background = "#26323833"
+    background = "#263238"
     foreground = "#F9FAF9"
     timeout = 10
 
