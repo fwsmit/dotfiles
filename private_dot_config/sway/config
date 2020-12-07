@@ -98,12 +98,12 @@ bindsym Ctrl+Shift+F2	exec --no-startup-id mpc prev
 # bindsym Mod1+F3	exec --no-startup-id turnOffScreen
 
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send "Mute mic"
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessUp_i3 | notify brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessDown_i3 | notify brightness
-bindsym F3 exec --no-startup-id brightnessDown_i3 | notify brightness
-bindsym F4 exec --no-startup-id brightnessUp_i3 | notify brightness
-bindsym Ctrl+Shift+equal exec --no-startup-id ponymix increase 1 | notify audio
-bindsym Ctrl+Shift+minus exec --no-startup-id ponymix decrease 1 | notify audio
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessUp_i3 | progress-notify brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessDown_i3 | progress-notify brightness
+bindsym F3 exec --no-startup-id brightnessDown_i3 | progress-notify brightness
+bindsym F4 exec --no-startup-id brightnessUp_i3 | progress-notify brightness
+bindsym Ctrl+Shift+equal exec --no-startup-id ponymix increase 1 | progress-notify audio
+bindsym Ctrl+Shift+minus exec --no-startup-id ponymix decrease 1 | progress-notify audio
 
 
 # print screen shortcut
@@ -112,13 +112,13 @@ bindsym Print exec --no-startup-id slurp | grim -g -
 bindsym $mod+c exec --no-startup-id startCoding
 
 ############################### sound control ####################################
-bindsym XF86AudioRaiseVolume exec --no-startup-id  ponymix increase 5 | notify audio
-bindsym XF86AudioLowerVolume exec --no-startup-id  ponymix decrease 5 | notify audio
-# bindsym XF86AudioRaiseVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" increase 5 | notify audio
-# bindsym XF86AudioLowerVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" decrease 5 | notify audio
+bindsym XF86AudioRaiseVolume exec --no-startup-id  ponymix increase 5 | progress-notify audio
+bindsym XF86AudioLowerVolume exec --no-startup-id  ponymix decrease 5 | progress-notify audio
+# bindsym XF86AudioRaiseVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" increase 5 | progress-notify audio
+# bindsym XF86AudioLowerVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" decrease 5 | progress-notify audio
 bindsym XF86AudioPlay        exec --no-startup-id toggleMusic 
 bindsym XF86AudioPause       exec mpc pause
-bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute --get-mute | notify muted
+bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute --get-mute | progress-notify muted
 bindsym XF86AudioNext        exec --no-startup-id mpc next
 bindsym XF86AudioPrev        exec --no-startup-id mpc prev
 exec --no-startup-id pasystray
