@@ -23,10 +23,10 @@ notifyMuted() {
 
 notifyAudio() {
 	volume="$1"
-        ponymix is-muted && notifyMuted && return
+        ponymix is-muted && notifyMuted "$volume" && return
 
 	if [ $volume -eq 0 ]; then
-		notifyMuted
+		notifyMuted "$volume"
 	elif [ $volume -le 30 ]; then
 		dunstify -h string:x-canonical-private-synchronous:audio "Volume: " -h int:value:"$volume" -t 1500 --icon audio-volume-low
 	elif [ $volume -le 70 ]; then
