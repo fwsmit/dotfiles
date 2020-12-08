@@ -35,6 +35,10 @@
 output "eDP-1" bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output "HDMI-A-4" bg /usr/share/backgrounds/gnome/adwaita-day.jpg fill
 
+input type:keyboard {
+        xkb_options compose:menu
+}
+
 input type:touchpad {
         tap enabled
         dwt enabled
@@ -100,8 +104,8 @@ bindsym Ctrl+Shift+F2	exec --no-startup-id mpc prev
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send "Mute mic"
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessUp_i3 | progress-notify brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessDown_i3 | progress-notify brightness
-bindsym F3 exec --no-startup-id brightnessDown_i3 | progress-notify brightness
-bindsym F4 exec --no-startup-id brightnessUp_i3 | progress-notify brightness
+# bindsym F3 exec --no-startup-id brightnessDown_i3 | progress-notify brightness
+# bindsym F4 exec --no-startup-id brightnessUp_i3 | progress-notify brightness
 bindsym Ctrl+Shift+equal exec --no-startup-id ponymix increase 1 | progress-notify audio
 bindsym Ctrl+Shift+minus exec --no-startup-id ponymix decrease 1 | progress-notify audio
 
