@@ -123,10 +123,6 @@ alias lj="nvim ~/journals/linux.md"
 alias ej="nvim ~/journals/recepten.md"
 alias hostlist="nvim ~/.local/share/chezmoi/hostlist"
 
-{{- if eq .chezmoi.hostname "archstudent" }}
-source /usr/share/nvm/init-nvm.sh
-{{- end }}
-
 eval `chezmoi completion zsh`
 
 typeset -A ZSH_HIGHLIGHT_STYLES
