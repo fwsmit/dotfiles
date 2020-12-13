@@ -38,10 +38,10 @@ then
 	# #turn off laptop display
 	# xrandr --output eDP-1 --off
 	
-	xrandr --output HDMI-1-0 --auto --output eDP-1 --off
+	xrandr --output HDMI-1-4 --auto --output eDP-1 --off
 else
 	#turn on laptop display
-	xrandr --output eDP-1 --left-of HDMI-1-0 --auto
+	xrandr --output eDP-1 --left-of HDMI-1-4 --auto
 	# turn off external display
-	xrandr --output HDMI-1-0 --off
+	xrandr --output HDMI-1-4 --off
 fi
