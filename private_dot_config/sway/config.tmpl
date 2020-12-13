@@ -98,7 +98,7 @@ bindsym $mod+u exec pavucontrol
 bindsym $mod+y exec xfce4-appfinder
 
 # configure display
-bindsym $mod+Shift+d exec --no-startup-id configureDisplay.sh
+bindsym $mod+Shift+d exec --no-startup-id configureDisplay.sh -ws
 
 # test notification
 bindsym Ctrl+Shift+l exec --no-startup-id notify-send -h string:x-canonical-private-synchronous:i3 -i no_icon_name -h int:value:42 "Test long line like this"

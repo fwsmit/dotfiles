@@ -5,18 +5,21 @@ usage(){
 	-s: Turn on laptop display
 	Otherwise turn on external display
 	-c: Start compositor
-	Otherwise turn off compositor"
+	Otherwise turn off compositor
+        -w: Use wayland method"
 }
 
 SMALLDISPLAY=false
 COMPOSITOR=false
+USEWAYLAND=false
 
-while getopts 'hsc' c
+while getopts 'hscw' c
 do
 	case $c in
 		h) usage; exit ;;
 		s) SMALLDISPLAY=true ;;
 		c) COMPOSITOR=true ;;
+                w) USEWAYLAND=true ;;
 	esac
 done
 
@@ -31,17 +34,27 @@ shift $((OPTIND-1))
 	# killall picom
 # fi
 
-if [ $SMALLDISPLAY = false ]
+if [ $USEWAYLAND = false ]
 then
-	# # turn on big display
-	# xrandr --output HDMI-1-0 --left-of eDP-1 --auto
-	# #turn off laptop display
-	# xrandr --output eDP-1 --off
-	
-	xrandr --output HDMI-1-4 --auto --output eDP-1 --off
+        if [ $SMALLDISPLAY = false ]
+        then
+                # # turn on big display
+                # xrandr --output HDMI-1-0 --left-of eDP-1 --auto
+                # #turn off laptop display
+                # xrandr --output eDP-1 --off
+
+                xrandr --output HDMI-1-4 --auto --output eDP-1 --off
+        else
+                #turn on laptop display
+                xrandr --output eDP-1 --left-of HDMI-1-4 --auto
+                # turn off external display
+                xrandr --output HDMI-1-4 --off
+        fi
 else
-	#turn on laptop display
-	xrandr --output eDP-1 --left-of HDMI-1-4 --auto
-	# turn off external display
-	xrandr --output HDMI-1-4 --off
+        if [ $SMALLDISPLAY = false ]
+        then
+                swaymsg output eDP-1 disable
+        else
+                swaymsg output eDP-1 enable
+        fi
 fi
