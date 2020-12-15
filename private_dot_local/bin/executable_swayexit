@@ -11,7 +11,7 @@ case "$1" in
         i3-msg exit
         ;;
     suspend)
-        lock && systemctl suspend
+        systemctl suspend
         ;;
     hibernate)
         lock && systemctl hibernate
@@ -22,7 +22,7 @@ case "$1" in
     shutdown)
         systemctl poweroff
         ;;
-	pause)
+    pause)
         systemctl suspend
         ;;
     update_shut)

@@ -98,7 +98,7 @@ bindsym $mod+u exec pavucontrol
 bindsym $mod+y exec xfce4-appfinder
 
 # configure display
-bindsym $mod+Shift+d exec --no-startup-id configureDisplay.sh -ws
+bindsym $mod+Shift+s exec --no-startup-id configureDisplay.sh -ws
 
 # test notification
 bindsym Ctrl+Shift+l exec --no-startup-id notify-send -h string:x-canonical-private-synchronous:i3 -i no_icon_name -h int:value:42 "Test long line like this"
@@ -135,7 +135,6 @@ bindsym XF86AudioPause       exec mpc pause
 bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute --get-mute | progress-notify muted
 bindsym XF86AudioNext        exec --no-startup-id mpc next
 bindsym XF86AudioPrev        exec --no-startup-id mpc prev
-exec --no-startup-id pasystray
 
 #desktop background
 
@@ -160,20 +159,8 @@ workspace_auto_back_and_forth yes
 for_window [class="Tor"] floating enable border pixel 1
 for_window [class="^SFML"] floating enable border pixel 1
 for_window [class="^SFML"] move position center
-for_window [class="Gnome-screenshot"] floating enable border pixel 1
-for_window [app_id="^com\.nextcloud\.desktopclient\.nextcloud$"] floating enable border pixel 1
-for_window [app_id="nextcloud"] floating enable border pixel 1
-for_window [class="nextcloud"] floating enable border pixel 1
-for_window [app_id="gnome-terminal-server"] floating enable border pixel 1
-for_window [class="Gnome-terminal"] floating enable border pixel 1
-# for_window [title=".*"] floating enable border pixel 1
-for_window [workspace="__focused__"] floating enable border pixel 1
 for_window [app_id="pavucontrol"] floating enable, sticky enable, resize set width 600 px height 600px, move position center, move right 670, move down 228
 for_window [app_id="^mpv$"] floating enable
-for_window [workspace="6"] floating enable
-# assign [class="^Firefox$"] 1 ## seems to do nothing
-# league window class: leagueclientux.exe"
-# assign [class="^Music$"] 4
  
 ############################### power off or suspend computer ############################## 
 set $mode_system System (l) lock, (o) logout, (Shift+s) suspend, (h) hibernate, (r) reboot, (s) shutdown, (p) pause, (u) update and shutdown
@@ -370,29 +357,31 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
-		position bottom
-		font pango:DejaVu Sans Mono 11
-		bindsym button4 nop
-		bindsym button5 nop
+        position bottom
+        font pango:DejaVu Sans Mono 11
 }
 
 ## Launch external programs without priority
 # nextcloud
-exec --no-startup-id nextcloud --background
+# exec --no-startup-id nextcloud --background
 
 # set menu as compose key
 exec --no-startup-id setxkbmap -option compose:menu
 
 # bluetooth applet
-exec --no-startup-id blueman-tray
+# exec --no-startup-id blueman-tray
 
 # networkmanager - internet
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
 # show a notification if the battery is low
 exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
 
 # Notification daemon
-# exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
 exec --no-startup-id dunst
-# exec --no-startup-id mako
+
+#exec --no-startup-id pasystray
+
+## sway specific
+include /etc/sway/config.d/*
+## end sway specific
