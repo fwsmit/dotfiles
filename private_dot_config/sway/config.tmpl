@@ -45,7 +45,7 @@ input type:touchpad {
         tap_button_map lrm
 }
 
-exec swayidle -w   timeout 600 'swaylock -f -c 000000' \
+exec swayidle -w   timeout 600 'systemctl suspend' \
                    timeout 300 'swaymsg "output * dpms off"' \
                    resume 'swaymsg "output * dpms on"' \
                    before-sleep 'swaylock -f -c 000000'
@@ -53,6 +53,10 @@ exec swayidle -w   timeout 600 'swaylock -f -c 000000' \
 {{- if eq .chezmoi.hostname "archstudent" }}
 exec kanshi
 {{- end }}
+
+# Go to sleep when closing laptop (lid switch not detected)
+# bindswitch --reload --locked lid:on notify-send "lid closed"
+# bindswitch --reload --locked lid:off notify-send "lid opened"
 
 ## end of sway specific config
 
@@ -363,7 +367,7 @@ bar {
 
 ## Launch external programs without priority
 # nextcloud
-# exec --no-startup-id nextcloud --background
+exec --no-startup-id nextcloud --background
 
 # set menu as compose key
 exec --no-startup-id setxkbmap -option compose:menu
