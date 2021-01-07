@@ -237,6 +237,7 @@ autocmd FileType cpp call PrepCppMake()
 autocmd FileType python call PythonMake()
 autocmd FileType sh call ShellMake()
 autocmd FileType text,markdown setlocal spell
+autocmd BufEnter *.nl.md setlocal spelllang=nl
 autocmd FileType text,markdown,pod set textwidth=80
 autocmd FileType text,markdown,pod nmap j gj
 autocmd FileType text,markdown,pod nmap k gk
