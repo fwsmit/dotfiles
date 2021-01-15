@@ -41,7 +41,7 @@
     # window allows bounces back and forth.
     # This option conflicts with "word_wrap".
     # Set to 0 to disable.
-    bounce_freq = 5
+    bounce_freq = 0
 
 
     # Show age of message if message is older than show_age_threshold
@@ -51,7 +51,7 @@
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
-    word_wrap = no
+    word_wrap = yes
 
     # Ignore newlines '\n' in notifications.
     ignore_newline = no
@@ -69,9 +69,9 @@
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
 {{ if eq .chezmoi.hostname "archlinux" }}
-    geometry = "0x4+25+25"
+    geometry = "400x4+25+25"
 {{ else }}
-    geometry = "0x4-25+25"
+    geometry = "400x4-25+25"
 {{ end }}
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
