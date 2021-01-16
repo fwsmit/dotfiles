@@ -1,0 +1,11 @@
+# /etc/systemd/system/download_updates.timer
+[Unit]
+Description=Download, but not install pacman updates daily
+
+[Timer]
+OnCalendar=daily
+AccuracySec=1h
+Persistent=true
+
+[Install]
+WantedBy=timers.target
