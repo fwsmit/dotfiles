@@ -238,13 +238,13 @@ autocmd FileType python call PythonMake()
 autocmd FileType sh call ShellMake()
 autocmd FileType text,markdown setlocal spell
 autocmd BufEnter *.nl.md setlocal spelllang=nl
+autocmd BufEnter *.nl.md call setbufvar(bufnr("%"), 'easyescape_disable', 1)
 autocmd FileType text,markdown,pod set textwidth=80
 autocmd FileType text,markdown,pod nmap j gj
 autocmd FileType text,markdown,pod nmap k gk
 autocmd FileType template set ft=config
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply
 autocmd BufWritePost ~/.local/share/chezmoi/* echo ("Applied the changes")
-autocmd FileType text,markdown call setbufvar(bufnr("%"), 'easyescape_disable', 1)
 
 " Resize windows proportionally when resizing window
 autocmd VimResized * wincmd =
