@@ -1,0 +1,35 @@
+[Added Associations]
+application/xml=firefox.desktop;
+text/plain=nvim.desktop;
+application/pdf=firefox.desktop;org.pwmt.zathura-pdf-mupdf.desktop;
+image/jpeg=eog.desktop;feh.desktop;
+application/x-tmdx=freeoffice-textmaker.desktop;
+application/vnd.oasis.opendocument.text=libreoffice-writer.desktop;
+image/png=feh.desktop;
+text/html=firefox.desktop;
+inode/directory=nautilus-folder-handler.desktop;nautilus.desktop;
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/ftp=firefox.desktop;
+x-scheme-handler/chrome=firefox.desktop;
+application/x-extension-htm=firefox.desktop;
+application/x-extension-html=firefox.desktop;
+application/x-extension-shtml=firefox.desktop;
+application/xhtml+xml=firefox.desktop;
+application/x-extension-xhtml=firefox.desktop;
+application/x-extension-xht=firefox.desktop;
+
+[Default Applications]
+application/pdf=org.pwmt.zathura.desktop
+applications/pdf=org.pwmt.zathura.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/ftp=firefox.desktop
+x-scheme-handler/chrome=firefox.desktop
+text/html=firefox.desktop
+application/x-extension-htm=firefox.desktop
+application/x-extension-html=firefox.desktop
+application/x-extension-shtml=firefox.desktop
+application/xhtml+xml=firefox.desktop
+application/x-extension-xhtml=firefox.desktop
+application/x-extension-xht=firefox.desktop
