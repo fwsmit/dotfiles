@@ -111,7 +111,6 @@ set relativenumber
 " wrap long lines only at whitespace
 set linebreak
 let &showbreak = '+++ '
-set wrapmargin=2
 
 " NERDTree config
 " Give a shortcut key to NERD Tree
@@ -243,7 +242,7 @@ autocmd FileType text,markdown,pod set textwidth=80
 autocmd FileType text,markdown,pod nmap j gj
 autocmd FileType text,markdown,pod nmap k gk
 autocmd FileType template set ft=config
-autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply
+autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi2 apply --source-path %
 autocmd BufWritePost ~/.local/share/chezmoi/* echo ("Applied the changes")
 
 " Resize windows proportionally when resizing window
