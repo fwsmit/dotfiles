@@ -1,6 +1,6 @@
 # /etc/systemd/system/download_updates.timer
 [Unit]
-Description=Download, but not install pacman updates
+Description=Download pacman updates
 
 [Service]
 Type=oneshot
