@@ -160,14 +160,15 @@ workspace_auto_back_and_forth yes
 # bindsym $mod+Shift+Enter exec --no-startup-id prompt "Suspend computer?" sudo -A systemctl suspend
 # bindsym $mod+Shift+BackSpace exec --no-startup-id i3-input -P "start terminal?" gnome-terminal
 
-assign [class="Thunderbird"] workspace 3
-assign [class="Firefox"] workspace 3
+assign [app_id="thunderbird"] workspace 3
+assign [app_id="firefox"] workspace 1
+assign [app_id="pavucontrol"] workspace 3
 
 # Open specific applications in floating mode
 for_window [class="Tor"] floating enable border pixel 1
 for_window [class="^SFML"] floating enable border pixel 1
 for_window [class="^SFML"] move position center
-for_window [app_id="pavucontrol"] floating enable, sticky enable, resize set width 600 px height 600px, move position center, move right 670, move down 228
+for_window [app_id="pavucontrol"] floating enable, resize set width 600 px height 600px, move position center, move right 670, move down 228, move window to
 for_window [app_id="^mpv$"] floating enable
 for_window [app_id="^zoom$" title="^Invite people to join meeting"] floating enable
 for_window [app_id="^zoom$" title="^Create Breakout Rooms"] floating enable
