@@ -244,6 +244,8 @@ autocmd FileType text,markdown,pod nmap k gk
 autocmd FileType template set ft=config
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi2 apply --source-path %
 autocmd BufWritePost ~/.local/share/chezmoi/* echo ("Applied the changes")
+autocmd BufEnter ~/git-repos/sway/* echo ("Activated sway config")
+autocmd BufEnter ~/git-repos/sway/* setlocal noexpandtab
 
 " Resize windows proportionally when resizing window
 autocmd VimResized * wincmd =
