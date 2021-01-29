@@ -85,6 +85,12 @@ Plugin 'gioele/vim-autoswap'
 " Plugin 'vim-scripts/ScreenShot' " Doensn't seem to wor
 Plugin 'jmckiern/vim-shoot'
 
+" Git plugin fugitive
+Plugin 'tpope/vim-fugitive'
+
+" Repeat plugin
+Plugin 'tpope/vim-repeat'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -246,6 +252,7 @@ autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi2 apply --source-path %
 autocmd BufWritePost ~/.local/share/chezmoi/* echo ("Applied the changes")
 autocmd BufEnter ~/git-repos/sway/* echo ("Activated sway config")
 autocmd BufEnter ~/git-repos/sway/* setlocal noexpandtab
+autocmd BufEnter ~/git-repos/wlroots/* setlocal noexpandtab
 
 " Resize windows proportionally when resizing window
 autocmd VimResized * wincmd =
