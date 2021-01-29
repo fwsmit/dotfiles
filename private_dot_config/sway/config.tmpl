@@ -128,7 +128,7 @@ for_window [app_id="^zoom$" title="^Create Breakout Rooms"] floating enable
 for_window [app_id="^zoom$" title="^Zoom$"] floating enable
 for_window [app_id="^zoom$" title="^Settings$"] floating enable
 for_window [app_id="^zoom$" title="^zoom$"] floating enable, move position cursor, move up 24
-for_window [app_id="nextcloud$" title="^Nextcloud$"] floating enable, resize set width 400 px height 600px, move position cursor, move up 24
+for_window [app_id="nextcloud$" title="^Nextcloud$"] floating enable, resize set width 400 px height 600px, move position cursor, move up 330, move left 200
 ## From manjaro config
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="calamares"] floating enable border normal
@@ -189,9 +189,15 @@ bindsym --locked $mod+Shift+e mode "$mode_system"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
-        position bottom
-        font pango:DejaVu Sans Mono 11
+    status_command i3status
+    position bottom
+    font pango:DejaVu Sans Mono 11
+
+    colors {
+        statusline #ffffff
+        background #323232
+        focused_workspace #32323200 #32323200 #3c3c3c
+    }
 }
 
 ## Launch external programs without priority
