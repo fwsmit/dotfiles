@@ -65,9 +65,6 @@ bindsym $mod+u exec pavucontrol
 # launch appfinder
 bindsym $mod+y exec xfce4-appfinder
 
-# configure display
-bindsym $mod+Shift+s exec --no-startup-id configureDisplay.sh -ws
-
 # test notification
 bindsym Ctrl+Shift+l exec --no-startup-id notify-send -h string:x-canonical-private-synchronous:i3 -h int:value:42 "Test long line like this"
 bindsym Ctrl+Shift+k exec --no-startup-id notify-send -h string:x-canonical-private-synchronous:i3 -h int:value:42 "Test long ladfine like thisasdf asdf asdf asdf asfa sdfs asdfasdfasdfasdfasdafsdWith multiple lines of text you can test more stuff."
@@ -90,6 +87,7 @@ bindsym Ctrl+Shift+minus exec --no-startup-id ponymix decrease 1 | progress-noti
 
 # print screen shortcut
 bindsym Print exec --no-startup-id slurp | grim -g -
+bindsym $mod+n exec --no-startup-id grim
 bindsym $mod+c exec --no-startup-id startCoding
 
 ############################### sound control ####################################
@@ -121,7 +119,7 @@ assign [app_id="firefox"] workspace 1
 for_window [class="Tor"] floating enable border pixel 1
 for_window [class="^SFML"] floating enable border pixel 1
 for_window [class="^SFML"] move position center
-for_window [app_id="pavucontrol"] floating enable, resize set width 600 px height 600px, move position center, move right 670, move down 228
+for_window [app_id="pavucontrol"] floating enable, resize set width 800 px height 700px, move position center, move right 670, move down 228
 for_window [app_id="^mpv$"] floating enable
 for_window [app_id="^zoom$" title="^Invite people to join meeting"] floating enable
 for_window [app_id="^zoom$" title="^Create Breakout Rooms"] floating enable
@@ -129,6 +127,7 @@ for_window [app_id="^zoom$" title="^Zoom$"] floating enable
 for_window [app_id="^zoom$" title="^Settings$"] floating enable
 for_window [app_id="^zoom$" title="^zoom$"] floating enable, move position cursor, move up 24
 for_window [app_id="nextcloud$" title="^Nextcloud$"] floating enable, resize set width 400 px height 600px, move position cursor, move up 330, move left 200
+for_window [app_id="^Progress$" title="^zenity$"] floating enable # steam "pins updating"
 ## From manjaro config
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="calamares"] floating enable border normal
@@ -159,24 +158,6 @@ for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 
  
-############################### power off or suspend computer ############################## 
-set $mode_system System (l) lock, (o) logout, (Shift+s) suspend, (h) hibernate, (r) reboot, (s) shutdown, (p) pause, (u) update and shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id swayexit lock, mode "default"
-    bindsym o exec --no-startup-id swayexit logout, mode "default"
-    bindsym --locked Shift+s exec --no-startup-id swayexit suspend, mode "default"
-    bindsym h exec --no-startup-id swayexit hibernate, mode "default"
-    bindsym r exec --no-startup-id swayexit reboot, mode "default"
-    bindsym s exec --no-startup-id swayexit shutdown, mode "default"
-    bindsym p exec --no-startup-id swayexit pause, mode "default"
-    bindsym u exec --no-startup-id swayexit update_shut, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym --locked $mod+Shift+e mode "$mode_system"
 
 
 

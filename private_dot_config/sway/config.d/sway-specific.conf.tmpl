@@ -1,7 +1,7 @@
 # Desktop background
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output "eDP-1" bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output "HDMI-A-4" bg /usr/share/backgrounds/gnome/adwaita-day.jpg fill
+output "HDMI-A-4" bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 input type:keyboard {
         xkb_options compose:menu
@@ -21,6 +21,11 @@ exec swayidle -w   timeout 600 'systemctl suspend' \
 {{- if eq .chezmoi.hostname "archstudent" }}
 exec_always kanshi
 {{- end }}
+
+# configure display
+bindsym $mod+Shift+s exec --no-startup-id configureDisplay.sh -ws
+
+bindsym $mod+Shift+d exec --no-startup-id kanshi
 
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 bindsym $mod+d exec $menu

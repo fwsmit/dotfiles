@@ -1,0 +1,21 @@
+#!/bin/sh
+
+case "$1" in
+        update_only)
+                $TERMINAL -- sudo pacman -Syu --noconfirm # && systemctl poweroff
+                ;;
+        download_updates)
+                $TERMINAL -- sh -c 'checkupdates --download; sleep 3'
+                ;;
+        update_brightspace)
+                $TERMINAL -- sh -c 'cd ~/git-repos/Brightspace-local; pwd; git pull; sleep 3000'
+                ;;
+        update_shut)
+                $TERMINAL -- update_system_and_shutdown # && systemctl poweroff
+                ;;
+        *)
+                echo "Usage: $0 {update_only|download_updates|update_brightspace|update_shut}"
+                exit 2
+esac
+
+exit 0
