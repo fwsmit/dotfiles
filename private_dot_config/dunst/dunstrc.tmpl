@@ -1,8 +1,5 @@
 [global]
-    corner_radius = 6
-    frame_width = 1
-    frame_color = "#788388"
-
+    # force_xwayland = true
     font = Noto Sans 10
 
     # Allow a small subset of html markup:
@@ -37,13 +34,6 @@
     # Possible values are "left", "center" and "right".
     alignment = left
 
-    # The frequency with wich text that is longer than the notification
-    # window allows bounces back and forth.
-    # This option conflicts with "word_wrap".
-    # Set to 0 to disable.
-    bounce_freq = 0
-
-
     # Show age of message if message is older than show_age_threshold
     # seconds.
     # Set to -1 to disable.
@@ -68,11 +58,7 @@
     # the top and down respectevly.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-{{ if eq .chezmoi.hostname "archlinux" }}
-    geometry = "400x4+25+25"
-{{ else }}
     geometry = "400x4-25+25"
-{{ end }}
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
     shrink = yes
@@ -129,7 +115,7 @@
     padding = 8
 
     # Horizontal padding.
-    horizontal_padding = 10
+    horizontal_padding = 15
 
     # Define a color for the separator.
     # possible values are:
@@ -137,7 +123,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = #263238
+    separator_color = "#263238"
 
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
@@ -146,9 +132,6 @@
 
     # dmenu path.
     dmenu = /usr/bin/dmenu -p dunst:
-
-    # Browser for opening urls in context menu.
-    browser = palemoon
 
     # Align icons left/right/off
     icon_position = left
@@ -159,44 +142,25 @@
     # Limit icons size.
     max_icon_size=128
 
-[shortcuts]
-
-    # Shortcuts are specified as [modifier+][modifier+]...key
-    # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
-    # "mod3" and "mod4" (windows-key).
-    # Xev might be helpful to find names for keys.
-
-    # Close notification.
-    # close = mod1+space
-
-    # Close all notifications.
-    # close_all = ctrl+shift+space
-    # close_all = ctrl+mod1+space
-
-    # Redisplay last message(s).
-    # On the US keyboard layout "grave" is normally above TAB and left
-    # of "1".
-    # history = ctrl+mod4+h
-
-    # Context menu.
-    # context = ctrl+mod1+c
-
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#263238"
     foreground = "#556064"
     timeout = 10
+    fullscreen = pushback
 
 [urgency_normal]
     background = "#263238"
     foreground = "#F9FAF9"
     timeout = 10
+    fullscreen = pushback
 
 [urgency_critical]
     background = "#D62929"
     foreground = "#F9FAF9"
     timeout = 0
+    fullscreen = show
 
 
 # Every section that isn't one of the above is interpreted as a rules to
@@ -223,58 +187,11 @@
 #    summary = "*"
 #    script = dunst_espeak.sh
 
-#[script-test]
-#    summary = "*script*"
-#    script = dunst_test.sh
+[script-test]
+   summary = "*"
+   script = dunst_test_script.sh
+   fullscreen = pushback
 
-#[ignore]
-#    # This notification will not be displayed
-#    summary = "foobar"
-#    format = ""
-
-#[signed_on]
-#    appname = Pidgin
-#    summary = "*signed on*"
-#    urgency = low
-#
-#[signed_off]
-#    appname = Pidgin
-#    summary = *signed off*
-#    urgency = low
-#
-#[says]
-#    appname = Pidgin
-#    summary = *says*
-#    urgency = critical
-#
-#[twitter]
-#    appname = Pidgin
-#    summary = *twitter.com*
-#    urgency = normal
-#
-#[Claws Mail]
-#    appname = claws-mail
-#    category = email.arrived
-#    urgency = normal
-#    background = "#2F899E"
-#    foreground = "#FFA247"
-#
-#[mute.sh]
-#     appname = mute
-#     category = mute.sound
-#     script = mute.sh
-#
-#[JDownloader]
-#    appname = JDownloader
-#    category = JD
-#    background = "#FFA247"
-#    foreground = "#FFFFFF"
-#
-#[newsbeuter]
-#    summary = *Feeds*
-#    background = "#A8EB41"
-#    foreground = "#FFFFFF"
-#
 [irc]
      appname = weechat
      timeout = 0
@@ -293,14 +210,4 @@
      background = "#D53B84"
      foreground = "#FFFFFF"
 
-#[CMUS]
-#    appname = CMUS
-#    category = cmus
-#    background = "#6C4AB7"
-#    foreground = "#FFE756"
-#
-#
-#     background = "#30AB70"
-#     foreground = "#F67245"
-#
 # vim: ft=cfg
