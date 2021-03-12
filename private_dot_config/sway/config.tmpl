@@ -32,7 +32,9 @@ set $mod Mod4
 # mod + alt + h
 bindsym $mod+alt+h exec dunstctl history-pop
 bindsym $mod+alt+c exec dunstctl context
-bindsym $mod+alt+m exec mpdnotify
+
+# reshow latest music notification
+bindsym $mod+alt+m exec notify_last_song.sh
 
 hide_edge_borders smart
 
@@ -177,7 +179,7 @@ bar {
     colors {
         statusline #ffffff
         background #323232
-        focused_workspace #32323200 #32323200 #3c3c3c
+        focused_workspace #14e5e2 #14e5e2 #3c3c3c
     }
 }
 
