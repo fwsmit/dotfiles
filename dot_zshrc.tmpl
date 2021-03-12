@@ -70,7 +70,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git archlinux vi-mode
+  git archlinux vi-mode history-substring-search
 )
 
 # User configuration
@@ -103,13 +103,26 @@ fi
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
+dr() {
+        if compiledb make dunst; then
+                pkill dunst
+        else
+                return 1
+        fi
+        ./dunst -verbosity debug --startup_notification
+}
+
 alias vim="$EDITOR"
 alias v="$EDITOR"
 alias i3conf="chezmoi edit ~/.config/i3/config"
 alias swayconf="chezmoi edit ~/.config/sway/config"
 alias zshconf="chezmoi edit ~/.zshrc"
 alias dunstconf="chezmoi edit ~/.config/dunst/dunstrc"
+alias dt="compiledb make test"
+alias dtver="DUNST_TEST_LOG=1 make test"
+alias db="cd ~/testing/dunst-backup"
+alias dtv="compiledb make test test-valgrind"
+alias dn="nvim ~/testing/dunst_notes.md"
 alias make="make -j$(($(nproc)-1))"
 alias vimconf="chezmoi edit ~/.vimrc"
 alias script="cd ~/.local/bin"
