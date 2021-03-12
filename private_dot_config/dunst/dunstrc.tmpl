@@ -1,6 +1,10 @@
 [global]
+    sort = false
     # force_xwayland = true
     font = Noto Sans 10
+    frame_width = 1
+    frame_color = "#72FEE2"
+    corner_radius = 6
 
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -58,7 +62,7 @@
     # the top and down respectevly.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "400x4-25+25"
+    geometry = "400x0-25+25"
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
     shrink = yes
@@ -142,25 +146,24 @@
     # Limit icons size.
     max_icon_size=128
 
+    fullscreen = pushback
+
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#263238"
     foreground = "#556064"
     timeout = 10
-    fullscreen = pushback
 
 [urgency_normal]
     background = "#263238"
-    foreground = "#F9FAF9"
+    foreground = "#E8FFFA"
     timeout = 10
-    fullscreen = pushback
 
 [urgency_critical]
     background = "#D62929"
     foreground = "#F9FAF9"
     timeout = 0
-    fullscreen = show
 
 
 # Every section that isn't one of the above is interpreted as a rules to
@@ -187,27 +190,57 @@
 #    summary = "*"
 #    script = dunst_espeak.sh
 
-[script-test]
-   summary = "*"
-   script = dunst_test_script.sh
-   fullscreen = pushback
+# [script-test]
+   # summary = "*"
+   # fullscreen = pushback
+   # background = "#ffff00"
 
-[irc]
-     appname = weechat
-     timeout = 0
-     background = "#0033bb"
-     foreground = "#dddddd"
+[all]
+    highlight = "#02B18E"
 
-[weechat hl]
-     appname = weechat
-     category = weechat.HL
-     background = "#FF5C47"
-     foreground = "#FFFFFF"
+[script]
+    summary = "*"
+    script = ~/.local/bin/dunst_test_script.sh
+    # background = "#D62929"
+    # foreground = "#F9FAF9"
+    # fullscreen = pushback
+    # timeout = 0
+    # fullscreen = show
 
-[weechat pn]
-     appname = weechat
-     category = weechat.PM
-     background = "#D53B84"
-     foreground = "#FFFFFF"
+[notify-send]
+    appname = "notify-send"
+    script = ~/.local/bin/dunst_test_script2.sh
+    # frame_color = "#00C0CB"
 
-# vim: ft=cfg
+# [test]
+    # appname = "notify-send"
+    # script = ~/.local/bin/dunst_test_script2.sh
+    # background = "#444449"
+    # foreground = "#AAAAF9"
+    # fullscreen = pushback
+    # timeout = 0
+    # fullscreen = show
+
+# [music]
+    # appname = "mpd-notification"
+    # script = ~/.local/bin/dunst_test_script.sh
+
+# [irc]
+     # appname = weechat
+     # timeout = 0
+     # background = "#0033bb"
+     # foreground = "#dddddd"
+
+# [weechat hl]
+     # appname = weechat
+     # category = weechat.HL
+     # background = "#FF5C47"
+     # foreground = "#FFFFFF"
+
+# [weechat pn]
+     # appname = weechat
+     # category = weechat.PM
+     # background = "#D53B84"
+     # foreground = "#FFFFFF"
+
+# vim: ft=cfg shiftwidth=4 expandtab tabstop=4
