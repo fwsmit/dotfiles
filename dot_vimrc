@@ -117,6 +117,8 @@ set relativenumber
 " wrap long lines only at whitespace
 set linebreak
 let &showbreak = '+++ '
+" Do not insert two spaces after a .
+set nojoinspaces
 
 " NERDTree config
 " Give a shortcut key to NERD Tree
