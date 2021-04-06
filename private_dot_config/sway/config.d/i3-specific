@@ -1,3 +1,17 @@
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    status_command i3status
+    position bottom
+    font pango:DejaVu Sans Mono 11
+
+    colors {
+        statusline #ffffff
+        background #323232
+        focused_workspace #14e5e2 #14e5e2 #3c3c3c
+    }
+}
+
