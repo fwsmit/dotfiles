@@ -104,12 +104,12 @@ fi
 # For a full list of active aliases, run `alias`.
 #
 dr() {
-        if compiledb make dunst; then
+        if compiledb make -j dunst; then
                 pkill dunst
         else
                 return 1
         fi
-        ./dunst -verbosity debug --startup_notification
+        ./dunst $@ -verbosity debug --startup_notification
 }
 
 alias vim="$EDITOR"
@@ -117,13 +117,14 @@ alias v="$EDITOR"
 alias i3conf="chezmoi edit ~/.config/i3/config"
 alias swayconf="chezmoi edit ~/.config/sway/config"
 alias zshconf="chezmoi edit ~/.zshrc"
+
 alias dunstconf="chezmoi edit ~/.config/dunst/dunstrc"
-alias dt="compiledb make test"
+alias make="make -j$(($(nproc)-1))"
+alias dt="compiledb make -j test"
 alias dtver="DUNST_TEST_LOG=1 make test"
 alias db="cd ~/testing/dunst-backup"
-alias dtv="compiledb make test test-valgrind"
+alias dtv="compiledb make -j test test-valgrind"
 alias dn="nvim ~/testing/dunst_notes.md"
-alias make="make -j$(($(nproc)-1))"
 alias vimconf="chezmoi edit ~/.vimrc"
 alias script="cd ~/.local/bin"
 alias formulate="cd ~/Documents/TU/Warmteoverdracht/formuleblad"
@@ -138,8 +139,8 @@ alias lj="nvim ~/journals/linux.md"
 alias ej="nvim ~/journals/recepten.md"
 alias hostlist="nvim ~/.local/share/chezmoi/hostlist"
 alias swaytree="swaymsg -t get_tree > /tmp/sway_tree && nvim /tmp/sway_tree"
-alias make="make -j"
 alias bc="bc -l"
+alias gs="echo 'run /usr/bin/gs' for ghostscript"
 
 eval `chezmoi completion zsh`
 
