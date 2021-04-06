@@ -1,0 +1,79 @@
+#!/bin/sh
+
+# this script executes a command based on the input
+# it is supposed to be used by window managers
+
+# required programs: TODO pactl 
+
+usage(){
+	cat <<EOF 
+Usage: $(basename $0) [-h] COMMAND
+	Commands:
+	  muteMic
+	  raiseVolume
+	  lowerVolume
+	  toggleMute
+	  nextSong
+	  prevSong
+	  toggleMusic
+	  brightnessUp
+	  brightnessDown
+	  startMail
+	  startTerminal
+	  
+EOF
+}
+
+volumeUp(){
+        volume=$(ponymix get-volume)
+        if (( volume >= 20 )); then
+                ponymix increase 5 | progress-notify audio
+        elif (( volume >= 10 )); then
+                ponymix increase 2 | progress-notify audio
+        else
+                ponymix increase 1 | progress-notify audio
+        fi
+}
+
+volumeDown(){
+        volume=$(ponymix get-volume)
+        if (( volume >= 25 )); then
+                ponymix decrease 5 | progress-notify audio
+        elif (( volume >= 12 )); then
+                ponymix decrease 2 | progress-notify audio
+        else
+                ponymix decrease 1 | progress-notify audio
+        fi
+}
+
+while getopts 'hv' c
+do
+	case $c in
+		h) usage; exit ;;
+		v) VERBOSE=true; echo "Outputting verbose info" ;;
+	esac
+done
+
+shift $((OPTIND-1))
+
+if (( $# != 1 ))
+then
+	usage
+	exit 2
+fi
+
+case $1 in
+	muteMic) pactl set-source-mute @DEFAULT_SOURCE@ toggle ;;
+	raiseVolume) volumeUp ;;
+	lowerVolume) volumeDown ;;
+	toggleMute) pulsemixer --toggleMute ;;
+	nextSong) mpc next ;;
+	prevSong) mpc prev ;;
+	toggleMusic) toggleMusic ;;
+	brightnessUp) brightnessDown_i3 ;;
+	brightnessDown) brightnessUp_i3 ;;
+	startMail) thunderbird ;;
+	startTerminal) $TERMINAL ;;
+esac
+
+exit $?
