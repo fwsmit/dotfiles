@@ -46,6 +46,22 @@ volumeDown(){
         fi
 }
 
+notifyMicMuted(){
+        brightnessctl -d 'hda::micmute' s 1
+        notify-send -h string:x-canonical-private-synchronous:microphone -t 1500 "Mic muted"
+}
+
+notifyMicUnMuted(){
+        brightnessctl -d 'hda::micmute' s 0
+        notify-send -h string:x-canonical-private-synchronous:microphone -t 1500 "Mic unmuted"
+}
+
+toggleMic(){
+        # Check mute before changed for if there's a delay in updating the value
+        ponymix --source is-muted && notifyMicUnMuted || notifyMicMuted
+        ponymix --source toggle
+}
+
 while getopts 'hv' c
 do
 	case $c in
@@ -70,6 +86,7 @@ case $1 in
 	nextSong) mpc next ;;
 	prevSong) mpc prev ;;
 	toggleMusic) toggleMusic ;;
+	toggleMic) toggleMic ;;
 	brightnessUp) brightnessDown_i3 ;;
 	brightnessDown) brightnessUp_i3 ;;
 	startMail) thunderbird ;;
