@@ -1,3 +1,4 @@
 # /etc/udev/rules.d/wakeup.rules
 # Only valid for my laptop
+# results in some errors in journalctl -b. Might have to specify a bit more.
 ACTION=="add", SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c534", ATTR{power/wakeup}="disabled", ATTR{driver/1-4/power/wakeup}="disabled"
