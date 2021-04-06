@@ -78,7 +78,7 @@ bindsym Ctrl+F2			exec --no-startup-id mpc next
 bindsym Ctrl+Shift+F2	exec --no-startup-id mpc prev
 # bindsym Mod1+F3	exec --no-startup-id turnOffScreen
 
-bindsym --locked XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send "Mute mic"
+bindsym --locked XF86AudioMicMute exec --no-startup-id hotkeys toggleMic
 bindsym --locked XF86MonBrightnessUp exec --no-startup-id brightnessUp_i3 | progress-notify brightness
 bindsym --locked XF86MonBrightnessDown exec --no-startup-id brightnessDown_i3 | progress-notify brightness
 bindsym --locked F3 exec --no-startup-id brightnessDown_i3 | progress-notify brightness
@@ -93,8 +93,8 @@ bindsym $mod+n exec --no-startup-id grim
 bindsym $mod+c exec --no-startup-id startCoding
 
 ############################### sound control ####################################
-bindsym XF86AudioRaiseVolume exec --no-startup-id  ponymix increase 5 | progress-notify audio
-bindsym XF86AudioLowerVolume exec --no-startup-id  ponymix decrease 5 | progress-notify audio
+bindsym XF86AudioRaiseVolume exec --no-startup-id  hotkeys raiseVolume
+bindsym XF86AudioLowerVolume exec --no-startup-id  hotkeys lowerVolume
 # bindsym XF86AudioRaiseVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" increase 5 | progress-notify audio
 # bindsym XF86AudioLowerVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" decrease 5 | progress-notify audio
 bindsym XF86AudioPlay        exec --no-startup-id toggleMusic 
@@ -103,7 +103,7 @@ bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute --get
 bindsym XF86AudioNext        exec --no-startup-id mpc next
 bindsym XF86AudioPrev        exec --no-startup-id mpc prev
 
-bindsym $mod+m exec --no-startup-id launchOnce ashuffle 'ashuffle --queue-buffer 1' 'mpc toggle'
+bindsym $mod+m exec --no-startup-id launchOnce ario ario ""
 
 bindsym $mod+p exec gnome-system-monitor
 
@@ -158,6 +158,7 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [title="^Firefox — Sharing Indicator$"] floating enable , border none
 
  
 
@@ -186,7 +187,7 @@ exec --no-startup-id setxkbmap -option compose:menu
 exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
 
 # Notification daemon
-exec --no-startup-id dunst
+exec --no-startup-id dunst -verbosity debug > /tmp/dunst.log
 
 #exec --no-startup-id pasystray
 
