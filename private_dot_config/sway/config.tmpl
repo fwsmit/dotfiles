@@ -171,9 +171,6 @@ for_window [title="^Firefox — Sharing Indicator$"] floating enable , border no
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 ## Launch external programs without priority
-# nextcloud
-exec --no-startup-id nextcloud --background
-
 # set menu as compose key
 exec --no-startup-id setxkbmap -option compose:menu
 
@@ -187,9 +184,14 @@ exec --no-startup-id setxkbmap -option compose:menu
 exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
 
 # Notification daemon
-exec --no-startup-id dunst -verbosity debug > /tmp/dunst.log
+# exec --no-startup-id dunst -verbosity debug > /tmp/dunst.log
+exec dunst
 
 #exec --no-startup-id pasystray
+
+# nextcloud
+# Launch after dunst to prevent it from starting another instance
+exec nextcloud --background
 
 ## sway specific
 include /etc/sway/config.d/*
