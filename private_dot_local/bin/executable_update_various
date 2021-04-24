@@ -8,7 +8,7 @@ case "$1" in
                 $TERMINAL -- sh -c 'checkupdates --download; sleep 3'
                 ;;
         update_brightspace)
-                $TERMINAL -- sh -c 'cd ~/git-repos/Brightspace-local; pwd; git pull; sleep 3000'
+                $TERMINAL -- sh -c 'cd ~/git-repos/Brightspace-local; pwd; git pull; sleep 3'
                 ;;
         update_shut)
                 $TERMINAL -- update_system_and_shutdown # && systemctl poweroff
