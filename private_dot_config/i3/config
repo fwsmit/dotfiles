@@ -82,8 +82,16 @@ bindsym Ctrl+Shift+F2	exec --no-startup-id mpc prev
 # bindsym Mod1+F3	exec --no-startup-id turnOffScreen
 
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send "Mute mic"
+{{- if eq .chezmoi.hostname "oldlaptop" }}
+bindsym XF86MonBrightnessUp  exec --no-startup-id brightnessDown_i3 | notify brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessUp_i3 | notify brightness
+{{- end }}
+{{- if eq .chezmoi.hostname "archstudent" }}
+bindsym F3 exec --no-startup-id brightnessDown_i3 | notify brightness
+bindsym F4 exec --no-startup-id brightnessUp_i3 | notify brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessUp_i3 | notify brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessDown_i3 | notify brightness
+{{- end }}
 bindsym Ctrl+Shift+plus exec --no-startup-id ponymix increase 1 | notify audio
 bindsym Ctrl+Shift+minus exec --no-startup-id ponymix decrease 1 | notify audio
 
@@ -334,6 +342,9 @@ bar {
 		bindsym button5 nop
 }
 
+# Notification daemon
+exec --no-startup-id dunst
+
 ## Launch external programs without priority
 # nextcloud
 exec --no-startup-id nextcloud --background
@@ -356,3 +367,5 @@ exec --no-startup-id sh -c "launchOnce mic-led mic-led"
 # Notification daemon
 # exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
 exec --no-startup-id dunst
+
+exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
