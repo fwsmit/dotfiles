@@ -32,11 +32,6 @@
 
 exec --no-startup-id feh --recursive --randomize --bg-fill /usr/share/backgrounds
 
-{{- if eq .chezmoi.hostname "archlinux"}}
-# compositor
-exec --no-startup-id picom --config ~/.config/picom/picom.conf
-{{ end }}
-
 set $mod Mod4
 
 hide_edge_borders smart
@@ -76,9 +71,9 @@ bindsym $mod+y exec xfce4-appfinder
 bindsym $mod+Shift+d exec --no-startup-id configureDisplay.sh
 
 # test notification
-bindsym Ctrl+Shift+l exec --no-startup-id notify-send -h string:x-canonical-private-synchronous:i3 -i no_icon_name -h int:value:42 "Test long line like this asl"
-bindsym Ctrl+Shift+k exec --no-startup-id notify-send -h string:x-canonical-private-synchronous:i3 -i no_icon_name -h int:value:42 "Test long ladfine like thisasdf asdf asdf asdf asfa sdfs asdfasdfasdfasdfasdafsdWith multiple lines of text you can test more stuff."
- 
+bindsym Ctrl+Shift+l exec --no-startup-id notify-send "Short notification"
+bindsym Ctrl+Shift+k exec --no-startup-id notify-send "And another one"
+
 # brightness controls for laptop
 bindsym F2	exec --no-startup-id toggleMusic
 bindsym Ctrl+F2			exec --no-startup-id mpc next
@@ -86,12 +81,10 @@ bindsym Ctrl+Shift+F2	exec --no-startup-id mpc prev
 # bindsym Mod1+F3	exec --no-startup-id turnOffScreen
 
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send "Mute mic"
-{{- if eq .chezmoi.hostname "manjaro-laptop" "archstudent"}}
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessUp_i3 | notify brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessDown_i3 | notify brightness
 bindsym Ctrl+Shift+plus exec --no-startup-id ponymix increase 1 | notify audio
 bindsym Ctrl+Shift+minus exec --no-startup-id ponymix decrease 1 | notify audio
-{{- end }}
 
 
 # print screen shortcut
@@ -100,13 +93,13 @@ bindsym Print exec --no-startup-id gnome-screenshot -i
 bindsym $mod+c exec --no-startup-id startCoding
 
 ############################### sound control ####################################
-bindsym XF86AudioRaiseVolume exec --no-startup-id  ponymix increase 5 | notify audio
-bindsym XF86AudioLowerVolume exec --no-startup-id  ponymix decrease 5 | notify audio
+bindsym XF86AudioRaiseVolume exec --no-startup-id  hotkeys raiseVolume
+bindsym XF86AudioLowerVolume exec --no-startup-id  hotkeys lowerVolume
 # bindsym XF86AudioRaiseVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" increase 5 | notify audio
 # bindsym XF86AudioLowerVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" decrease 5 | notify audio
-bindsym XF86AudioPlay        exec --no-startup-id toggleMusic 
+bindsym XF86AudioPlay        exec --no-startup-id toggleMusic
 bindsym XF86AudioPause       exec mpc pause
-bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute --get-mute | notify muted
+bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute --get-mute | progress-notify muted
 bindsym XF86AudioNext        exec --no-startup-id mpc next
 bindsym XF86AudioPrev        exec --no-startup-id mpc prev
 exec --no-startup-id pasystray
@@ -358,4 +351,4 @@ exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
 
 # Notification daemon
 # exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
-exec --no-startup-id ~/testing/dunst
+exec --no-startup-id dunst
