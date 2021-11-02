@@ -1,28 +1,3 @@
-[Added Associations]
-text/plain=nvim.desktop;
-text/markdown=nvim.desktop;
-image/jpeg=eom.desktop;gimp.desktop;
-image/png=gimp.desktop;eom.desktop;
-text/html=chromium.desktop;firefox.desktop;
-inode/directory=nautilus-folder-handler.desktop;nautilus.desktop;
-x-scheme-handler/http=firefox.desktop;
-x-scheme-handler/https=firefox.desktop;
-x-scheme-handler/ftp=firefox.desktop;
-x-scheme-handler/chrome=firefox.desktop;
-application/xml=firefox.desktop;
-application/x-tmdx=freeoffice-textmaker.desktop;
-application/vnd.oasis.opendocument.text=libreoffice-writer.desktop;
-application/pdf=okularApplication_pdf.desktop;firefox.desktop;org.pwmt.zathura-pdf-mupdf.desktop;
-application/x-extension-htm=firefox.desktop;
-application/x-extension-html=firefox.desktop;
-application/x-extension-shtml=firefox.desktop;
-application/xhtml+xml=firefox.desktop;
-application/x-extension-xhtml=firefox.desktop;
-application/x-extension-xht=firefox.desktop;
-d2l/unknowntype=vim.desktop;
-application/x-ipynb+json=nvim.desktop;
-image/gif=gimp.desktop;eom.desktop;
-
 [Default Applications]
 application/pdf=org.pwmt.zathura.desktop
 applications/pdf=org.pwmt.zathura.desktop
@@ -42,3 +17,11 @@ application/x-ipynb+json=nvim.desktop
 image/jpeg=eom.desktop
 image/png=eom.desktop
 image/gif=eom.desktop;
+x-scheme-handler/msteams=teams.desktop
+
+[Added Associations]
+application/pdf=chromium.desktop;firefox.desktop;okularApplication_pdf.desktop;
+image/svg+xml=org.inkscape.Inkscape.desktop;
+text/xml=scribus.desktop;
+image/jpeg=krita_jpeg.desktop;feh.desktop;gpicview.desktop;
+text/plain=nvim.desktop;
