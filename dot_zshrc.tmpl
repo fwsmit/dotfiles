@@ -11,7 +11,7 @@ fi
 
 # Path to your oh-my-zsh installation.
   {{- if eq .chezmoi.hostname "odroid-server" "manjaro-laptop" "archstudent" }}
-	  export ZSH="/usr/share/oh-my-zsh" 
+	  export ZSH="/usr/share/oh-my-zsh"
   {{else}}
 	  export ZSH="/home/friso/.oh-my-zsh"
   {{- end }}
@@ -109,16 +109,26 @@ dr() {
         else
                 return 1
         fi
-        ./dunst $@ -verbosity debug --startup_notification
+        ./dunst $@ -conf ~/.config/dunst/dunstdev -verbosity warn --startup_notification
+}
+
+sway-dev() {
+        export WAYLAND_DISPLAY="wayland-2"
+        # export SWAYSOCK="/run/user/1000/sway-ipc.1000.2536.sock"
+        # ~/git-repos/sway/build/sway/sway
+        termite -d ~/git-repos/wlroots/build/examples &
 }
 
 alias vim="$EDITOR"
 alias v="$EDITOR"
 alias i3conf="chezmoi edit ~/.config/i3/config"
 alias swayconf="chezmoi edit ~/.config/sway/config"
+alias swaydefconf="chezmoi edit ~/.config/sway/config.d/sway-specific.conf"
+alias swaybinconf="chezmoi edit ~/.config/sway/config.d/custom_bind.conf"
 alias zshconf="chezmoi edit ~/.zshrc"
 
 alias dunstconf="chezmoi edit ~/.config/dunst/dunstrc"
+alias dunstdevconf="nvim ~/.config/dunst/dunstdev"
 alias make="make -j$(($(nproc)-1))"
 alias dt="compiledb make -j test"
 alias dtver="DUNST_TEST_LOG=1 make test"
@@ -141,6 +151,8 @@ alias hostlist="nvim ~/.local/share/chezmoi/hostlist"
 alias swaytree="swaymsg -t get_tree > /tmp/sway_tree && nvim /tmp/sway_tree"
 alias bc="bc -l"
 alias gs="echo 'run /usr/bin/gs' for ghostscript"
+alias wlarduino="_JAVA_AWT_WM_NONREPARENTING=1 arduino"
+alias pyondoc="firefox /usr/share/doc/python/html/index.html"
 
 eval `chezmoi completion zsh`
 
@@ -156,7 +168,7 @@ ZSH_HIGHLIGHT_STYLES[globbing]='fg=red'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 if [ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme -a -f ~/.p10k.zsh ]
 then
-	source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme 
+	source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 	source ~/.p10k.zsh
 else
 	ZSH_THEME="agnoster"
