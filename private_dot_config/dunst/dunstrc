@@ -1,33 +1,11 @@
 [global]
-    mouse_middle_click = close_all
+    scale = 0
+    force_xwayland=false
+    geometry = "600x0-25+25"
+    width = (0,600)
+    offset = 25x25
+    layer = overlay
 
-    notification_limit = 3
-
-    offset = 200x200
-
-    # Examples:
-    #
-    # contant width
-    width = 100
-
-    # only minimum width
-    width = (10, )
-
-    # only maximum width (same as shrink from before)
-    width = (, 100)
-
-    # both minimum and maximum width
-    width = (10, 100)
-
-
-
-    height = (10, 100)
-    origin = bottom-left
-    force_xwayland = false
-
-    geometry = "400x1-25+25"
-
-    sort = false
     # force_xwayland = true
     font = Noto Sans 10
     frame_width = 1
@@ -79,20 +57,6 @@
     # Ignore newlines '\n' in notifications.
     ignore_newline = no
 
-    # The geometry of the window:
-    #   [{width}]x{height}[+/-{x}+/-{y}]
-    # The geometry of the message window.
-    # The height is measured in number of notifications everything else
-    # in pixels.  If the width is omitted but the height is given
-    # ("-geometry x2"), the message window expands over the whole screen
-    # (dmenu-like).  If width is 0, the window expands to the longest
-    # message displayed.  A positive x is measured from the left, a
-    # negative from the right side of the screen.  Y is measured from
-    # the top and down respectevly.
-    # The width can be negative.  In this case the actual width is the
-    # screen width minus the width defined in within the geometry option.
-    # Shrink window if it's smaller than the width.  Will be ignored if
-    # width is 0.
     shrink = yes
 
     # The transparency of the window.  Range: [0; 100].
@@ -107,7 +71,7 @@
     idle_threshold = 0
 
     # Which monitor should the notifications be displayed on.
-    monitor = 0
+    # monitor = 0
 
     # Display notification on focused monitor.  Possible modes are:
     #   mouse: follow mouse pointer
@@ -120,7 +84,7 @@
     #
     # If this option is set to mouse or keyboard, the monitor option
     # will be ignored.
-    follow = none
+    follow = keyboard
 
     # Should a notification popped up from history be sticky or timeout
     # as if it would normally do.
@@ -156,6 +120,7 @@
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
     separator_color = "#263238"
+    # separator_color = "#FF0000"
 
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
@@ -172,9 +137,11 @@
     icon_path = /usr/share/icons/Adwaita/16x16/status:/usr/share/icons/Adwaita/16x16/legacy/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/24x24/status:/usr/share/icons/Adwaita/16x16/mimetypes:/usr/share/icons/Papirus-Dark/symbolic/status/:
 
     # Limit icons size.
+    min_icon_size=16
     max_icon_size=128
 
-    fullscreen = pushback
+
+    mouse_middle_click = context
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
@@ -225,10 +192,11 @@
 
 [all]
     highlight = "#02B18E"
+    fullscreen = show
 
 [script]
     summary = "*"
-    script = ~/.local/bin/dunst_test_script.sh
+    # script = ~/.local/bin/dunst_test_script.sh
     # background = "#D62929"
     # foreground = "#F9FAF9"
     # fullscreen = pushback
@@ -237,20 +205,24 @@
 
 [notify-send]
     appname = "notify-send"
-    script = ~/.local/bin/dunst_test_script2.sh
+    # script = ~/.local/bin/dunst_test_script2.sh
     # frame_color = "#00C0CB"
 
-# [test]
-    # appname = "notify-send"
-    # script = ~/.local/bin/dunst_test_script2.sh
-    # background = "#444449"
-    # foreground = "#AAAAF9"
-    # fullscreen = pushback
-    # timeout = 0
-    # fullscreen = show
+[warning]
+    summary = "Unsupported Server Version*"
+    skip_display = true
+
+[volume]
+    stack_tag = audio
+    history_ignore = true
+
+[brightness]
+    stack_tag = brightness
+    history_ignore = true
 
 # [music]
     # appname = "mpd-notification"
+    # max_icon_size = 128
     # script = ~/.local/bin/dunst_test_script.sh
 
 # [irc]
