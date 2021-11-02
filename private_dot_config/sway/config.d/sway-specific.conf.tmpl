@@ -1,7 +1,7 @@
 # Desktop background
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output "eDP-1" bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output "HDMI-A-4" bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output "eDP-1" bg /usr/share/backgrounds/gnome/Tree.jpg fill
+output "HDMI-A-4" bg /usr/share/backgrounds/gnome/Leaf.jpg fill
 
 input type:keyboard {
         xkb_options compose:menu,caps:escape
@@ -22,6 +22,10 @@ exec swayidle -w   timeout 600 'systemctl suspend' \
                    resume 'swaymsg "output * dpms on"' \
                    before-sleep 'swaylock -f -c 000000'
 
+# inhibit idle when an app is fullscreen
+for_window [class="^.*"] inhibit_idle fullscreen
+for_window [app_id="^.*"] inhibit_idle fullscreen
+
 {{- if eq .chezmoi.hostname "archstudent" }}
 exec_always kanshi
 {{- end }}
@@ -31,8 +35,40 @@ bindsym $mod+Shift+s exec --no-startup-id configureDisplay.sh -ws
 
 bindsym $mod+Shift+d exec --no-startup-id kanshi
 
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
-bindsym $mod+d exec $menu
+# set $menu dmenu_path | dmenu | xargs swaymsg exec --
+# bindsym $mod+d exec $menu
+bindsym $mod+d exec wofi -i -S drun
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
+
+exec initctl set-env --global SWAYSOCK="$SWAYSOCK"
+exec initctl set-env --global I3SOCK="$I3SOCK"
+exec initctl set-env --global WAYLAND_DISPLAY="$WAYLAND_DISPLAY"
+# include only if xwayland is enabled and startup jobs need to access X
+# exec initctl set-env --global DISPLAY="$DISPLAY"
+exec initctl emit sway-session
+
+# exec ~/git-repos/dunst/dunst > /tmp/dunst_log
+
+# bluetooth applet
+# exec --no-startup-id blueman-tray
+
+# networkmanager - internet
+# exec --no-startup-id nm-applet
+
+# show a notification if the battery is low
+exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
+
+# Notification daemon
+# exec --no-startup-id dunst -verbosity debug > /tmp/dunst.log
+# exec dunst
+
+#exec --no-startup-id pasystray
+
+# nextcloud
+# Launch after dunst to prevent it from starting another instance
+exec nextcloud --background
+
+exec darkman &> /tmp/darkman.log
+

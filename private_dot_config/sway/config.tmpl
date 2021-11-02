@@ -1,5 +1,5 @@
 # i3 config file (v4)
-# 
+#
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 #
 # This config file uses keycodes (bindsym) and was written for the QWERTY
@@ -31,7 +31,8 @@ set $mod Mod4
 ## Notifications
 # mod + alt + h
 bindsym $mod+alt+h exec dunstctl history-pop
-bindsym $mod+alt+c exec dunstctl context
+bindsym $mod+alt+a exec dunstctl context
+bindsym $mod+alt+c exec dunstctl close
 
 # reshow latest music notification
 bindsym $mod+alt+m exec notify_last_song.sh
@@ -68,17 +69,21 @@ bindsym $mod+u exec pavucontrol
 bindsym $mod+y exec xfce4-appfinder
 
 # test notification
-bindsym Ctrl+Shift+l exec --no-startup-id notify-send -h string:x-canonical-private-synchronous:i3 -h int:value:42 "Test long line like this"
-bindsym Ctrl+Shift+k exec --no-startup-id notify-send -h string:x-canonical-private-synchronous:i3 -h int:value:42 "Test long ladfine like thisasdf asdf asdf asdf asfa sdfs asdfasdfasdfasdfasdafsdWith multiple lines of text you can test more stuff."
-bindsym Ctrl+Shift+j exec notify-send "Second test long ladfine like thisasdf asdf asdf asdf asfa sdfs asdfasdfasdfasdfasdafsdWith multiple lines of text you can test more stuff."
- 
-# brightness controls for laptop
+bindsym Ctrl+Shift+l exec --no-startup-id notify-send "Short notification"
+bindsym Ctrl+Shift+k exec --no-startup-id notify-send "And another one"
+
+# bindsym Ctrl+Shift+l exec --no-startup-id notify-send -h string:x-canonical-private-synchronous:i3 "Test long ladfine like thisasdf asdf asdf asdf asfa sdfs asdfasdfasdfasdfasdafsdWith multiple lines of text you can test more stuff."
+# bindsym Ctrl+Shift+k exec --no-startup-id notify-send -h string:x-canonical-private-synchronous:i3 -h int:value:42 "Test long ladfine like thisasdf asdf asdf asdf asfa sdfs asdfasdfasdfasdfasdafsdWith multiple lines of text you can test more stuff."
+# bindsym Ctrl+Shift+j exec notify-send "Second test long ladfine like thisasdf asdf asdf asdf asfa sdfs asdfasdfasdfasdfasdafsdWith multiple lines of text you can test more stuff."
+
 bindsym F2	exec --no-startup-id toggleMusic
+bindsym Shift+F2	exec --no-startup-id playerctl play-pause
 bindsym Ctrl+F2			exec --no-startup-id mpc next
 bindsym Ctrl+Shift+F2	exec --no-startup-id mpc prev
 # bindsym Mod1+F3	exec --no-startup-id turnOffScreen
 
 bindsym --locked XF86AudioMicMute exec --no-startup-id hotkeys toggleMic
+# brightness controls for laptop
 bindsym --locked XF86MonBrightnessUp exec --no-startup-id brightnessUp_i3 | progress-notify brightness
 bindsym --locked XF86MonBrightnessDown exec --no-startup-id brightnessDown_i3 | progress-notify brightness
 bindsym --locked F3 exec --no-startup-id brightnessDown_i3 | progress-notify brightness
@@ -97,7 +102,8 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id  hotkeys raiseVolume
 bindsym XF86AudioLowerVolume exec --no-startup-id  hotkeys lowerVolume
 # bindsym XF86AudioRaiseVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" increase 5 | progress-notify audio
 # bindsym XF86AudioLowerVolume exec --no-startup-id  ponymix --sink-input -d "ALSA Playback" decrease 5 | progress-notify audio
-bindsym XF86AudioPlay        exec --no-startup-id toggleMusic 
+bindsym Shift+XF86AudioPlay  exec --no-startup-id toggleMusic
+bindsym XF86AudioPlay        exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPause       exec mpc pause
 bindsym XF86AudioMute        exec --no-startup-id pulsemixer --toggle-mute --get-mute | progress-notify muted
 bindsym XF86AudioNext        exec --no-startup-id mpc next
@@ -114,8 +120,9 @@ workspace_auto_back_and_forth yes
 
 bindsym $mod+tab workspace back_and_forth
 
-assign [app_id="thunderbird"] workspace 3
+assign [app_id="thunderbird"] workspace 4
 assign [app_id="firefox"] workspace 1
+assign [title="^Factorio"] workspace 2
 
 # Open specific applications in floating mode
 for_window [class="Tor"] floating enable border pixel 1
@@ -123,11 +130,16 @@ for_window [class="^SFML"] floating enable border pixel 1
 for_window [class="^SFML"] move position center
 for_window [app_id="pavucontrol"] floating enable, resize set width 800 px height 700px, move position center, move right 670, move down 228
 for_window [app_id="^mpv$"] floating enable
+
+
+# zoom-specific fixes
+# Enable floating mode on certain windows
 for_window [app_id="^zoom$" title="^Invite people to join meeting"] floating enable
 for_window [app_id="^zoom$" title="^Create Breakout Rooms"] floating enable
 for_window [app_id="^zoom$" title="^Zoom$"] floating enable
 for_window [app_id="^zoom$" title="^Settings$"] floating enable
 for_window [app_id="^zoom$" title="^zoom$"] floating enable, move position cursor, move up 24
+
 for_window [app_id="nextcloud$" title="^Nextcloud$"] floating enable, resize set width 400 px height 600px, move position cursor, move up 330, move left 200
 for_window [app_id="^Progress$" title="^zenity$"] floating enable # steam "pins updating"
 ## From manjaro config
@@ -158,40 +170,21 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-for_window [title="^Firefox — Sharing Indicator$"] floating enable , border none
+for_window [title="^Firefox — Sharing Indicator$"] floating enable , border none, move position 100 ppt 0 ppt
 
- 
+
 
 
 
 
 # *********************************************************** End of my own customizations *****************************************************************
- 
+
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 ## Launch external programs without priority
 # set menu as compose key
 exec --no-startup-id setxkbmap -option compose:menu
-
-# bluetooth applet
-# exec --no-startup-id blueman-tray
-
-# networkmanager - internet
-# exec --no-startup-id nm-applet
-
-# show a notification if the battery is low
-exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
-
-# Notification daemon
-# exec --no-startup-id dunst -verbosity debug > /tmp/dunst.log
-exec dunst
-
-#exec --no-startup-id pasystray
-
-# nextcloud
-# Launch after dunst to prevent it from starting another instance
-exec nextcloud --background
 
 ## sway specific
 include /etc/sway/config.d/*
