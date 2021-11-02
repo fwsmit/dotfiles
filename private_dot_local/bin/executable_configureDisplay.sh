@@ -51,10 +51,5 @@ then
                 xrandr --output HDMI-1-4 --off
         fi
 else
-        if [ $SMALLDISPLAY = false ]
-        then
-                swaymsg output eDP-1 disable
-        else
-                swaymsg output eDP-1 enable
-        fi
+        drm_info
 fi
