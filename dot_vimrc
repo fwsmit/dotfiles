@@ -68,7 +68,7 @@ Plugin 'LucHermitte/alternate-lite'
 Plugin 'skywind3000/asyncrun.vim'
 
 " Syntastic, for syntax highlighting
-Plugin 'vim-syntastic/syntastic.git'
+Plugin 'w0rp/ale'
 
 " Goyo, for removing clutter and centering text
 Plugin 'junegunn/goyo.vim'
@@ -193,6 +193,8 @@ nnoremap \et :YcmCompleter GetType<CR>
 nnoremap \er :YcmCompleter RefactorRename<Space>
 nnoremap \ed :YcmCompleter GoToDefinition<CR>
 nnoremap \ej :YcmCompleter GoToDeclaration<CR>
+nnoremap <Leader>en :ALENext<CR>
+nnoremap <Leader>ep :ALEPrevious<CR>
 
 " Don't insert a template
 let g:mt_IDontWantTemplatesAutomaticallyInserted = 1
@@ -251,11 +253,17 @@ autocmd FileType text,markdown,pod nmap j gj
 autocmd FileType text,markdown,pod nmap k gk
 autocmd FileType text,markdown,pod setlocal nosmartindent
 autocmd FileType template set ft=config
+autocmd FileType css setlocal tabstop=4
+autocmd FileType css setlocal shiftwidth=4
+autocmd FileType css setlocal expandtab
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path %
 autocmd BufWritePost ~/.local/share/chezmoi/* echo ("Applied the changes")
 autocmd BufEnter ~/git-repos/sway/* setlocal noexpandtab
 autocmd BufEnter ~/git-repos/wlroots/* setlocal noexpandtab
 autocmd BufEnter ~/git-repos/mpd-notification/* setlocal noexpandtab
+autocmd BufEnter ~/git-repos/MPD/* setlocal noexpandtab
+autocmd BufEnter ~/Nextcloud/Netflix.md nmap <C-s> $<C-a>
+autocmd BufEnter *.h setlocal filetype=c
 
 " Resize windows proportionally when resizing window
 autocmd VimResized * wincmd =
@@ -310,3 +318,8 @@ set title titlestring=
 if has('mouse')
 	set mouse=a
 end
+
+" Show whitespace at the end of line in an non-obnoxious way
+autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
+autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
+highlight EOLWS ctermbg=red guibg=red
