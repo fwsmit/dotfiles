@@ -4,7 +4,7 @@
 export TERMINAL="gnome-terminal"
 export EDITOR="nvim"
 export BROWSER="firefox"
-export XDG_MUSIC_DIR="/mnt/Music"
+export XDG_MUSIC_DIR="$HOME/Music"
 export PATH=~/.local/bin:~/.local/share/applications:$PATH
 export PAGER="less"
 export gitrepos="$HOME/git-repos"
@@ -16,11 +16,14 @@ export MOZ_ENABLE_WAYLAND=1
 export MOZ_USE_XINPUT2=1
 # Make firefox link opening work on wayland
 export MOZ_DBUS_REMOTE=1
-# LOG="$HOME/profile-invocations"
-# echo "-----" >>$LOG
-# echo "Caller: $0" >>$LOG
-# echo "TERMINAL: $TERMINAL" >>$LOG
-# echo "EDITOR: $EDITOR" >>$LOG
-# echo "BROWSER: $BROWSER" >>$LOG
-# xset dpms 6000 6000 6000
-# xset s 6000 6000
+export WLR_DRM_NO_MODIFIERS=1
+
+# Make java programs work on wayland (arduino, android studio, ...)
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# According to gtk: [warning] For a functional tray you must have libappindicator-* installed and export XDG_CURRENT_DESKTOP=Unity
+# I disabled it, because it doesn't seem to do much
+# export XDG_CURRENT_DESKTOP=Unity
+
+# Required for android-studio to find the sdk
+export ANDROID_HOME=~/Android-studio-sdk
