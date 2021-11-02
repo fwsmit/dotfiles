@@ -1,3 +1,3 @@
 #!/bin/sh
 
-launchOnce ashuffle 'ashuffle --queue-buffer 1' 'mpc toggle'
+launchOnce ashuffle 'ashuffle' 'mpc toggle'
