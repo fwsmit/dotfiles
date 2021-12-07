@@ -1,0 +1,15 @@
+#!/bin/sh
+
+SERVERNAME="unity2"
+
+if nvr --serverlist | grep "$SERVERNAME" &> /dev/null
+then
+        if [ "$2" -gt 0 ]
+        then
+                nvr --servername $SERVERNAME -cc "tab drop $1" -cc "norm $2G"
+        else
+                nvr --servername $SERVERNAME -cc "tab drop $1"
+        fi
+else
+        gnome-terminal -- nvr --servername $SERVERNAME -cc "tab drop $1"
+fi
