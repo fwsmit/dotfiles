@@ -8,7 +8,7 @@
 # TODO: Support single songs
 
 filetype="mp3"
-YTDL="youtube-dl"
+YTDL="yt-dlp"
 
 usage()
 {
