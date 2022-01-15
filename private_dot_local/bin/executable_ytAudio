@@ -8,6 +8,7 @@
 # TODO: Support single songs
 
 filetype="mp3"
+YTDL="youtube-dl"
 
 usage()
 {
@@ -17,7 +18,7 @@ usage()
 }
 
 download_audio(){
-    youtube-dl -i -f bestaudio -o "%(playlist_index)s - %(title)s.%(ext)s" "$1"
+    $YTDL -i -f bestaudio -o "%(playlist_index)s - %(title)s.%(ext)s" "$1"
 }
 
 recode_audio(){
