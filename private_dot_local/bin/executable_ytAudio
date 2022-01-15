@@ -96,7 +96,7 @@ echo "Downloading playlist $URL"
 
 tempDir=`mktemp -p /mnt/nas/tmp -d`
 # tempdir=`mktemp -p /tmp/ -d`
-cd "$tempdir"
+cd "$tempDir"
 pwd
 download_audio "$URL"
 if [ ! -z $HASCOVER ]
