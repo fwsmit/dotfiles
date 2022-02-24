@@ -1,6 +1,6 @@
 # Desktop background
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output "eDP-1" bg /usr/share/backgrounds/gnome/Tree.jpg fill
+output "eDP-1" bg /usr/share/backgrounds/gnome/BrushStrokes.jpg fill
 output "HDMI-A-4" bg /usr/share/backgrounds/gnome/Leaf.jpg fill
 
 input type:keyboard {
@@ -15,6 +15,7 @@ input type:touchpad {
 
 bar {
     swaybar_command waybar
+    # swaybar_command swaybar
 }
 
 exec swayidle -w   timeout 600 'systemctl suspend' \
@@ -37,7 +38,8 @@ bindsym $mod+Shift+d exec --no-startup-id kanshi
 
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 # bindsym $mod+d exec $menu
-bindsym $mod+d exec wofi -i -S drun
+# bindsym $mod+d exec wofi -I -i -S drun | xargs swaymsg exec --
+bindsym $mod+d exec wofi -I -i -S drun | xargs swaymsg exec --
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -55,7 +57,7 @@ exec initctl emit sway-session
 # exec --no-startup-id blueman-tray
 
 # networkmanager - internet
-# exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet --indicator
 
 # show a notification if the battery is low
 exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
