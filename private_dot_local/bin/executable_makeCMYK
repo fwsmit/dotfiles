@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Needs imagemagick
+# All arguments are interpreted as the imagesyou want to convert. The new names
+# are automatically selected
+
+for file in "$@"; do
+        OUT_FILE="${file%.*}""_cmyk.""${file##*.}"
+        echo "Infile: $file"
+        echo "Outfile: $OUT_FILE"
+        convert "$file" -profile /usr/share/scribus/profiles/GenericCMYK.icm "$OUT_FILE"
+        if [ $? -ne 0 ]; then
+                echo "Error converting file $file"
+        fi
+done
