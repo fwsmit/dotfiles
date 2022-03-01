@@ -5,6 +5,15 @@ profile internal {
 
 profile external {
         output eDP-1 disable
-        output HDMI-A-4 enable
+        output "Iiyama North America PL2792Q 1152101201043" enable
+        # exec swaymsg workspace 1
+        exec swaymsg workspace 1, move workspace to output "Iiyama North America PL2792Q 1152101201043"
+        #output HDMI-A-4 enable
+}
+
+profile external-generic {
+        output eDP-1 disable
+        output "HDMI-A-4" enable
+        # exec swaymsg workspace 1
 }
 {{- end }}
