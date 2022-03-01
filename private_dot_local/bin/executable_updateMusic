@@ -1,0 +1,8 @@
+#!/bin/sh
+# sudo systemctl start mnt-remote-Music.mount
+
+# rsync options: partial (keep partially downloaded files), progress,
+# recursive, update, human-readable, delete
+rsync -P -r --update -h --delete --times --stats -i friso@odroid-local:/mnt/nas/Music/ ~/Music
+mpc update --wait
+# sudo systemctl stop mnt-remote-Music.mount
