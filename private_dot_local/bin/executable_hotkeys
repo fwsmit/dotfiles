@@ -47,12 +47,12 @@ volumeDown(){
 }
 
 notifyMicMuted(){
-        brightnessctl -d 'hda::micmute' s 1
+        # brightnessctl -d 'hda::micmute' s 1
         notify-send -h string:x-canonical-private-synchronous:microphone -t 1500 "Mic muted"
 }
 
 notifyMicUnMuted(){
-        brightnessctl -d 'hda::micmute' s 0
+        # brightnessctl -d 'hda::micmute' s 0
         notify-send -h string:x-canonical-private-synchronous:microphone -t 1500 "Mic unmuted"
 }
 
