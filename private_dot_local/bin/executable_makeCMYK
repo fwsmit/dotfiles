@@ -1,8 +1,11 @@
 #!/bin/sh
 
-# Needs imagemagick
+# Needs imagemagick and scribus
 # All arguments are interpreted as the imagesyou want to convert. The new names
 # are automatically selected
+
+# WARNING: from my testing this doesn't work for all pictures. Check if they have
+# been correctly converted before.
 
 for file in "$@"; do
         OUT_FILE="${file%.*}""_cmyk.""${file##*.}"
