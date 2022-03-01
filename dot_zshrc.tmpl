@@ -1,3 +1,7 @@
+cowfortune
+
+echo
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -109,7 +113,12 @@ dr() {
         else
                 return 1
         fi
-        ./dunst $@ -conf ~/.config/dunst/dunstdev -verbosity warn --startup_notification
+        # ./dunst $@ -conf ~/.config/dunst/dunstdev -verbosity warn --startup_notification
+        ./dunst $@ -verbosity info --startup_notification
+}
+
+dfun() {
+        ( cd ./test/functional-tests/ && ./test.sh $@ )
 }
 
 sway-dev() {
@@ -131,10 +140,13 @@ alias dunstconf="chezmoi edit ~/.config/dunst/dunstrc"
 alias dunstdevconf="nvim ~/.config/dunst/dunstdev"
 alias make="make -j$(($(nproc)-1))"
 alias dt="compiledb make -j test"
+alias dtg="dt || gdb ./test/test -ex r -ex bt"
 alias dtver="DUNST_TEST_LOG=1 make test"
 alias db="cd ~/testing/dunst-backup"
 alias dtv="compiledb make -j test test-valgrind"
 alias dn="nvim ~/testing/dunst_notes.md"
+alias dunst-branch-delete="git branch --merged | egrep -v \"(^\*|master|maint)\" | xargs git branch -d"
+alias git-branch-prune="git remote prune origin; git remote prune upstream"
 alias vimconf="chezmoi edit ~/.vimrc"
 alias script="cd ~/.local/bin"
 alias formulate="cd ~/Documents/TU/Warmteoverdracht/formuleblad"
@@ -153,6 +165,7 @@ alias bc="bc -l"
 alias gs="echo 'run /usr/bin/gs' for ghostscript"
 alias wlarduino="_JAVA_AWT_WM_NONREPARENTING=1 arduino"
 alias pyondoc="firefox /usr/share/doc/python/html/index.html"
+alias x11="WAYLAND_DISPLAY= "
 
 eval `chezmoi completion zsh`
 
