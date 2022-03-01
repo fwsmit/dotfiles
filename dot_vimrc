@@ -120,6 +120,28 @@ let &showbreak = '+++ '
 " Do not insert two spaces after a .
 set nojoinspaces
 
+" By default, use spaced tabs.
+set expandtab
+
+function TabsOrSpaces()
+    " Determines whether to use spaces or tabs on the current buffer.
+    if getfsize(bufname("%")) > 256000
+        " File is very large, just use the default.
+        return
+    endif
+
+    let numTabs=len(filter(getbufline(bufname("%"), 1, 250), 'v:val =~ "^\\t"'))
+    let numSpaces=len(filter(getbufline(bufname("%"), 1, 250), 'v:val =~ "^ "'))
+
+    if numTabs > numSpaces
+        setlocal noexpandtab
+    endif
+endfunction
+
+" Call the function after opening a buffer
+autocmd BufReadPost * call TabsOrSpaces()
+
+
 " NERDTree config
 " Give a shortcut key to NERD Tree
 map <F2> :NERDTreeToggle<CR>
@@ -134,8 +156,8 @@ let g:usemarks = 0
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
-			\ 'dir': '\v[\/](\.git|cmake|build)$',
-			\ 'file': '\v\.(exe|so|dll|o|d)$',
+			\ 'dir': '\v[\/](\.git|cmake|build|Library|Logs|Temp)$',
+			\ 'file': '\v\.(exe|so|dll|o|d|meta|csproj)$',
 			\ }
 
 " colorschemes
@@ -248,14 +270,16 @@ autocmd FileType sh call ShellMake()
 autocmd FileType text,markdown setlocal spell
 autocmd BufEnter *.nl.md setlocal spelllang=nl
 autocmd BufEnter *.nl.md call setbufvar(bufnr("%"), 'easyescape_disable', 1)
+
 autocmd FileType text,markdown,pod setlocal textwidth=80
 autocmd FileType text,markdown,pod nmap j gj
 autocmd FileType text,markdown,pod nmap k gk
 autocmd FileType text,markdown,pod setlocal nosmartindent
 autocmd FileType template set ft=config
-autocmd FileType css setlocal tabstop=4
-autocmd FileType css setlocal shiftwidth=4
+autocmd FileType css,cs setlocal shiftwidth=4
 autocmd FileType css setlocal expandtab
+autocmd FileType css,cs setlocal tabstop=4
+
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path %
 autocmd BufWritePost ~/.local/share/chezmoi/* echo ("Applied the changes")
 autocmd BufEnter ~/git-repos/sway/* setlocal noexpandtab
