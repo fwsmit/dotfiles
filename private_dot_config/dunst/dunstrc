@@ -1,7 +1,8 @@
 [global]
+    force_xwayland = false
+    enable_recursive_icon_lookup = true
     scale = 0
     force_xwayland=false
-    geometry = "600x0-25+25"
     width = (0,600)
     offset = 25x25
     layer = overlay
@@ -136,9 +137,12 @@
     # Paths to default icons.
     icon_path = /usr/share/icons/Adwaita/16x16/status:/usr/share/icons/Adwaita/16x16/legacy/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/24x24/status:/usr/share/icons/Adwaita/16x16/mimetypes:/usr/share/icons/Papirus-Dark/symbolic/status/:
 
+    icon_theme = Adwaita, Papirus-Dark
+
     # Limit icons size.
     min_icon_size=16
     max_icon_size=128
+    icon_size = 32
 
 
     mouse_middle_click = context
@@ -220,9 +224,12 @@
     stack_tag = brightness
     history_ignore = true
 
-# [music]
-    # appname = "mpd-notification"
-    # max_icon_size = 128
+[music]
+    appname = "mpd-notification"
+    history_ignore = true
+    format="%b"
+    alignment=center
+    icon_size = 64
     # script = ~/.local/bin/dunst_test_script.sh
 
 # [irc]
