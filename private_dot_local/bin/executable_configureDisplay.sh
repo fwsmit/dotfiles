@@ -34,6 +34,15 @@ shift $((OPTIND-1))
 	# killall picom
 # fi
 
+# nvidia default
+# EXT_MON="HDMI-1-0"
+
+# nouveau default
+EXT_MON="HDMI-1-4"
+
+# set the right display name for nvidia/nouveau driver
+pacman -Q nvidia && EXT_MON="HDMI-1-0" || EXT_MON="HDMI-1-4"
+
 if [ $USEWAYLAND = false ]
 then
         if [ $SMALLDISPLAY = false ]
@@ -43,12 +52,12 @@ then
                 # #turn off laptop display
                 # xrandr --output eDP-1 --off
 
-                xrandr --output HDMI-1-4 --auto --output eDP-1 --off
+                xrandr --output "$EXT_MON" --auto --output eDP-1 --off
         else
                 #turn on laptop display
-                xrandr --output eDP-1 --left-of HDMI-1-4 --auto
+                xrandr --output eDP-1 --left-of "$EXT_MON" --auto
                 # turn off external display
-                xrandr --output HDMI-1-4 --off
+                xrandr --output "$EXT_MON" --off
         fi
 else
         drm_info
