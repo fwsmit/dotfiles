@@ -1,0 +1,19 @@
+# from https://wiki.archlinux.org/title/Power_management#Sleep_hooks
+# location: /etc/systemd/system/suspend@.service
+# Enable with sudo systemctl enable suspend@$USER.service 
+
+[Unit]
+Description=User suspend actions
+Before=sleep.target
+
+[Service]
+User=%I
+Type=forking
+Environment=DISPLAY=:0
+ExecStartPre=/usr/bin/mpc pause
+ExecStart=/usr/bin/true
+#ExecStart=/usr/bin/sflock
+ExecStartPost=/usr/bin/sleep 1
+
+[Install]
+WantedBy=sleep.target
