@@ -16,7 +16,7 @@ export MOZ_ENABLE_WAYLAND=1
 export MOZ_USE_XINPUT2=1
 # Make firefox link opening work on wayland
 export MOZ_DBUS_REMOTE=1
-export WLR_DRM_NO_MODIFIERS=1
+# export WLR_DRM_NO_MODIFIERS=1
 
 # Make java programs work on wayland (arduino, android studio, ...)
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -27,3 +27,10 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Required for android-studio to find the sdk
 export ANDROID_HOME=~/Android-studio-sdk
+
+export ASAN_OPTIONS=abort_on_error=1:disable_coredump=0:unmap_shadow_on_exit=1
+
+if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec sway
+  # exec ~/git-repos/sway/build/sway/sway 2> ~/bug-reports/sway.log
+fi
