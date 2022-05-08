@@ -121,6 +121,15 @@ dfun() {
         ( cd ./test/functional-tests/ && ./test.sh $@ )
 }
 
+fmt() {
+       echo  $@ | ./binary-fmt && hx out.cw
+}
+
+repeats() {
+        for i in {1..$2}; do echo -n "$1"; done
+}
+
+
 sway-dev() {
         export WAYLAND_DISPLAY="wayland-2"
         # export SWAYSOCK="/run/user/1000/sway-ipc.1000.2536.sock"
@@ -190,6 +199,10 @@ fi
 source $ZSH/oh-my-zsh.sh
 # Fish-like syntax highlighting. This must be at the end of .zshrc
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+for file in `ls ~/.config/zsh/zshrc.d/`
+do
+        source "$file"
+done
 
 bindkey -v
 # this alias (from ohmyzsh git plugin) will otherwise interfere with graphicsmagick
