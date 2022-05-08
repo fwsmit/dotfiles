@@ -2,7 +2,7 @@
 
 case "$1" in
         update_only)
-                $TERMINAL -- sudo pacman -Syu --noconfirm # && systemctl poweroff
+                $TERMINAL -- update_system
                 ;;
         download_updates)
                 $TERMINAL -- sh -c 'checkupdates --download; sleep 3'

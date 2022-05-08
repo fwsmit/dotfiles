@@ -1,6 +1,7 @@
 #!/bin/sh
 
-/home/friso/.local/bin/update_system
+sudo pacman -Syu --noconfirm || echo "Update failed. Press enter to quit." && read && exit
+
 echo "Done updating, shutting down in 3 seconds"
 sleep 3
 systemctl poweroff

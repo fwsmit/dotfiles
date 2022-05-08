@@ -32,6 +32,7 @@ bindsym $mod+alt+h exec dunstctl history-pop
 bindsym $mod+alt+a exec dunstctl context
 bindsym $mod+alt+c exec dunstctl close
 bindsym $mod+alt+r exec ~/git-repos/dunst/dunstctl reload
+bindsym $mod+alt+w exec word-lookup.sh -w
 
 # reshow latest music notification
 bindsym $mod+alt+m exec notify_last_song.sh
@@ -182,6 +183,9 @@ exec --no-startup-id mic-led
 ## Launch external programs without priority
 # set menu as compose key
 exec --no-startup-id setxkbmap -option compose:menu
+
+# Make sure playerctl acts on the last active player.
+exec --no-startup-id playerctld daemon
 
 ## sway specific
 include /etc/sway/config.d/*
