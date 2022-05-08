@@ -137,13 +137,11 @@
     # Paths to default icons.
     icon_path = /usr/share/icons/Adwaita/16x16/status:/usr/share/icons/Adwaita/16x16/legacy/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/24x24/status:/usr/share/icons/Adwaita/16x16/mimetypes:/usr/share/icons/Papirus-Dark/symbolic/status/:
 
-    icon_theme = Adwaita, Papirus-Dark
+    icon_theme = Papirus-Dark, Adwaita
 
     # Limit icons size.
-    min_icon_size=16
-    max_icon_size=128
-    icon_size = 32
-
+    min_icon_size= 32
+    max_icon_size= 128
 
     mouse_middle_click = context
 
@@ -229,7 +227,6 @@
     history_ignore = true
     format="%b"
     alignment=center
-    icon_size = 64
     # script = ~/.local/bin/dunst_test_script.sh
 
 # [irc]
