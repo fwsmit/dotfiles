@@ -199,7 +199,7 @@ fi
 source $ZSH/oh-my-zsh.sh
 # Fish-like syntax highlighting. This must be at the end of .zshrc
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-for file in `ls ~/.config/zsh/zshrc.d/`
+for file in ~/.config/zsh/zshrc.d/*.sh
 do
         source "$file"
 done

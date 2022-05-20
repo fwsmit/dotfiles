@@ -178,7 +178,7 @@ for_window [title="^Firefox — Sharing Indicator$"] floating enable , border no
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-exec --no-startup-id mic-led
+exec --no-startup-id sh -c "launchOnce mic-led mic-led"
 
 ## Launch external programs without priority
 # set menu as compose key

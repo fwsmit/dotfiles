@@ -62,7 +62,7 @@ exec initctl emit sway-session
 exec --no-startup-id nm-applet --indicator
 
 # show a notification if the battery is low
-exec --no-startup-id i3-battery-popup -L 20 -l 15 -n
+exec --no-startup-id sh -c "launchOnce i3-battery-popup 'i3-battery-popup -L 20 -l 15 -n'"
 
 # Notification daemon
 # exec --no-startup-id dunst -verbosity debug > /tmp/dunst.log
