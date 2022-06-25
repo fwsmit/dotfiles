@@ -178,6 +178,10 @@ alias wlarduino="_JAVA_AWT_WM_NONREPARENTING=1 arduino"
 alias pyondoc="firefox /usr/share/doc/python/html/index.html"
 alias x11="WAYLAND_DISPLAY= "
 
+lessjq() {
+        cat "$1" | jq | less
+}
+
 eval `chezmoi completion zsh`
 
 typeset -A ZSH_HIGHLIGHT_STYLES
